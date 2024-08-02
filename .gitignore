@@ -22,3 +22,66 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# dependencies
+node_modules/
+bower_components/
+
+# Angular build output
+dist/
+tmp/
+out-tsc/
+aot/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Angular specific
+.angular/cache/
+.angular/cli/
+
+# Logs and debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional npm cache directory
+.npm
+
+# Compiled files
+*.dll
+*.exe
+*.out
+*.obj
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Package locks
+package-lock.json
+yarn.lock
+
+# Coverage reports
+coverage/
+
+# Bootstrap files (if you have them inside your project directory)
+bootstrap/
+
+# Ignore local environment files
+.env
