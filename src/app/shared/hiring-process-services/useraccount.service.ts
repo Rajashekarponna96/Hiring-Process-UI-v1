@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'environments/environment';
-import { UserAccout } from '../hiring-process-services-model/userAccount';
+import { UserAccout } from '../model/userAccount';
 @Injectable({
   providedIn: 'root'
 })

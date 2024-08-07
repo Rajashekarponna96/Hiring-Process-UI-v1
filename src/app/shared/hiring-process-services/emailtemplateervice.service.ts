@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
-import { CandidateEmail } from '../hiring-process-services-model/candidateEmail';
-import { Pagination } from '../hiring-process-services-model/pagination';
+import { CandidateEmail } from '../model/candidateEmail';
+import { Pagination } from '../model/pagination';
 
 @Injectable({
   providedIn: 'root'

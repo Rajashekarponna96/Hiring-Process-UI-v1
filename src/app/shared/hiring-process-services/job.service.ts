@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
-import { Client } from '../hiring-process-services-model/client';
-import { Currency } from '../hiring-process-services-model/currency';
-import { Department } from '../hiring-process-services-model/Department';
-import { Job } from '../hiring-process-services-model/job';
-import { Recruiter } from '../hiring-process-services-model/recruiter';
-import { Vendor } from '../hiring-process-services-model/vendor';
+import { Client } from '../model/client';
+import { Currency } from '../model/currency';
+import { Department } from '../model/Department';
+import { Job } from '../model/job';
+import { Recruiter } from '../model/recruiter';
+import { Vendor } from '../model/vendor';
 
 @Injectable({
   providedIn: 'root'

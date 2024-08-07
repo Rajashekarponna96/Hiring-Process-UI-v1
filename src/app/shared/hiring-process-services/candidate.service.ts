@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Candidate } from '../model/candidate';
 import { Location } from '@angular/common';
+import { Currency } from '../model/currency';
 import { environment } from 'environments/environment';
-import { Candidate } from '../hiring-process-services-model/candidate';
-import { Currency } from '../hiring-process-services-model/currency';
-import { Job } from '../hiring-process-services-model/job';
-import { Pagination } from '../hiring-process-services-model/pagination';
-import { Source } from '../hiring-process-services-model/source';
-import { TalentPool } from '../hiring-process-services-model/talentpool';
-import { Vendor } from '../hiring-process-services-model/vendor';
+import { Job } from '../model/job';
+import { Pagination } from '../model/pagination';
+import { Source } from '../model/source';
+import { TalentPool } from '../model/talentpool';
+import { Vendor } from '../model/vendor';
 
 @Injectable({
   providedIn: 'root'

@@ -1,0 +1,80 @@
+<p>
+  dashboard3 works!
+</p>
+<div class="card">
+  <!-- Header Container -->
+  <div class="header-container">
+      <!-- Search Input -->
+      <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+          <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search"
+                  class="w-full" />
+          </span>
+      </div>
+      <!-- Add New Vendor Button -->
+      <button (click)="navigateToCreateTalentPool()" pButton
+          class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus"
+          label="Add New"></button>
+  </div>
+
+
+  <!-- Table Container -->
+  <div class="table-container">
+      <table>
+          <thead>
+              <tr>
+                  <th style="width: 40%">Skill</th>
+                  <th style="width: 40%">Description</th>
+                  <th style="width: 20%">Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let talentPool of talentPools">
+                  <td>{{ talentPool.name }}</td>
+                  <td>{{ talentPool.description }}</td>
+                  <td>
+                      <div class="button-container">
+                          <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
+                              (click)="handleEditTalentPool(talentPool)" icon="pi pi-pencil"></button>
+                          <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                              (click)="talentpooldelete(talentPool)" icon="pi pi-trash"></button>
+                      </div>
+                  </td>
+              </tr>
+              <tr *ngIf="talentPools.length === 0">
+                  <td colspan="3" class="no-records-message">
+                      No talent pool found
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+
+  <!-- Pagination Container -->
+  <div class="pagination-container" *ngIf="talentPools.length > 0">
+      <div class="pagination-info">
+          Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of
+          {{ totalElements }} entries
+      </div>
+      <div class="pagination">
+          <a class="first" (click)="goToFirstPage()">&laquo; First</a>
+          <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="pagination.first ? true : null">&laquo;
+              Prev</a>
+          <a class="next" (click)="goToNextPage()" [attr.disabled]="pagination.last ? true : null">Next &raquo;</a>
+          <a class="last" (click)="goToLastPage()">Last &raquo;</a>
+      </div>
+
+      <!-- Page Size Selector -->
+      <div class="page-size-selector">
+          <select class="custom-select" (change)="onRecordsPerPageChange($event)">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+          </select>
+      </div>
+  </div>
+</div>

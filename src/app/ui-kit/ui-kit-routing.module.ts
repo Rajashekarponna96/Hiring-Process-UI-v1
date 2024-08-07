@@ -11,23 +11,24 @@ import { FontAwesomeComponent } from './icons/font-awesome/font-awesome.componen
 import { SimpleLineComponent } from './icons/simple-line/simple-line.component';
 
 const routes: Routes = [
+
   {
     path: '',
-    children: [     
+    children: [
       {
         path: 'grids',
         component: GridsComponent,
         data: {
           title: 'Grids'
         }
-      },      
+      },
       {
         path: 'typography',
         component: TypographyComponent,
         data: {
           title: 'Typography'
         }
-      },      
+      },
       {
         path: 'textutilities',
         component: TextUtilitiesComponent,
@@ -55,7 +56,7 @@ const routes: Routes = [
         data: {
           title: 'Feather Icons'
         }
-      }, 
+      },
       {
         path: 'font-awesome',
         component: FontAwesomeComponent,
@@ -69,7 +70,7 @@ const routes: Routes = [
         data: {
           title: 'Simple Line'
         }
-      },    
+      },
 
     ]
   }
