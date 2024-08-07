@@ -3,9 +3,9 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'environments/environment';
-import { Candidate } from '../hiring-process-services-model/candidate';
-import { Pagination } from '../hiring-process-services-model/pagination';
-import { Vendor } from '../hiring-process-services-model/vendor';
+import { Candidate } from '../model/candidate';
+import { Pagination } from '../model/pagination';
+import { Vendor } from '../model/vendor';
 @Injectable({
   providedIn: 'root'
 })

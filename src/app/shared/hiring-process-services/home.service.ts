@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'environments/environment';
-import { Job } from '../hiring-process-services-model/job';
+import { Job } from '../model/job';
 
 @Injectable({
   providedIn: 'root'

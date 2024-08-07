@@ -17,7 +17,7 @@ import { RegisterPageComponent } from "./register/register-page.component";
     imports: [
         CommonModule,
         ContentPagesRoutingModule,
-        FormsModule        
+        FormsModule
     ],
     declarations: [
         ComingSoonPageComponent,
@@ -26,7 +26,8 @@ import { RegisterPageComponent } from "./register/register-page.component";
         LockScreenPageComponent,
         LoginPageComponent,
         MaintenancePageComponent,
-        RegisterPageComponent
+        RegisterPageComponent,
+
     ]
 })
 export class ContentPagesModule { }

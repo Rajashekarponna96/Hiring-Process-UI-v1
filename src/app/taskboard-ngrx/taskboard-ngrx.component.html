@@ -5,132 +5,49 @@
   </div>
 </div>
 <!-- Taskboard Starts -->
-<section id="taskboard">
-
-
-  <div class="row">
-    <div class="col-md-3 col-12">
-      <h4 class="ml-2 mt-2 text-bold-500 text-left"><i class="ft-list mr-1  float-left"></i> To Dos</h4>
-      <div class='dragdrop-container' [dragula]='"task-group"' [dragulaModel]='todo'>
-        <div *ngFor='let todo of todo'>
-          <div class="card">
-            <div class="card-body pt-3 text-left">
-              <div class="clearfix">
-                <h5 class="text-bold-500 primary float-left">{{todo.taskTitle}}</h5>
-                <div class="actions float-right">
-                  <i class="ft-edit mr-1 info"></i>
-                  <i class="ft-trash-2 danger"></i>
-                </div>
+<p>
+  createtalentpool works!
+</p>
+<div class="grid">
+  <div class="col-12">
+      <div class="card">
+          <form #talentpoolForm="ngForm">
+              <div class="p-fluid p-formgrid grid">
+                  <div class="field col-12">
+                      <label for="name">Skill<span [style.display]="talentpool.name ? 'none' : 'inline'" style="color: red">*</span></label>
+                      <input pInputText id="name" name="name" type="text" placeholder="Enter Name"
+                          [(ngModel)]="talentpool.name" required #name="ngModel" />
+                      <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                          <div style="color: red" *ngIf="name.errors">
+                              Name is required
+                          </div>
+                      </div>
+                  </div>
+                  <div class="field col-12">
+                      <label for="description">Description<span [style.display]="talentpool.description ? 'none' : 'inline'" style="color: red">*</span></label>
+                      <textarea pInputTextarea id="description" name="description" rows="4"
+                          placeholder="Enter Description" [(ngModel)]="talentpool.description" required
+                          #description="ngModel"></textarea>
+                      <div *ngIf="
+                              description.invalid &&
+                              (description.dirty || description.touched)
+                          ">
+                          <div style="color: red" *ngIf="description.errors">
+                              Description is required
+                          </div>
+                      </div>
+                  </div>
               </div>
-              <p>{{todo.taskMessage}}</p>
-              <img [src]="[todo.assignedTo]" class="rounded-circle width-50 mr-2"> <span
-                class="primary">{{todo.createdOn}}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 col-12">
-      <h4 class="ml-2 mt-2 text-bold-500 text-left"><i class="ft-trending-up mr-1  float-left"></i> In Progress</h4>
-      <div class='dragdrop-container' [dragula]='"task-group"' [dragulaModel]='inProcess'>
-        <div *ngFor='let inProcess of inProcess'>
-          <div class="card">
-            <div class="card-body pt-3 text-left">
-              <div class="clearfix">
-                <h5 class="text-bold-500 info float-left">{{inProcess.taskTitle}}</h5>
-                <div class="actions float-right">
-                  <i class="ft-edit mr-1 info"></i>
-                  <i class="ft-trash-2 danger"></i>
-                </div>
-              </div>
-              <p>{{inProcess.taskMessage}}</p>
-              <img [src]="[inProcess.assignedTo]" class="rounded-circle width-50 mr-2"> <span
-                class="info">{{inProcess.createdOn}}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-md-3 col-12">
-      <h4 class="ml-2 mt-2 text-bold-500 text-left"><i class="ft-thumbs-up mr-1  float-left"></i>Completed</h4>
-      <div class='dragdrop-container' [dragula]='"task-group"' [dragulaModel]='completed'>
-        <div *ngFor='let completed of completed'>
-          <div class="card">
-            <div class="card-body pt-3 text-left">
-              <div class="clearfix">
-                <h5 class="text-bold-500 success float-left">{{completed.taskTitle}}</h5>
-                <div class="actions float-right">
-                  <i class="ft-edit mr-1 info"></i>
-                  <i class="ft-trash-2 danger"></i>
-                </div>
+              <div class="ui-g-12" style="text-align: right">
+                  <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
+                  <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
+                      (click)="addTalentPool()" label="Save"[disabled]="!talentpoolForm.valid"></button>
+                  <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" type="button"
+                      icon="pi pi-times" label="Cancel" [routerLink]="['/listtalentpool']"></button>
               </div>
-              <p>{{completed.taskMessage}}</p>
-              <img [src]="[completed.assignedTo]" class="rounded-circle width-50 mr-2"> <span
-                class="success">{{completed.createdOn}}</span>
-            </div>
-          </div>
-        </div>
+          </form>
       </div>
-    </div>
-
-    <div class="col-md-3 col-12">
-      <h4 class="ml-2 mt-2 text-bold-500 text-left"><i class="ft-alert-octagon mr-1  float-left"></i>On Hold</h4>
-      <div class='dragdrop-container' [dragula]='"task-group"' [dragulaModel]='backLog'>
-        <div *ngFor='let backLog of backLog'>
-          <div class="card">
-            <div class="card-body pt-3 text-left">
-              <div class="clearfix">
-                <h5 class="text-bold-500 warning float-left">{{backLog.taskTitle}}</h5>
-                <div class="actions float-right">
-                  <i class="ft-edit mr-1 info"></i>
-                  <i class="ft-trash-2 danger"></i>
-                </div>
-              </div>
-              <p>{{backLog.taskMessage}}</p>
-              <img [src]="[backLog.assignedTo]" class="rounded-circle width-50 mr-2"> <span
-                class="warning">{{backLog.createdOn}}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-
-  <section class="taskboard-app-form bg-blue-grey bg-lighten-5">
-    <div class="card">
-      <div class="card-body pt-3 text-left">
-        <h5 class="text-bold-500">Create new Task</h5>
-        <form class="taskboard-app-input row">
-          <fieldset class="position-relative has-icon-left col-md-4 col-12 mb-1">
-            <div class="form-control-position">
-              <i class="icon-emoticon-smile"></i>
-            </div>
-            <input type="text" class="form-control" id="todoTitle" placeholder="Title">
-            <div class="form-control-position control-position-right">
-              <i class="ft-image gallery-icon-title"></i>
-            </div>
-          </fieldset>
-          <fieldset class="position-relative has-icon-left col-md-6 col-12 mb-1">
-            <div class="form-control-position">
-              <i class="icon-emoticon-smile"></i>
-            </div>
-            <input type="text" class="form-control" id="todoMessage" placeholder="Message">
-            <div class="form-control-position control-position-right">
-              <i class="ft-image gallery-icon-msg"></i>
-            </div>
-          </fieldset>
-
-          <fieldset class="position-relative has-icon-left col-md-2 col-12 mb-1 add-task-btn">
-            <button type="button" class="btn btn-raised btn-primary px-4 mb-0">
-              <i class="ft ft-plus-circle d-lg-none d-xl-inline-block"></i>
-              <span class="d-lg-inline-block d-none ml-1">Create</span>
-            </button>
-          </fieldset>
-        </form>
-      </div>
-    </div>
-  </section>
-
-</section>
+</div>
 <!-- Taskboard Ends -->

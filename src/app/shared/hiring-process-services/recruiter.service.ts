@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
-import { Recruiter } from '../hiring-process-services-model/recruiter';
+import { Recruiter } from '../model/recruiter';
 
 @Injectable({
   providedIn: 'root'

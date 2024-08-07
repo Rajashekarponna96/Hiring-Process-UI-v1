@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
-import { HiringFlowActivity } from '../hiring-process-services-model/hiringFlowActivity';
+import { HiringFlowActivity } from '../model/hiringFlowActivity';
 @Injectable({
   providedIn: 'root'
 })

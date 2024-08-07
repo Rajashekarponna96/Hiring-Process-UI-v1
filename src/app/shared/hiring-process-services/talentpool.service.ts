@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
-import { Candidate } from '../hiring-process-services-model/candidate';
-import { TalentPoolOne } from '../hiring-process-services-model/talentpoolone';
+import { Candidate } from '../model/candidate';
+import { TalentPoolOne } from '../model/talentpoolone';
 
 @Injectable({
   providedIn: 'root'
