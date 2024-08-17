@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TalentPoolOne } from 'app/shared/model/talentpoolone';
 import { CreatetalentpoolComponent } from './createtalentpool/createtalentpool.component';
 import { ListtalentpoolComponent } from './listtalentpool/listtalentpool.component';
+import { EditTalentpoolComponent } from './edit-talentpool/edit-talentpool.component';
 
 const routes: Routes = [
   {
@@ -15,17 +16,24 @@ const routes: Routes = [
           title: 'Grids'
         }
       },
+      {
+        path: 'Listtalentpool',
+        component: ListtalentpoolComponent,
+        data: {
+          title: 'Grids'
+        }
+      },
 
       {
-  path: 'Listtalentpool',
-  component: ListtalentpoolComponent,
-  data: {
-    title: 'Simple Line'
-  }
-},
+        path: 'Edittalentpool',
+        component: EditTalentpoolComponent,
+        data: {
+          title: 'Simple Line'
+        }
+      },
 
-]
-}
+    ]
+  }
 ];
 
 @NgModule({

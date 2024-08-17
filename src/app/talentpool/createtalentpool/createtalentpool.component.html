@@ -1,45 +1,64 @@
-<p>
-  createtalentpool works!
-</p>
-<div class="grid">
-  <div class="col-12">
-      <div class="card">
-          <form #talentpoolForm="ngForm">
-              <div class="p-fluid p-formgrid grid">
-                  <div class="field col-12">
-                      <label for="name">Skill<span [style.display]="talentpool.name ? 'none' : 'inline'" style="color: red">*</span></label>
-                      <input pInputText id="name" name="name" type="text" placeholder="Enter Name"
-                          [(ngModel)]="talentpool.name" required #name="ngModel" />
-                      <div *ngIf="name.invalid && (name.dirty || name.touched)">
-                          <div style="color: red" *ngIf="name.errors">
-                              Name is required
-                          </div>
-                      </div>
-                  </div>
-                  <div class="field col-12">
-                      <label for="description">Description<span [style.display]="talentpool.description ? 'none' : 'inline'" style="color: red">*</span></label>
-                      <textarea pInputTextarea id="description" name="description" rows="4"
-                          placeholder="Enter Description" [(ngModel)]="talentpool.description" required
-                          #description="ngModel"></textarea>
-                      <div *ngIf="
-                              description.invalid &&
-                              (description.dirty || description.touched)
-                          ">
-                          <div style="color: red" *ngIf="description.errors">
-                              Description is required
-                          </div>
-                      </div>
-                  </div>
-              </div>
+<!--  -->
 
-              <div class="ui-g-12" style="text-align: right">
-                  <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
-                  <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                      (click)="addTalentPool()" label="Save"[disabled]="!talentpoolForm.valid"></button>
-                  <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" type="button"
-                      icon="pi pi-times" label="Cancel" [routerLink]="['/listtalentpool']"></button>
-              </div>
-          </form>
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+    <div class="row text-left justify-content-md-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header pb-2">
+            <!-- <h4 class="card-title" id="basic-layout-card-center">
+
+            </h4> -->
+          </div>
+          <div class="card-content">
+            <div class="px-3">
+              <form #talentpoolForm="ngForm" (ngSubmit)="addTalentPool()" class="form">
+                <div class="form-body">
+                  <!-- Skill Input -->
+                  <div class="form-group">
+                    <label for="name">Skill<span [style.display]="talentpool.name ? 'none' : 'inline'"
+                        style="color: red">*</span></label>
+                    <input type="text" id="name" class="form-control" name="name" placeholder="Enter Name"
+                      [(ngModel)]="talentpool.name" required #name="ngModel" />
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                      <div style="color: red" *ngIf="name.errors">
+                        Name is required
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Description Input -->
+                  <div class="form-group">
+                    <label for="description">Description<span [style.display]="
+                          talentpool.description ? 'none' : 'inline'
+                        " style="color: red">*</span></label>
+                    <textarea id="description" class="form-control" name="description" rows="4"
+                      placeholder="Enter Description" [(ngModel)]="talentpool.description" required
+                      #description="ngModel"></textarea>
+                    <div *ngIf="
+                        description.invalid &&
+                        (description.dirty || description.touched)
+                      ">
+                      <div style="color: red" *ngIf="description.errors">
+                        Description is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-actions center mt-3">
+                  <button type="button" class="btn btn-raised btn-warning mr-1" [routerLink]="['/talentpool/Listtalentpool']">
+                    <i class="ft-x"></i> Cancel
+                  </button>
+                  <button type="submit" class="btn btn-raised btn-primary" [disabled]="!talentpoolForm.valid">
+                    <i class="fa fa-check-square-o"></i> Save
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
-</div>
+    </div>
+  </section>
