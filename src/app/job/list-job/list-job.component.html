@@ -1,0 +1,98 @@
+<div class="card">
+  <!-- Header Container -->
+  <div class="header-container d-flex flex-wrap gap-2 align-items-center justify-content-between mb-3">
+    <!-- Search Input -->
+    <!-- <span class="p-input-icon-left w-full sm:w-20rem">
+      <i class="pi pi-search"></i>
+      <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search" class="w-full" />
+    </span>
+       -->
+
+       <span class="search-container p-input-icon-left w-full sm:w-20rem">
+        <i class="pi pi-search search-icon"></i>
+        <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Job Search" class="search-input w-full" />
+      </span>
+
+    <!-- Add New Job Button -->
+    <!-- <button (click)="navigateToCreateJob()" pButton class="p-button-outlined w-full sm:w-auto" icon="pi pi-user-plus" label="Add New"></button> -->
+    <!-- <a class="text-success mx-1" (click)="navigateToCreateJob()">
+      <i class="ft-edit-2 font-medium-3"></i>
+    </a> -->
+    <a class="text-success mx-1 d-flex align-items-center" (click)="navigateToCreateJob()">
+      <i class="fas fa-plus font-medium-3 me-2"></i>
+      <span>Add job</span>
+    </a>
+  </div>
+
+  <!-- Table Container -->
+  <div class="table-container">
+    <table class="table table-striped table-bordered text-center">
+      <thead>
+        <tr>
+          <th style="width: 25%">Title</th>
+          <th style="width: 25%">Description</th>
+          <th style="width: 25%">Openings</th>
+          <th style="width: 20%">Target Hire Date</th>
+          <th style="width: 25%">Experience</th>
+          <th style="width: 20%">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of jobs">
+          <td>{{ job.title }}</td>
+          <td>{{ job.description }}</td>
+          <td>{{ job.openings }}</td>
+          <td>{{ job.targetHireDate }}</td>
+          <td>{{ job.experience }}</td>
+          <!-- <td>
+            <div class="d-flex justify-content-center">
+              <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditJob(job)" icon="pi pi-pencil"></button>
+              <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="Jobdelete(job)" icon="pi pi-trash"></button>
+            </div>
+          </td> -->
+          <td>
+            <div class="d-flex justify-content-center">
+              <a class="text-success mx-1" (click)="handleEditJob(job)">
+                <i class="ft-edit-2 font-medium-3"></i>
+              </a>
+              <a class="text-danger mx-1" (click)="Jobdelete(job)">
+                <i class="ft-x font-medium-3"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="jobs.length === 0">
+          <td colspan="6" class="no-records-message">No job found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination Container -->
+  <div class="pagination-container d-flex justify-content-between align-items-center mt-3" *ngIf="jobs.length > 0">
+    <div class="pagination-info">
+      Showing {{ pagination.number * pagination.size + 1 }} to
+      {{ (pagination.number + 1) * pagination.size }} of
+      {{ totalElements }} entries
+    </div>
+    <div class="pagination">
+      <a class="page-link" (click)="goToFirstPage()">&laquo; First</a>
+      <a class="page-link" (click)="goToPreviousPage()" [attr.disabled]="pagination.first ? true : null">&laquo;
+        Prev</a>
+      <a class="page-link" (click)="goToNextPage()" [attr.disabled]="pagination.last ? true : null">Next &raquo;</a>
+      <a class="page-link" (click)="goToLastPage()">Last &raquo;</a>
+    </div>
+
+    <!-- Page Size Selector -->
+    <div class="page-size-selector">
+      <select class="custom-select" (change)="onRecordsPerPageChange($event)">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="5" selected>5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+  </div>
+</div>

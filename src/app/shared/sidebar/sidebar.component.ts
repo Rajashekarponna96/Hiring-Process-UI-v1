@@ -132,35 +132,51 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         submenu: [
           { path: '/dashboard/dashboard1', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
           { path: '/dashboard/dashboard2', title: 'Dashboard21', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/dashboard/dashboard3', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/dashboard/dashboard3', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
 
         ],
-        permissionName: 'home1'
+        permissionName: 'home'
       },
-      { path: '/Createtalentpool', title: 'Createtalentpool', icon: 'ft-file-text', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
+      // { path: '/Createtalentpool', title: 'Createtalentpool', icon: 'ft-file-text', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
 
-      { path: '/Listtalentpool', title: 'Task Board NgRx', icon: 'ft-file-text', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
+      // { path: '/Listtalentpool', title: 'Task Board NgRx', icon: 'ft-file-text', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
 
-      { path: '/player', title: 'Player', icon: 'ft-music', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'candidate' }
-   //
- ,  {
-    path: '',
-    title: 'Talentpool',
-    icon: 'ft-home',
-    class: 'has-sub',
-    badge: '2',
-    badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
-    isExternalLink: false,
-    submenu: [
-      { path: '/talent1', title: 'talentpool1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-      { path: '/talentpoolone/talent1', title: 'Dashboard2', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-      { path: '/dashboard/dashboard3', title: 'Dashboard12', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-      { path: '/dashboard/dashboard3', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      // { path: '/player', title: 'Player', icon: 'ft-music', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'candidate1' }
+      //
+      , {
+        path: '',
+        title: 'Talentpool',
+        icon: 'ft-home',
+        class: 'has-sub',
+        badge: '2',
+        badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
+        isExternalLink: false,
+        submenu: [
+          { path: '/talentpool/Createtalentpool', title: 'Createtalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/talentpool/Listtalentpool', title: 'Listtalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/talentpool/Edittalentpool', title: 'Edittalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
 
-    ],
-    permissionName: 'home'
-  },
-   //
+        ],
+        permissionName: 'home'
+      },
+      //job
+
+      {
+        path: '',
+        title: 'Job1',
+        icon: 'ft-home',
+        class: 'has-sub',
+        badge: '2',
+        badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
+        isExternalLink: false,
+        submenu: [
+          { path: '/job/Createjob', title: 'Createtalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/job/Listjob', title: 'Listtalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/job/Editjob', title: 'Edittalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+        ],
+        permissionName: 'client'
+      },//job end
     ];
 
     return menuItems.filter(menuItem => this.isPermissionsEnable(menuItem.permissionName, permissions));

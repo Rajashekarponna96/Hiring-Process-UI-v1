@@ -8,6 +8,18 @@ export const Full_ROUTES: Routes = [
     loadChildren: () => import('../../dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
+    path: 'talentpoolone',
+    loadChildren: () => import('../../talentpoolone/talentpoolone.module').then(m => m.TalentpooloneModule)
+  },
+  {
+    path: 'job',
+    loadChildren: () => import('../../job/job.module').then(m => m.JobModule)
+  },
+  {
+    path: 'job',
+    loadChildren: () => import('../../talentpool/talentpool.module').then(m => m.TalentpoolModule)
+  },
+  {
     path: 'calendar',
     loadChildren: () => import('../../calendar/calendar.module').then(m => m.CalendarsModule)
   },

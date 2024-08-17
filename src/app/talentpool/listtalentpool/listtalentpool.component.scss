@@ -1,0 +1,30 @@
+
+.header-container {
+    margin-bottom: 1rem;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .table thead th {
+    white-space: nowrap;
+  }
+
+  .table td, .table th {
+    vertical-align: middle;
+  }
+
+  .page-link.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .no-records-message {
+    text-align: center;
+    color: #999;
+  }
+
+  .custom-select {
+    max-width: 80px;
+  }

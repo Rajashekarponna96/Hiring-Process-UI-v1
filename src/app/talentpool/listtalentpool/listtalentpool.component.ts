@@ -20,106 +20,107 @@ export class ListtalentpoolComponent implements OnInit {
   currentPage: number = 0;
 
   constructor(
-    private talentpoolService: TalentpoolService,
-    private changeDetectorRefs: ChangeDetectorRef,
-    private router: Router
+      private talentpoolService: TalentpoolService,
+      private changeDetectorRefs: ChangeDetectorRef,
+      private router: Router
   ) { }
 
   ngOnInit() {
-    this.getAllTalentPools();
-    this.getAllTalentPoolList();
+      this.getAllTalentPools();
+      this.getAllTalentPoolList();
   }
 
   getAllTalentPools() {
-    this.talentpoolService.getTalentPoolList()
-      .subscribe((data) => {
-        console.log(data);
-        this.talentPools = data;
-        this.changeDetectorRefs.markForCheck();
-      });
+      this.talentpoolService.getTalentPoolList()
+          .subscribe((data) => {
+              console.log(data);
+              this.talentPools = data;
+              this.changeDetectorRefs.markForCheck();
+          });
   }
 
-  onGlobalFilter( ) {
+  onGlobalFilter() {
 
   }
 
   onGlobalFilter1(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    const inputValue = inputElement.value;
-    console.log('Input Value:', inputValue);
+      const inputElement = event.target as HTMLInputElement;
+      const inputValue = inputElement.value;
+      console.log('Input Value:', inputValue);
 
-    this.talentpoolService.searchTalentPools(inputValue, 0, this.selectedRecordsOption1)
-      .subscribe((data) => {
-        this.talentPools = data.content;
-        this.totalElements = data.totalElements;
-        this.totalPages = data.totalPages;
-        this.currentPage = 0; // Reset to first page
-        this.changeDetectorRefs.markForCheck();
-      });
+      this.talentpoolService.searchTalentPools(inputValue, 0, this.selectedRecordsOption1)
+          .subscribe((data) => {
+              this.talentPools = data.content;
+              this.totalElements = data.totalElements;
+              this.totalPages = data.totalPages;
+              this.currentPage = 0; // Reset to first page
+              this.changeDetectorRefs.markForCheck();
+          });
   }
 
   getAllTalentPoolList() {
-    this.talentpoolService.getTalentPoolListWithPagination(this.currentPage, this.selectedRecordsOption1)
-      .subscribe((data) => {
-        this.talentPools = data.content;
-        this.pagination = data;
-        this.totalElements = data.totalElements;
-        this.totalPages = data.totalPages;
-        this.changeDetectorRefs.markForCheck();
-      });
+      this.talentpoolService.getTalentPoolListWithPagination(this.currentPage, this.selectedRecordsOption1)
+          .subscribe((data) => {
+              this.talentPools = data.content;
+              this.pagination = data;
+              this.totalElements = data.totalElements;
+              this.totalPages = data.totalPages;
+              this.changeDetectorRefs.markForCheck();
+          });
   }
 
   navigateToCreateTalentPool() {
-    this.router.navigate(['talentpool']);
+      this.router.navigate(['talentpool']);
   }
 
   handleEditTalentPool(talentPool: TalentPoolOne) {
-    this.router.navigate(['/talentpooledit'], { state: { talentPool: talentPool } });
+      this.router.navigate(['/talentpool/Edittalentpool'], { state: { talentPool: talentPool } });
   }
 
   talentpooldelete(talentPool: TalentPoolOne) {
-    this.talentpoolService.deleteTalentPool(talentPool.id)
-      .subscribe(
-        res => {
-          console.log(res);
-          this.getAllTalentPoolList();
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.error("Client-side error occurred:", err.error.message);
-          } else {
-            console.error("Server-side error occurred:", err.status, err.message);
-          }
-        });
+      this.talentpoolService.deleteTalentPool(talentPool.id)
+          .subscribe(
+              res => {
+                  console.log(res);
+                  this.getAllTalentPoolList();
+              },
+              (err: HttpErrorResponse) => {
+                  if (err.error instanceof Error) {
+                      console.error("Client-side error occurred:", err.error.message);
+                  } else {
+                      console.error("Server-side error occurred:", err.status, err.message);
+                  }
+              });
   }
 
   goToFirstPage() {
-    this.currentPage = 0;
-    this.getAllTalentPoolList();
+      this.currentPage = 0;
+      this.getAllTalentPoolList();
   }
 
   goToPreviousPage() {
-    if (this.currentPage > 0) {
-      this.currentPage--;
-      this.getAllTalentPoolList();
-    }
+      if (this.currentPage > 0) {
+          this.currentPage--;
+          this.getAllTalentPoolList();
+      }
   }
 
   goToNextPage() {
-    if (this.currentPage < this.totalPages - 1) {
-      this.currentPage++;
-      this.getAllTalentPoolList();
-    }
+      if (this.currentPage < this.totalPages - 1) {
+          this.currentPage++;
+          this.getAllTalentPoolList();
+      }
   }
 
   goToLastPage() {
-    this.currentPage = this.totalPages - 1;
-    this.getAllTalentPoolList();
+      this.currentPage = this.totalPages - 1;
+      this.getAllTalentPoolList();
   }
 
   onRecordsPerPageChange(event: Event) {
-    this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
-    this.currentPage = 0; // Reset to first page when changing page size
-    this.getAllTalentPoolList();
+      this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
+      this.currentPage = 0; // Reset to first page when changing page size
+      this.getAllTalentPoolList();
   }
 }
+

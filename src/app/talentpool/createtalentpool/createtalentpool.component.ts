@@ -12,14 +12,14 @@ import { TalentPoolOne } from 'app/shared/model/talentpoolone';
 })
 export class CreatetalentpoolComponent implements OnInit {
 
+
+
   talentpool: TalentPoolOne = { id: 0, name: '', description: '', candidates: [] };
   talentpools: TalentPoolOne[] | undefined;
 
   // @ViewChild("talentpoolForm")
-  // talentpoolForm!: NgForm;
   @ViewChild("talentpoolForm", { static: false })
-talentpoolForm!: NgForm;
-
+  talentpoolForm!: NgForm;
 
   constructor(
     private talentpoolService: TalentpoolService,
@@ -31,7 +31,7 @@ talentpoolForm!: NgForm;
     this.getAllTalentPoolList();
   }
 
-  onGlobalFilter(  ) {
+  onGlobalFilter( ) {
 
   }
 
@@ -50,7 +50,7 @@ talentpoolForm!: NgForm;
         this.getAllTalentPoolList();
         this.talentpoolForm.reset();
         // Navigate to a specific route after saving
-        this.router.navigate(['/listtalentpool']);
+        this.router.navigate(['/inbox']);
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -67,5 +67,3 @@ talentpoolForm!: NgForm;
     // Implement onSubmit logic if needed
   }
 }
-
-

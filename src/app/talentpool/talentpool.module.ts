@@ -6,9 +6,10 @@ import { CreatetalentpoolComponent } from './createtalentpool/createtalentpool.c
 import { ListtalentpoolComponent } from './listtalentpool/listtalentpool.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatchHeightModule } from 'app/shared/directives/match-height.directive';
+import { EditTalentpoolComponent } from './edit-talentpool/edit-talentpool.component';
 
 @NgModule({
-  declarations: [CreatetalentpoolComponent,ListtalentpoolComponent],
+  declarations: [CreatetalentpoolComponent,ListtalentpoolComponent, EditTalentpoolComponent],
   imports: [
     CommonModule,
     TalentpoolRoutingModule,
