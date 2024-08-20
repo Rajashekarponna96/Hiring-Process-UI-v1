@@ -8,9 +8,9 @@ import { ListJobComponent } from './list-job/list-job.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [EditJobComponent, CreateJobComponent, ListJobComponent],
+  declarations: [CreateJobComponent, EditJobComponent, ListJobComponent],
   imports: [
-    CommonModule,FormsModule,
+    CommonModule, FormsModule,
     JobRoutingModule
   ]
 })

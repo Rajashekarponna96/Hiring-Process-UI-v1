@@ -163,16 +163,16 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
       {
         path: '',
-        title: 'Job1',
+        title: 'Job',
         icon: 'ft-home',
         class: 'has-sub',
         badge: '2',
         badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
         isExternalLink: false,
         submenu: [
-          { path: '/job/Createjob', title: 'Createtalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/job/Listjob', title: 'Listtalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/job/Editjob', title: 'Edittalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/job/Createjob', title: 'CreateJOb', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/job/Listjob', title: 'Listjob', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/job/Editjob', title: 'Editjob', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
         ],
         permissionName: 'client'
