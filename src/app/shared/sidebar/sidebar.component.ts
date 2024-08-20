@@ -137,6 +137,25 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         ],
         permissionName: 'home'
       },
+
+      //
+      {
+        path: '',
+        title: 'candidtae',
+        icon: 'ft-home',
+        class: 'has-sub',
+        badge: '2',
+        badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
+        isExternalLink: false,
+        submenu: [
+          { path: '/candidate/create', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/candidate/list', title: 'Dashboard21', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/candidate/edit', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+
+        ],
+        permissionName: 'candidate'
+      },
+      //
       // { path: '/Createtalentpool', title: 'Createtalentpool', icon: 'ft-file-text', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
 
       // { path: '/Listtalentpool', title: 'Task Board NgRx', icon: 'ft-file-text', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },

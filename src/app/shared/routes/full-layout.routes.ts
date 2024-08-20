@@ -16,6 +16,10 @@ export const Full_ROUTES: Routes = [
     loadChildren: () => import('../../talentpool/talentpool.module').then(m => m.TalentpoolModule)
   },
   {
+    path: 'candidate',
+    loadChildren: () => import('../../candidate/candidate.module').then(m => m.CandidateModule)
+  },
+  {
     path: 'job',
     loadChildren: () => import('../../job/job.module').then(m => m.JobModule)
   },
