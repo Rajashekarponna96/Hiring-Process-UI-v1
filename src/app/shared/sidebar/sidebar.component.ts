@@ -126,8 +126,8 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         title: 'Dashboard',
         icon: 'ft-home',
         class: 'has-sub',
-        badge: '2',
-        badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
+        badge: '',
+        badgeClass: '',
         isExternalLink: false,
         submenu: [
           { path: '/dashboard/dashboard1', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
@@ -141,11 +141,11 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
       //
       {
         path: '',
-        title: 'candidtae',
+        title: 'Candidtae',
         icon: 'ft-home',
         class: 'has-sub',
-        badge: '2',
-        badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
+        badge: '',
+        badgeClass: '',
         isExternalLink: false,
         submenu: [
           { path: '/candidate/create', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
@@ -154,6 +154,70 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         ],
         permissionName: 'candidate'
+      },
+      {
+        path: '',
+        title: 'Recruiter',
+        icon: 'ft-home',
+        class: 'has-sub',
+        badge: '',
+        badgeClass: '',
+        isExternalLink: false,
+        submenu: [
+          { path: '/recruiter/create', title: 'Create-Recruiter', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/recruiter/list', title: 'Recruiter-List', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/recruiter/edit', title: 'Recruiter-Edit', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+
+        ],
+        permissionName: 'recruiter'
+      },
+      {
+        path: '',
+        title: 'Client',
+        icon: 'ft-home',
+        class: 'has-sub',
+        badge: '',
+        badgeClass: '',
+        isExternalLink: false,
+        submenu: [
+          { path: '/client/create', title: 'Create-Client', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/client/list', title: 'Client-List', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/client/edit', title: 'Client-Edit', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+
+        ],
+        permissionName: 'client'
+      },
+      {
+        path: '',
+        title: 'Vendor',
+        icon: 'ft-home',
+        class: 'has-sub',
+        badge: '',
+        badgeClass: '',
+        isExternalLink: false,
+        submenu: [
+          { path: '/vendor/create', title: 'Create-Vendor', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/vendor/list', title: 'Vendor-List', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/vendor/edit', title: 'Vendor-Edit', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+
+        ],
+        permissionName: 'vendor'
+      },
+      {
+        path: '',
+        title: 'Email-Template',
+        icon: 'ft-home',
+        class: 'has-sub',
+        badge: '',
+        badgeClass: '',
+        isExternalLink: false,
+        submenu: [
+          { path: '/email-template/create', title: 'Create-Email', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/email-template/list', title: 'Email-List', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/email-template/edit', title: 'Email-Edit', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+
+        ],
+        permissionName: 'email'
       },
       //
       // { path: '/Createtalentpool', title: 'Createtalentpool', icon: 'ft-file-text', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
@@ -167,8 +231,8 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         title: 'Talentpool',
         icon: 'ft-home',
         class: 'has-sub',
-        badge: '2',
-        badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
+        badge: '',
+        badgeClass: '',
         isExternalLink: false,
         submenu: [
           { path: '/talentpool/Createtalentpool', title: 'Createtalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
@@ -185,8 +249,8 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         title: 'Job',
         icon: 'ft-home',
         class: 'has-sub',
-        badge: '2',
-        badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1',
+        badge: '',
+        badgeClass: '',
         isExternalLink: false,
         submenu: [
           { path: '/job/Createjob', title: 'CreateJOb', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
@@ -194,7 +258,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
           { path: '/job/Editjob', title: 'Editjob', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
         ],
-        permissionName: 'client'
+        permissionName: 'job'
       },//job end
     ];
 
