@@ -1,3 +1,74 @@
 <p>
   create-candidate works!
 </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Form</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- PrimeNG CSS for p-chips component -->
+  <link href="https://unpkg.com/primeng/resources/themes/saga-blue/theme.css" rel="stylesheet">
+  <link href="https://unpkg.com/primeng/resources/primeng.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <!-- Steps Navigation -->
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item" *ngFor="let item of itemss; let i = index">
+            <a class="nav-link" [ngClass]="{'active': currentStep === i}" (click)="currentStep = i">
+              {{ item.label }}
+            </a>
+          </li>
+        </ul>
+        <hr />
+
+        <!-- Form -->
+        <div *ngIf="currentStep === 0">
+          <form #candidateForm="ngForm">
+            <div class="row">
+              <!-- Form fields -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="firstname">FirstName <span *ngIf="!candidate.firstName" class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter FirstName" [(ngModel)]="candidate.firstName" required #firstname="ngModel">
+                  <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="text-danger">
+                    FirstName is Required
+                  </div>
+                </div>
+              </div>
+
+              <!-- Other form fields -->
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="skills">Skills:<span *ngIf="!candidate.skills" class="text-danger">*</span></label>
+                  <p-chips [ngModel]="candidate.skills" name="candidate.skills" (onRemove)="removeSkills($event)" (onAdd)="addSkills($event)" (onBlur)="addSkills()" aria-placeholder="Enter skills here"></p-chips>
+                  <div *ngIf="!candidate.skills && (candidateForm.controls['skills'].dirty || candidateForm.controls['skills'].touched)" class="text-danger">
+                    Skills are required
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button *ngIf="currentStep < totalSteps - 1" type="button" (click)="nextStep()" class="btn btn-primary">Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- PrimeNG JS -->
+  <script src="https://unpkg.com/primeng/resources/primeng.min.js"></script>
+</body>
+</html>
