@@ -1,3 +1,108 @@
 <p>
   edit-client works!
 </p>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Form</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <form #editClientForm="ngForm">
+          <div class="form-row">
+            <!-- Client details -->
+            <div class="form-group col-12 col-md-6">
+              <label for="companyName">Client Name</label>
+              <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Enter Client Name" [(ngModel)]="client.companyName" required #companyName="ngModel" />
+              <div *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)" class="text-danger">
+                <div *ngIf="companyName.errors">Client Name is required</div>
+              </div>
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="location">Location</label>
+              <input type="text" class="form-control" id="location" name="location" placeholder="Enter Location" [(ngModel)]="client.location" required #location="ngModel" />
+              <div *ngIf="location.invalid && (location.dirty || location.touched)" class="text-danger">
+                <div *ngIf="location.errors">Client Location is required</div>
+              </div>
+            </div>
+          </div>
+
+          <h6>Add POCs Details:</h6>
+          <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Enter POC Name" [(ngModel)]="pointToContact.name" required #name="ngModel" />
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <label for="mobile">Mobile</label>
+              <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" [(ngModel)]="pointToContact.mobile" required pattern="[0-9]*" #mobile="ngModel" />
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" [(ngModel)]="pointToContact.email" required email #email="ngModel" />
+            </div>
+          </div>
+
+          <!-- Submit button -->
+          <div class="form-row">
+            <div class="form-group col-12">
+              <button type="button" class="btn btn-primary" (click)="submitPocs()">Add POC</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- POCs Table -->
+        <div *ngIf="pointToContacts.length > 0" class="mt-4">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Mobile No</th>
+                <th>Email Id</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let edu of pointToContacts; let i = index">
+                <td>{{ edu.name }}</td>
+                <td>{{ edu.mobile }}</td>
+                <td>{{ edu.email }}</td>
+                <td>
+                  <button class="btn btn-success btn-sm mr-2" (click)="EditPoc(i)">
+                    <i class="fas fa-pencil-alt"></i>
+                  </button>
+                  <button class="btn btn-danger btn-sm" (click)="deletePoc(i)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="text-right mt-4">
+          <button type="button" class="btn btn-success mr-2" (click)="updateClient()">Update</button>
+          <a class="btn btn-danger" routerLink="/client">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Font Awesome for Icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>

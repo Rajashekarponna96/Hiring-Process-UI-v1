@@ -1,3 +1,133 @@
-<p>
-  vendor-list works!
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendors Table</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .no-records-message {
+      text-align: center;
+      color: #6c757d;
+      font-style: italic;
+    }
+    .pagination-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pagination-info {
+      margin-right: 15px;
+    }
+    .pagination {
+      margin-bottom: 0;
+    }
+    .button-container {
+      display: flex;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="card">
+      <!-- Header Container -->
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <!-- Search Input -->
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="pi pi-search"></i>
+            </span>
+          </div>
+          <input type="text" class="form-control" placeholder="Global Search" (input)="onGlobalFilter1($event)">
+        </div>
+        <!-- Add New Vendor Button -->
+        <button class="btn btn-outline-primary" (click)="navigateToCreateVendor()">
+          <i class="pi pi-user-plus"></i> Add New
+        </button>
+      </div>
+
+      <!-- Table Container -->
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="width: 20%">Vendor Name</th>
+              <th style="width: 20%">Location</th>
+              <th style="width: 20%">Email</th>
+              <th style="width: 20%">Mobile</th>
+              <th style="width: 20%">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let vendor of vendors">
+              <td>{{ vendor.vendorName }}</td>
+              <td>{{ vendor.location }}</td>
+              <td>{{ vendor.email }}</td>
+              <td>{{ vendor.mobile }}</td>
+              <td>
+                <div class="button-container">
+                  <button class="btn btn-sm btn-success" (click)="handleEditVendor(vendor, vendor.id)">
+                    <i class="pi pi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger" (click)="vendorDelete(vendor)">
+                    <i class="pi pi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <!-- Conditional message for no records found -->
+            <tr *ngIf="vendors.length === 0">
+              <td colspan="5" class="no-records-message">
+                Records not found
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination Container -->
+      <div class="card-footer">
+        <div class="pagination-container">
+          <div class="pagination-info">
+            Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries
+          </div>
+          <div>
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" (click)="goToFirstPage()">&laquo; First</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo; Prev</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next &raquo;</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="goToLastPage()">Last &raquo;</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <select class="custom-select" (change)="onRecordsPerPageChange($event)">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

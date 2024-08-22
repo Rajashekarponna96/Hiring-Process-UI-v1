@@ -1,3 +1,138 @@
 <p>
   email-template-list works!
 </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Management</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Include any additional styling if needed -->
+  <style>
+    .required-field::after {
+      content: "*";
+      color: red;
+      margin-left: 0.25rem;
+    }
+    .editor-container {
+      height: 250px;
+    }
+    .form-control {
+      height: 3.5rem;
+    }
+    .btn-custom {
+      margin-left: 10px;
+    }
+    .input-group-prepend .input-group-text {
+      background: transparent;
+      border: none;
+    }
+    .no-records-message {
+      text-align: center;
+      padding: 10px;
+      color: red;
+    }
+    .pagination-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+    }
+    .pagination-info {
+      flex: 1;
+    }
+    .pagination a {
+      margin: 0 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-body">
+        <!-- Header Container -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+          <!-- Search Input -->
+          <div class="input-group w-100 w-sm-auto mb-2 mb-sm-0">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="pi pi-search"></i></span>
+            </div>
+            <input type="text" class="form-control" (input)="onGlobalFilter1($event)" placeholder="Global Search">
+          </div>
+          <!-- Add New Email Button -->
+          <button class="btn btn-outline-primary" (click)="navigateToCreateEmail()">
+            <i class="pi pi-user-plus"></i> Add New
+          </button>
+        </div>
+
+        <!-- Table Container -->
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 20%">Title</th>
+                <th style="width: 20%">Subject</th>
+                <th style="width: 40%">Body</th>
+                <th style="width: 20%">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let candidateEmail of candidateEmails">
+                <td>{{ candidateEmail.title }}</td>
+                <td>{{ candidateEmail.subject }}</td>
+                <td>{{ candidateEmail.body }}</td>
+                <td>
+                  <div class="btn-group">
+                    <button class="btn btn-success btn-sm" (click)="handleEditEmail(candidateEmail)">
+                      <i class="pi pi-pencil"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" (click)="EmailDelete(candidateEmail)">
+                      <i class="pi pi-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Conditional message for no records found -->
+              <tr *ngIf="candidateEmails.length === 0">
+                <td colspan="4" class="no-records-message">candidateEmail not found</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Container -->
+        <div *ngIf="totalElements > 0" class="pagination-container">
+          <div class="pagination-info">
+            Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries
+          </div>
+          <div class="pagination">
+            <a (click)="goToFirstPage()">&laquo; First</a>
+            <a (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo; Prev</a>
+            <a (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next &raquo;</a>
+            <a (click)="goToLastPage()">Last &raquo;</a>
+          </div>
+          <div class="dropdown-wrapper">
+            <select class="custom-select" (change)="onRecordsPerPageChange($event)">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Include any additional JavaScript if needed -->
+</body>
+</html>
