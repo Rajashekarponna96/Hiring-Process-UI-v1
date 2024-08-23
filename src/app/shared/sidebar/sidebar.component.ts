@@ -141,7 +141,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
       //
       {
         path: '',
-        title: 'Candidtae',
+        title: 'Candidate',
         icon: 'ft-home',
         class: 'has-sub',
         badge: '',
@@ -151,6 +151,22 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
           { path: '/candidate/create', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
           { path: '/candidate/list', title: 'Dashboard21', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
           { path: '/candidate/edit', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+
+        ],
+        permissionName: 'candidate'
+      },
+      {
+        path: '',
+        title: 'Jobs',
+        icon: 'ft-home',
+        class: 'has-sub',
+        badge: '',
+        badgeClass: '',
+        isExternalLink: false,
+        submenu: [
+          { path: '/jobs/create', title: 'Create-Jobs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/jobs/list', title: 'Jobs-list', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/jobs/edit', title: 'Edit-Jobs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
 
         ],
         permissionName: 'candidate'
@@ -244,22 +260,22 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       //job
 
-      {
-        path: '',
-        title: 'Job',
-        icon: 'ft-home',
-        class: 'has-sub',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: [
-          { path: '/job/Createjob', title: 'CreateJOb', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/job/Listjob', title: 'Listjob', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/job/Editjob', title: 'Editjob', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      // {
+      //   path: '',
+      //   title: 'Job',
+      //   icon: 'ft-home',
+      //   class: 'has-sub',
+      //   badge: '',
+      //   badgeClass: '',
+      //   isExternalLink: false,
+      //   submenu: [
+      //     { path: '/job/Createjob', title: 'CreateJOb', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      //     { path: '/job/Listjob', title: 'Listjob', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      //     { path: '/job/Editjob', title: 'Editjob', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
-        ],
-        permissionName: 'job'
-      },//job end
+      //   ],
+      //   permissionName: 'job'
+      // },//job end
     ];
 
     return menuItems.filter(menuItem => this.isPermissionsEnable(menuItem.permissionName, permissions));
