@@ -28,6 +28,10 @@ export const Full_ROUTES: Routes = [
     loadChildren: () => import('../../client/client.module').then(m => m.ClientModule)
   },
   {
+    path: 'recruiter',
+    loadChildren: () => import('../../recruiter/recruiter.module').then(m => m.RecruiterModule)
+  },
+  {
     path: 'vendor',
     loadChildren: () => import('../../vendor/vendor.module').then(m => m.VendorModule)
   },
