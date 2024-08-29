@@ -1,3 +1,83 @@
-<p>
-  create-email-template works!
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Form</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Include any additional styling if needed -->
+  <style>
+    .required-field::after {
+      content: "*";
+      color: red;
+      margin-left: 0.25rem;
+    }
+    .editor-container {
+      height: 250px;
+    }
+    .form-control {
+      height: 3.5rem;
+    }
+    .btn-custom {
+      margin-left: 10px;
+    }
+    .input-group-prepend .input-group-text {
+      background: transparent;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-body">
+        <form #emailForm="ngForm">
+          <div class="form-group">
+            <label for="title" class="font-weight-bold">Title<span class="required-field"></span></label>
+            <select id="title" name="title" class="form-control" [(ngModel)]="candidateEmail.title" (change)="getEmailDataByTitle()">
+              <option value="" disabled>Select Title</option>
+              <option *ngFor="let title of titles" [value]="title.name">{{ title.name }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="subject" class="font-weight-bold">Subject</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="pi pi-pencil"></i></span>
+              </div>
+              <input id="subject" name="subject" type="text" class="form-control" [(ngModel)]="candidateEmail.subject" placeholder="Subject">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="body" class="font-weight-bold">Body</label>
+            <!-- Use a textarea or integrate a rich text editor -->
+            <textarea id="body" name="body" class="form-control editor-container" [(ngModel)]="candidateEmail.body" placeholder="Enter body here"></textarea>
+            <div *ngIf="body.invalid && (body.dirty || body.touched)">
+              <div style="color: red">Body is required</div>
+            </div>
+          </div>
+
+          <div class="text-right">
+            <button type="button" class="btn btn-success btn-custom" (click)="addEmail()" [disabled]="!emailForm.valid">
+              <i class="pi pi-check"></i> Create
+            </button>
+            <button type="button" class="btn btn-danger btn-custom" routerLink="/email">
+              <i class="pi pi-times"></i> Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Include any additional JavaScript if needed -->
+</body>
+</html>
+

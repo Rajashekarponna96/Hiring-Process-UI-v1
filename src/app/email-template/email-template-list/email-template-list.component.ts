@@ -61,7 +61,7 @@ export class EmailTemplateListComponent implements OnInit {
 
 
   navigateToCreateEmail() {
-    this.router.navigate(['createemail']);
+    this.router.navigate(['email-template/create']);
   }
 
   handleEditEmail(candidateEmail: CandidateEmail) {

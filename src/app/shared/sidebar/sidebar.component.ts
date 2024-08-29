@@ -155,109 +155,13 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         ],
         permissionName: 'candidate'
       },
-      {
-        path: '',
-        title: 'Jobs',
-        icon: 'ft-home',
-        class: 'has-sub',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: [
-          { path: '/jobs/create', title: 'Create-Jobs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/jobs/list', title: 'Jobs-list', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/jobs/edit', title: 'Edit-Jobs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
-
-        ],
-        permissionName: 'candidate'
-      },
-      {
-        path: '',
-        title: 'Recruiter',
-        icon: 'ft-home',
-        class: 'has-sub',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: [
-          { path: '/recruiter/create', title: 'Create-Recruiter', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/recruiter/list', title: 'Recruiter-List', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/recruiter/edit', title: 'Recruiter-Edit', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
-
-        ],
-        permissionName: 'recruiter'
-      },
-      {
-        path: '',
-        title: 'Client',
-        icon: 'ft-home',
-        class: 'has-sub',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: [
-          { path: '/client/create', title: 'Create-Client', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/client/list', title: 'Client-List', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/client/edit', title: 'Client-Edit', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
-
-        ],
-        permissionName: 'client'
-      },
-      {
-        path: '',
-        title: 'Vendor',
-        icon: 'ft-home',
-        class: 'has-sub',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: [
-          { path: '/vendor/create', title: 'Create-Vendor', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/vendor/list', title: 'Vendor-List', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/vendor/edit', title: 'Vendor-Edit', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
-
-        ],
-        permissionName: 'vendor'
-      },
-      {
-        path: '',
-        title: 'Email-Template',
-        icon: 'ft-home',
-        class: 'has-sub',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: [
-          { path: '/email-template/create', title: 'Create-Email', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/email-template/list', title: 'Email-List', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/email-template/edit', title: 'Email-Edit', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
-
-        ],
-        permissionName: 'email'
-      },
-      //
-      // { path: '/Createtalentpool', title: 'Createtalentpool', icon: 'ft-file-text', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
-
-      // { path: '/Listtalentpool', title: 'Task Board NgRx', icon: 'ft-file-text', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
-
-      // { path: '/player', title: 'Player', icon: 'ft-music', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'candidate1' }
-      //
-      , {
-        path: '',
-        title: 'Talentpool',
-        icon: 'ft-home',
-        class: 'has-sub',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: [
-          { path: '/talentpool/Createtalentpool', title: 'Createtalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/talentpool/Listtalentpool', title: 'Listtalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/talentpool/Edittalentpool', title: 'Edittalentpool', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
-
-        ],
-        permissionName: 'home'
-      },
+      { path: '/jobs/list', title: 'Job', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'job' },
+      { path: '/recruiter/list', title: 'Recruiter', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'recruiter' },
+      { path: '/client/list', title: 'Client', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'client' },
+      { path: '/vendor/list', title: 'Vendor', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'vendor' },
+      { path: '/email-template/list', title: 'Email-Template', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'email' },
+      { path: '/talentpool/Listtalentpool', title: 'Talentpool', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'talentpool' },
+      
       //job
 
       // {
