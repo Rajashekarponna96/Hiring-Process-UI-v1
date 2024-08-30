@@ -1,31 +1,56 @@
-<p>
-  client-list works!
-</p>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Client Management</title>
+  <title>Clients Table</title>
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome for Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <style>
+    .no-records-message {
+      text-align: center;
+      color: #6c757d;
+      font-style: italic;
+    }
+    .pagination-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pagination-info {
+      margin-right: 15px;
+    }
+    .pagination {
+      margin-bottom: 0;
+    }
+    .button-container {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .dropdown-wrapper {
+      display: flex;
+      align-items: center;
+    }
+    .dropdown-wrapper select {
+      margin-left: 1rem;
+    }
+  </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <!-- Card Container -->
+  <div class="container mt-4">
     <div class="card">
       <!-- Header Container -->
       <div class="card-header d-flex justify-content-between align-items-center">
         <!-- Search Input -->
-        <div class="input-group w-100 w-sm-auto">
-          <input type="text" class="form-control" placeholder="Global Search" (input)="onGlobalFilter1($event)" />
+        <div class="input-group w-50 w-sm-auto">
+          <input type="text" class="form-control" placeholder="Global Search" (input)="onGlobalFilter1($event)">
           <div class="input-group-append">
             <span class="input-group-text"><i class="fas fa-search"></i></span>
           </div>
         </div>
-        <button class="btn btn-outline-primary ml-2" (click)="navigateToCreateClient()">
+        <button type="button" class="btn btn-outline-primary" (click)="navigateToCreateClient()">
           <i class="fas fa-user-plus"></i> Add New
         </button>
       </div>
@@ -45,89 +70,71 @@
               <td>{{ client.companyName }}</td>
               <td>{{ client.location }}</td>
               <td>
-                <div class="btn-group" role="group">
-                  <button class="btn btn-success btn-sm" (click)="handleEditClient(client, client.id)">
+                <div class="button-container">
+                  <button class="btn btn-sm btn-success" (click)="handleEditClient(client, client.id)">
                     <i class="fas fa-pencil-alt"></i>
                   </button>
-                  <button class="btn btn-danger btn-sm" (click)="clientDelete(client)">
+                  <button class="btn btn-sm btn-danger" (click)="clientDelete(client)">
                     <i class="fas fa-trash"></i>
                   </button>
-                  <button class="btn btn-info btn-sm" (click)="openNew(client)">
+                  <button class="btn btn-sm btn-info" (click)="openNew(client)">
                     <i class="fas fa-eye"></i>
                   </button>
                 </div>
               </td>
             </tr>
             <tr *ngIf="clients.length === 0">
-              <td colspan="3" class="text-center">Client not found</td>
+              <td colspan="3" class="no-records-message">
+                Client not found
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
 
-    <!-- POC Details Modal -->
-    <div class="modal fade" id="pocDetailsModal" tabindex="-1" role="dialog" aria-labelledby="pocDetailsModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="pocDetailsModalLabel">POC's Details</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+      <!-- Pagination Container -->
+      <div class="card-footer">
+        <div class="pagination-container">
+          <div class="pagination-info">
+            Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{
+            totalElements }} entries
           </div>
-          <div class="modal-body">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th style="width: 25%">Name</th>
-                  <th style="width: 25%">Mobile</th>
-                  <th style="width: 25%">Email</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let pointToContact of pointToContacts">
-                  <td>{{ pointToContact.name }}</td>
-                  <td>{{ pointToContact.mobile }}</td>
-                  <td>{{ pointToContact.email }}</td>
-                </tr>
-              </tbody>
-            </table>
+          <div>
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" (click)="goToFirstPage()">&laquo; First</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo;
+                  Prev</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next
+                  &raquo;</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="goToLastPage()">Last &raquo;</a>
+              </li>
+            </ul>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <div>
+            <select class="custom-select" (change)="onRecordsPerPageChange($event)">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Pagination Container -->
-    <div *ngIf="clients.length > 0" class="mt-4 d-flex justify-content-between align-items-center">
-      <div>
-        Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries
-      </div>
-      <div class="btn-group" role="group">
-        <button class="btn btn-outline-secondary" (click)="goToFirstPage()">&laquo; First</button>
-        <button class="btn btn-outline-secondary" (click)="goToPreviousPage()" [attr.disabled]="pagination.first ? true : null">&laquo; Prev</button>
-        <button class="btn btn-outline-secondary" (click)="goToNextPage()" [attr.disabled]="pagination.last ? true : null">Next &raquo;</button>
-        <button class="btn btn-outline-secondary" (click)="goToLastPage()">Last &raquo;</button>
-      </div>
-      <div>
-        <select class="custom-select" (change)="onRecordsPerPageChange($event)">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="5" selected>5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
-      </div>
-    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </div>
-
-  <!-- Bootstrap JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -24,6 +24,10 @@ export const Full_ROUTES: Routes = [
     loadChildren: () => import('../../jobs/jobs.module').then(m => m.JobsModule)
   },
   {
+    path: 'forms',
+    loadChildren: () => import('../../forms/forms.module').then(m => m.FormModule)
+  },
+  {
     path: 'client',
     loadChildren: () => import('../../client/client.module').then(m => m.ClientModule)
   },

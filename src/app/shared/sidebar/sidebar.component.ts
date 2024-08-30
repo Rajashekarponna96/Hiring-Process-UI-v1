@@ -139,29 +139,32 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
       },
 
       //
-      {
-        path: '',
-        title: 'Candidate',
-        icon: 'ft-home',
-        class: 'has-sub',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: [
-          { path: '/candidate/create', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/candidate/list', title: 'Dashboard21', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/candidate/edit', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+      // {
+      //   path: '',
+      //   title: 'Candidate',
+      //   icon: 'ft-home',
+      //   class: 'has-sub',
+      //   badge: '',
+      //   badgeClass: '',
+      //   isExternalLink: false,
+      //   submenu: [
+      //     // { path: '/candidate/create', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      //     { path: '/candidate/list', title: 'List', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      //     // { path: '/candidate/edit', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      //     { path: '/forms/archwizard', title: 'cretaecandidtae', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
 
-        ],
-        permissionName: 'candidate'
-      },
+      //   ],
+      //   permissionName: 'candidate'
+      // },
+      { path: '/candidate/list', title: 'Candidate', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'job' },
+
       { path: '/jobs/list', title: 'Job', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'job' },
       { path: '/recruiter/list', title: 'Recruiter', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'recruiter' },
       { path: '/client/list', title: 'Client', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'client' },
       { path: '/vendor/list', title: 'Vendor', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'vendor' },
       { path: '/email-template/list', title: 'Email-Template', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'email' },
       { path: '/talentpool/Listtalentpool', title: 'Talentpool', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'talentpool' },
-      
+
       //job
 
       // {

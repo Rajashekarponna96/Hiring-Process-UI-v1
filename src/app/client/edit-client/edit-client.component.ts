@@ -110,5 +110,9 @@ export class EditClientComponent implements OnInit {
       console.error('Client data is missing in state.');
     }
   }
+
+  cancel(){
+    this.router.navigate(['/client/list']);
+  }
 }
 

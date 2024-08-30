@@ -1,0 +1,380 @@
+<section id="ngx">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-body">
+          <aw-wizard #wizard navBarLayout="large-empty-symbols">
+
+            <!-- Step 1: Personal Information -->
+            <aw-wizard-step [stepTitle]="'Step 1'" [navigationSymbol]="{ symbol: '&#xf007;', fontFamily: 'FontAwesome' }">
+              <form #candidateForm="ngForm" class="editForm" novalidate>
+                <h4 class="head text-center">Please tell us about yourself.</h4>
+                <br />
+                <div class="row">
+                  <div class="col-12">
+                    <div class="row">
+
+                      <!-- First Name Field -->
+                      <div class='col-12 col-sm-6'>
+                        <div class="form-group">
+                            <label class="form-control-label" for="firstname">First Name</label>
+                            <input class="form-control input-md" ngModel #firstname="ngModel" required id="firstname" name="firstname" type="text">
+                            <small class="form-text text-muted danger" *ngIf="!firstname.valid && (firstname.dirty || firstname.touched)">This field is required!</small>
+                        </div>
+                    </div>
+
+                    <!-- Last Name Field -->
+                    <div class='col-12 col-sm-6'>
+                        <div class="form-group">
+                            <label class="form-control-label" for="lastname">Last Name</label>
+                            <input class="form-control input-md" ngModel #lastname="ngModel" required id="lastname" name="lastname" type="text">
+                            <small class="form-text text-muted danger" *ngIf="!lastname.valid && (lastname.dirty || lastname.touched)">This field is required!</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label class="form-control-label" for="email">Email</label>
+                    <input class="form-control input-md" ngModel #email="ngModel" required email id="email" name="email" type="text">
+                    <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">Please enter a valid email!</small>
+                </div>
+
+                <!-- Mobile Field -->
+                <div class="form-group">
+                    <label class="form-control-label" for="mobile">Mobile Number</label>
+                    <input class="form-control input-md" ngModel #mobile="ngModel" required pattern="[0-9]{10}" id="mobile" name="mobile" type="text">
+                    <small class="form-text text-muted danger" *ngIf="!mobile.valid && (mobile.dirty || mobile.touched)">Mobile Number is required and must be 10 digits!</small>
+                </div>
+
+                <!-- Alternate Mobile Field -->
+                <div class="form-group">
+                    <label class="form-control-label" for="alterMobile">Alternate Mobile Number</label>
+                    <input class="form-control input-md" ngModel #alterMobile="ngModel" pattern="[0-9]{10}" id="alterMobile" name="alterMobile" type="text">
+                    <small class="form-text text-muted danger" *ngIf="!alterMobile.valid && (alterMobile.dirty || alterMobile.touched)">Alternate Mobile Number must be 10 digits!</small>
+                </div>
+
+                <!-- Notice Period Field -->
+                <div class="form-group">
+                    <label class="form-control-label" for="avialToJoin">Notice Period</label>
+                    <input class="form-control input-md" ngModel #avialToJoin="ngModel" required id="avialToJoin" name="avialToJoin" type="text">
+                    <small class="form-text text-muted danger" *ngIf="!avialToJoin.valid && (avialToJoin.dirty || avialToJoin.touched)">Notice Period is required!</small>
+                </div>
+
+                <!-- Current Salary Field -->
+                <div class="form-group">
+                    <label class="form-control-label" for="currentSalary">Current Salary (LPA)(INR)</label>
+                    <input class="form-control input-md" ngModel #currentSalary="ngModel" required id="currentSalary" name="currentSalary" type="number">
+                    <small class="form-text text-muted danger" *ngIf="!currentSalary.valid && (currentSalary.dirty || currentSalary.touched)">Current Salary is required!</small>
+                </div>
+
+                <!-- Expected Salary Field -->
+                <div class="form-group">
+                    <label class="form-control-label" for="expectedSalary">Expected Salary (LPA)(INR)</label>
+                    <input class="form-control input-md" ngModel #expectedSalary="ngModel" required id="expectedSalary" name="expectedSalary" type="number">
+                    <small class="form-text text-muted danger" *ngIf="!expectedSalary.valid && (expectedSalary.dirty || expectedSalary.touched)">Expected Salary is required!</small>
+                </div>
+
+                <!-- Gender Field -->
+                <div class="form-group">
+                    <label class="form-control-label" for="gender">Gender</label>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="male" name="gender" ngModel #maleGender="ngModel" value="Male" required>
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="female" name="gender" ngModel #femaleGender="ngModel" value="Female" required>
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                    <small class="form-text text-muted danger" *ngIf="(maleGender.invalid || femaleGender.invalid) && (maleGender.dirty || femaleGender.dirty)">Please select a gender!</small>
+                </div>
+
+                <!-- Date of Birth Field -->
+                <div class="form-group">
+                    <label class="form-control-label" for="dateOfBirth">Date Of Birth</label>
+                    <input class="form-control input-md" ngModel #dateOfBirth="ngModel" required id="dateOfBirth" name="dateOfBirth" type="date">
+                    <small class="form-text text-muted danger" *ngIf="!dateOfBirth.valid && (dateOfBirth.dirty || dateOfBirth.touched)">Date of Birth is required!</small>
+                </div>
+
+                <!-- Job Dropdown -->
+                <div class="form-group">
+                    <label class="form-control-label" for="job">Job</label>
+                    <select class="form-select" id="job" name="job" [(ngModel)]="candidate.job" required #job="ngModel">
+                        <option *ngFor="let job of jobs" [value]="job.title">{{ job.title }}</option>
+                    </select>
+                    <small class="form-text text-muted danger" *ngIf="!job.valid && (job.dirty || job.touched)">Job is required!</small>
+                </div>
+
+                <!-- Source Dropdown -->
+                <div class="form-group">
+                    <label class="form-control-label" for="source">Source</label>
+                    <select class="form-select" id="source" name="source" [(ngModel)]="candidate.source" required #source="ngModel">
+                        <option *ngFor="let source of sources" [value]="source.name">{{ source.name }}</option>
+                    </select>
+                    <small class="form-text text-muted danger" *ngIf="!source.valid && (source.dirty || source.touched)">Source is required!</small>
+                </div>
+
+                <!-- Current Location Dropdown -->
+                <!-- <div class="form-group">
+                    <label class="form-control-label" for="current">Current Location</label>
+                    <select class="form-select" id="current" name="current" [(ngModel)]="candidate.current" required #current="ngModel">
+                        <option *ngFor="let location of locations" [value]="location.name">{{ location.name }}</option>
+                    </select>
+                    <small class="form-text text-muted danger" *ngIf="!current.valid && (current.dirty || current.touched)">Current Location is required!</small>
+                </div> -->
+
+                <!-- Preferred Location Dropdown -->
+                <!-- <div class="form-group">
+                    <label class="form-control-label" for="preferred">Preferred Location</label>
+                    <select class="form-select" id="preferred" name="preferred" [(ngModel)]="candidate.preferred" required #preferred="ngModel">
+                        <option *ngFor="let location of locations" [value]="location.name">{{ location.name }}</option>
+                    </select>
+                    <small class="form-text text-muted danger" *ngIf="!preferred.valid && (preferred.dirty || preferred.touched)">Preferred Location is required!</small>
+                </div> -->
+
+                    <!-- Submit Button -->
+                    <div class="form-group text-center">
+                      <button type="button" class="btn btn-info btn-raised" [disabled]="!candidateForm.valid" awNextStep>
+                        Next
+                        <span style="margin-left: 10px">
+                          <i class="ft-chevron-right"></i>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </aw-wizard-step>
+
+            <!-- Step 2: Education Details -->
+            <aw-wizard-step [stepTitle]="'Step 2'" [navigationSymbol]="{ symbol: '&#xf19d;', fontFamily: 'FontAwesome' }">
+            <section id="education-experience">
+                <!-- Education Details -->
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="text-center">Education Details</h4>
+                            <form #educationForm="ngForm" novalidate>
+                                <div class="row">
+                                    <!-- Course Field -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="course">Course<span class="text-danger">*</span></label>
+                                        <input class="form-control" id="course" name="course" type="text"
+                                            [(ngModel)]="education.course" required />
+                                        <div class="invalid-feedback" *ngIf="!education.course">This field
+                                            is required!</div>
+                                    </div>
+
+                                    <!-- Specialization Field -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="branch">Specialization<span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" id="branch" name="branch" type="text"
+                                            [(ngModel)]="education.branch" required />
+                                        <div class="invalid-feedback" *ngIf="!education.branch">This field
+                                            is required!</div>
+                                    </div>
+
+                                    <!-- Start Of Course Field -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="startOfCourse">Start Of Course</label>
+                                        <input class="form-control" id="startOfCourse" name="startOfCourse"
+                                            type="date" [(ngModel)]="education.startOfCourse"
+                                            (ngModelChange)="updateEndDateMinDate()" />
+                                    </div>
+
+                                    <!-- End Of Course Field -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="endOfCourse">End Of Course</label>
+                                        <input class="form-control" id="endOfCourse" name="endOfCourse"
+                                            type="date" [(ngModel)]="education.endOfCourse"
+                                            [min]="education.startOfCourse" />
+                                        <div class="text-danger"
+                                            *ngIf="education.endOfCourse < education.startOfCourse">End date
+                                            cannot be before start date.</div>
+                                    </div>
+
+                                    <!-- College Field -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="college">College<span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" id="college" name="college" type="text"
+                                            [(ngModel)]="education.college" required />
+                                        <div class="invalid-feedback" *ngIf="!education.college">This field
+                                            is required!</div>
+                                    </div>
+
+                                    <!-- University Field -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="university">University<span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" id="university" name="university"
+                                            type="text" [(ngModel)]="education.university" required />
+                                        <div class="invalid-feedback" *ngIf="!education.university">This
+                                            field is required!</div>
+                                    </div>
+
+                                    <!-- Location Field -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="location">Location<span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" id="location" name="location"
+                                            type="text" [(ngModel)]="education.location" required />
+                                        <div class="invalid-feedback" *ngIf="!education.location">This field
+                                            is required!</div>
+                                    </div>
+                                </div>
+                                <!-- Submit Button -->
+                                <button class="btn btn-primary" type="button"
+                                    (click)="submitEducation()">Save</button>
+
+
+                            </form>
+
+                            <!-- Education Table -->
+                            <div *ngIf="educationDetails.length > 0" class="mt-3">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Course</th>
+                                            <th>Specialization</th>
+                                            <th>Start of Course</th>
+                                            <th>End of Course</th>
+                                            <th>College</th>
+                                            <th>University</th>
+                                            <th>Location</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let edu of educationDetails; let i = index">
+                                            <td>{{ edu.course }}</td>
+                                            <td>{{ edu.branch }}</td>
+                                            <td>{{ edu.startOfCourse }}</td>
+                                            <td>{{ edu.endOfCourse }}</td>
+                                            <td>{{ edu.college }}</td>
+                                            <td>{{ edu.university }}</td>
+                                            <td>{{ edu.location }}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-success"
+                                                    (click)="editEducation(i)">Edit</button>
+                                                <button class="btn btn-sm btn-danger"
+                                                    (click)="deleteEducation(i)">Delete</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                      <!-- Next Step Button -->
+                      <div class="form-group text-center">
+                        <button type="button" class="btn btn-info btn-raised" [disabled]="!educationForm.valid" awNextStep>
+                          Next
+                          <span style="margin-left: 10px">
+                            <i class="ft-chevron-right"></i>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+
+                </div>
+              </section>
+            </aw-wizard-step>
+
+            <!-- Step 3: Experience Details -->
+            <aw-wizard-step [stepTitle]="'Step 3'" [navigationSymbol]="{ symbol: '&#xf0ac;', fontFamily: 'FontAwesome' }">
+              <div class="container mt-5">
+                <h2 class="text-center">Experience Details</h2>
+                <div class="card mt-5">
+                  <div class="card-body">
+                    <form #experienceForm="ngForm" novalidate>
+                      <!-- Experience Form Fields -->
+                      <div class="row">
+                        <!-- Add experience fields here similar to above with validation and binding -->
+                        <!-- Example -->
+                        <div class="col-md-6 mb-3">
+                          <label for="companyName">Company Name<span class="text-danger">*</span></label>
+                          <input class="form-control" id="companyName" name="companyName" type="text" [(ngModel)]="experience.companyName" required />
+                          <div class="invalid-feedback" *ngIf="experienceForm.submitted && !experience.companyName">
+                            This field is required!
+                          </div>
+                        </div>
+
+                        <!-- Other fields follow similar pattern -->
+
+                      </div>
+                      <!-- Submit Button -->
+                      <button class="btn btn-primary" type="button" [disabled]="!experienceForm.valid" (click)="submitExperience()">
+                        Save
+                      </button>
+                    </form>
+
+                    <!-- Experience Table -->
+                    <div *ngIf="experienceDetails.length > 0" class="mt-3">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>Company</th>
+                            <th>Position</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let exp of experienceDetails; let i = index">
+                            <td>{{ exp.companyName }}</td>
+                            <td>{{ exp.position }}</td>
+                            <td>{{ exp.startDate }}</td>
+                            <td>{{ exp.endDate }}</td>
+                            <td>
+                              <button class="btn btn-sm btn-success" (click)="editExperience(i)">
+                                Edit
+                              </button>
+                              <button class="btn btn-sm btn-danger" (click)="deleteExperience(i)">
+                                Delete
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <!-- Next Step Button -->
+                    <div class="form-group text-center">
+                      <button type="button" class="btn btn-info btn-raised" [disabled]="!experienceForm.valid" awNextStep>
+                        Next
+                        <span style="margin-left: 10px">
+                          <i class="ft-chevron-right"></i>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aw-wizard-step>
+
+            <!-- Step 4: Final Step -->
+            <aw-wizard-step [stepTitle]="'Step 4'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
+              <div class="container mt-5">
+                <h2 class="text-center">Review and Submit</h2>
+                <div class="card mt-5">
+                  <div class="card-body">
+                    <p>Please review all details before submitting.</p>
+                    <!-- Review details here -->
+
+                    <div class="text-center">
+                      <button class="btn btn-success" (click)="submitAll()">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aw-wizard-step>
+
+          </aw-wizard>
+        </div>
+      </div>
+    </div>
+  </section>

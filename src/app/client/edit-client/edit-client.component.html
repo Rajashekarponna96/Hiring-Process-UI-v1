@@ -1,8 +1,3 @@
-<p>
-  edit-client works!
-</p>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +50,11 @@
           <!-- Submit button -->
           <div class="form-row">
             <div class="form-group col-12">
-              <button type="button" class="btn btn-primary" (click)="submitPocs()">Add POC</button>
+
+
+              <button type="button" class="btn btn-raised btn-primary" (click)="submitPocs()">Add POC</button>
+
+
             </div>
           </div>
         </form>
@@ -91,8 +90,12 @@
 
         <!-- Action buttons -->
         <div class="text-right mt-4">
-          <button type="button" class="btn btn-success mr-2" (click)="updateClient()">Update</button>
-          <a class="btn btn-danger" routerLink="/client">Cancel</a>
+          <button type="button" class="btn btn-raised btn-warning mr-1" (click)="cancel()">
+            <i class="ft-x"></i> Cancel
+          </button>
+          <button type="button" class="btn btn-raised btn-primary" (click)="updateClient()"
+             ><i class="fa fa-check-square-o"></i>Update</button>
+
         </div>
       </div>
     </div>
@@ -106,3 +109,4 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 </body>
 </html>
+
