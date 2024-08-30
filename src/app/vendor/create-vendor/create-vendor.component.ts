@@ -31,6 +31,10 @@ export class CreateVendorComponent implements OnInit {
     );
   }
 
+  cancel(){
+    this.router.navigate(['/vendor/list']);
+  }
+
   ngOnInit() {
   }
 }

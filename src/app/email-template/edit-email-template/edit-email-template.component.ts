@@ -61,6 +61,10 @@ export class EditEmailTemplateComponent implements OnInit {
     );
   }
 
+  cancel(){
+    this.router.navigate(['email-template/list']);
+  }
+
   updateEmail() {
     this.emailService.updateEmail(this.candidateEmail).subscribe(
       res => {

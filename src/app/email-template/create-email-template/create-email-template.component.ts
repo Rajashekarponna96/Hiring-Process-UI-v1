@@ -112,6 +112,10 @@ export class CreateEmailTemplateComponent {
     );
   }
 
+  cancel(){
+    this.router.navigate(['email-template/list']);
+  }
+
   ngOnInit() {
     this.getAllEmailList();
     this.getEmailDataByTitle();

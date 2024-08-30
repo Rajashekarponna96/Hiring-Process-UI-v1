@@ -45,6 +45,10 @@ export class EditVendorComponent {
     );
   }
 
+  cancel(){
+    this.router.navigate(['/vendor/list']);
+  }
+
   ngOnInit() {
     const stateData = history.state || {};
     const vendor = stateData.vendor;

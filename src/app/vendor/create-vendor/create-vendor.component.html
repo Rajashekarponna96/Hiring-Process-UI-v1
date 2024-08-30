@@ -51,9 +51,17 @@
           </div>
 
           <!-- Action buttons -->
-          <div class="text-right mt-4">
+          <!-- <div class="text-right mt-4">
             <button type="button" class="btn btn-success" (click)="addVendor()" [disabled]="!createVendorForm.valid">Save</button>
             <a class="btn btn-danger ml-2" routerLink="/vendor-list">Cancel</a>
+          </div> -->
+          <div class="form-actions right">
+            <button type="button" class="btn btn-raised btn-warning mr-1" (click)="cancel()">
+              <i class="ft-x"></i> Cancel
+            </button>
+            <button type="button" class="btn btn-raised btn-primary" (click)="addVendor()">
+              <i class="fa fa-check-square-o"></i> Save
+            </button>
           </div>
         </form>
       </div>
