@@ -35,6 +35,9 @@ export class EditRecruiterComponent implements OnInit {
     }
   }
 
+  cancel(){
+    this.router.navigate(['/recruiter/list']);
+  }
   getRecruiter(recruiterId: number) {
     this.recruiterService.getRecruiterById(recruiterId).subscribe(
       (recruiter: Recruiter) => {

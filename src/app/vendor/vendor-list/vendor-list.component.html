@@ -35,18 +35,15 @@
       <!-- Header Container -->
       <div class="card-header d-flex justify-content-between align-items-center">
         <!-- Search Input -->
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <i class="pi pi-search"></i>
-            </span>
+        <div class="input-group w-50 w-sm-auto">
+          <input type="text" class="form-control" placeholder="Global Search" (input)="onGlobalFilter1($event)" />
+          <div class="input-group-append">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
           </div>
-          <input type="text" class="form-control" placeholder="Global Search" (input)="onGlobalFilter1($event)">
         </div>
-        <!-- Add New Vendor Button -->
-        <button class="btn btn-outline-primary" (click)="navigateToCreateVendor()">
-          <i class="pi pi-user-plus"></i> Add New
-        </button>
+        <button type="button" class="btn btn-raised btn-primary"
+      (click)="navigateToCreateVendor()"><i class="ft-plus"></i> Add New
+      </button>
       </div>
 
       <!-- Table Container -->
@@ -68,13 +65,17 @@
               <td>{{ vendor.email }}</td>
               <td>{{ vendor.mobile }}</td>
               <td>
+
                 <div class="button-container">
-                  <button class="btn btn-sm btn-success" (click)="handleEditVendor(vendor, vendor.id)">
-                    <i class="pi pi-pencil"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger" (click)="vendorDelete(vendor)">
-                    <i class="pi pi-trash"></i>
-                  </button>
+                  <a class="success p-0" data-original-title="" title=""
+                  (click)="handleEditVendor(vendor, vendor.id)" placement="bottom" ngbTooltip="Edit">
+                  <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                 </a>
+                  
+                  <a class="danger p-0" data-original-title="" title=""
+                  (click)="vendorDelete(vendor)" placement="bottom" ngbTooltip="Delete">
+                  <i class="icon-trash font-medium-3 mr-2"></i>
+                  </a>
                 </div>
               </td>
             </tr>

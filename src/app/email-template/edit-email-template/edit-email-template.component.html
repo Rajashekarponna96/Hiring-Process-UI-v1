@@ -60,12 +60,21 @@
             </div>
           </div>
 
-          <div class="text-right">
+          <!-- <div class="text-right">
             <button type="button" class="btn btn-success btn-custom" (click)="updateEmail()" [disabled]="!emailForm.valid">
               <i class="pi pi-check"></i> Update
             </button>
             <button type="button" class="btn btn-danger btn-custom" routerLink="/email">
               <i class="pi pi-times"></i> Cancel
+            </button>
+          </div> -->
+
+          <div class="form-actions right">
+            <button type="button" class="btn btn-raised btn-warning mr-1" (click)="cancel()">
+              <i class="ft-x"></i> Cancel
+            </button>
+            <button type="button" class="btn btn-raised btn-primary" (click)="updateEmail()">
+              <i class="fa fa-check-square-o"></i> Save
             </button>
           </div>
         </form>

@@ -78,6 +78,10 @@ export class CreateRecruiterComponent implements OnInit {
     this.getAllRecruiterList();
   }
 
+  cancel(){
+    this.router.navigate(['/recruiter/list']);
+  }
+
   onSubmit() {
     throw new Error('Method not implemented.');
   }
