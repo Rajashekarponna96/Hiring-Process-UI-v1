@@ -84,14 +84,16 @@ export class CreateClientComponent implements OnInit {
     this.clientService.addClient(this.client).subscribe(
       res => {
         console.log(res);
-        this.router.navigate(['/client']);
+        this.router.navigate(['/client/list']);
       },
       error => {
         console.error('Error occurred while adding client:', error);
       }
     );
   }
-
+  cancel(){
+    this.router.navigate(['/client/list']);
+  }
   ngOnInit() { }
 }
 
