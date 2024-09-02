@@ -114,7 +114,7 @@ export class CreateJobsComponent implements OnInit {
         res => {
           this.getAllJobList();
           this.jobForm.reset();
-          this.router.navigateByUrl('/jobs');
+          this.router.navigateByUrl('/jobs/list');
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
@@ -130,7 +130,9 @@ export class CreateJobsComponent implements OnInit {
       console.log("selected department:", data);
       console.log("departments: " + JSON.stringify(this.selectedDepartments));
     }
-
+    cancel(){
+      this.router.navigate(['/jobs/list']);
+    }
     onRecruiterChange(data: any) {
       console.log("selected recruiter:", data);
       console.log("Recruiters: " + JSON.stringify(this.selectedRecruiters));
