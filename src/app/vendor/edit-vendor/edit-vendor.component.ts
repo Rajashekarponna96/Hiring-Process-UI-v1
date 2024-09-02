@@ -37,7 +37,7 @@ export class EditVendorComponent {
     this.vendorService.updateVendor(this.vendor).subscribe(
       res => {
         console.log('Vendor updated successfully:', res);
-        this.router.navigate(['/vendor-list']);
+        this.router.navigate(['/vendor/list']);
       },
       error => {
         console.error('Error occurred while updating vendor:', error);
