@@ -30,21 +30,50 @@
   </style>
 </head>
 <body>
+  <section>
+    <link rel="stylesheet" type="text/css"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css"
+      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+    <link rel="stylesheet" type="text/css"
+      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css"
+      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <div class="row">
+      <div class="container-fluid">
+        <div class="row text-left">
+          <div class="col-md-8">
+
+            <p class="content-sub-header"> <a routerLink="/dashboard/dashboard1"><span style="font-size: 15px">Home</span></a>
+              <span style="font-size: 15px">/Recruiter</span>
+              <!-- <span style="font-size: 15px">/{{storename}}</span> -->
+
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
   <div class="container mt-4">
     <div class="card">
       <!-- Header Container -->
       <div class="card-header d-flex justify-content-between align-items-center">
-        <!-- Search Input -->
-        <!-- <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <i class="pi pi-search"></i>
-            </span>
-          </div>
-          <input type="text" class="form-control" placeholder="Global Search" (input)="onGlobalFilter1($event)">
-        </div> -->
 
-        
+
+
           <!-- Search Input -->
           <div class="input-group w-50 w-sm-auto">
             <input type="text" class="form-control" placeholder="Global Search" (input)="onGlobalFilter1($event)" />
@@ -55,21 +84,14 @@
           <button type="button" class="btn btn-raised btn-primary"
         (click)="navigateToCreateRecruiter()"><i class="ft-plus"></i> Add New
         </button>
-       
-        <!-- Add New Vendor Button -->
-        <!-- <button class="btn btn-outline-primary" (click)="navigateToCreateRecruiter()">
-          <i class="pi pi-user-plus"></i> Add New
-        </button> -->
-        <!-- <button type="button" class="btn btn-raised btn-primary"
-        (click)="navigateToCreateRecruiter()">
-                            <i class="ft-plus"></i> Add New
-                        </button> -->
+
+
       </div>
 
       <!-- Table Container -->
       <div class="card-body">
         <table class="table">
-        
+
             <thead>
                 <tr>
                     <th style="width: 25%">FirstName</th>
@@ -91,7 +113,7 @@
                         (click)="handleEditRecruiter(recruiter)" placement="bottom" ngbTooltip="Edit">
                         <i class="ft-edit-2 font-medium-3 mr-2"></i>
                        </a>
-                        
+
                         <a class="danger p-0" data-original-title="" title=""
                         (click)="confirmDelete(recruiter)" placement="bottom" ngbTooltip="Delete">
                         <i class="icon-trash font-medium-3 mr-2"></i>
@@ -106,7 +128,7 @@
                 </tr>
             </tbody>
         </table>
-    
+
     </div>
 
       <!-- Pagination Container -->

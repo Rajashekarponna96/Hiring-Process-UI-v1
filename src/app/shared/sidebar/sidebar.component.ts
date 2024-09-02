@@ -138,51 +138,17 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         permissionName: 'home'
       },
 
-      //
-      // {
-      //   path: '',
-      //   title: 'Candidate',
-      //   icon: 'ft-home',
-      //   class: 'has-sub',
-      //   badge: '',
-      //   badgeClass: '',
-      //   isExternalLink: false,
-      //   submenu: [
-      //     // { path: '/candidate/create', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-      //     { path: '/candidate/list', title: 'List', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-      //     // { path: '/candidate/edit', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-      //     { path: '/forms/archwizard', title: 'cretaecandidtae', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
 
-      //   ],
-      //   permissionName: 'candidate'
-      // },
-      { path: '/candidate/list', title: 'Candidate', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'job' },
+      { path: '/candidate/list', title: 'Candidate', icon: 'fas fa-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
 
-      { path: '/jobs/list', title: 'Job', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'job' },
-      { path: '/recruiter/list', title: 'Recruiter', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'recruiter' },
-      { path: '/client/list', title: 'Client', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'client' },
-      { path: '/vendor/list', title: 'Vendor', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'vendor' },
-      { path: '/email-template/list', title: 'Email-Template', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'email' },
-      { path: '/talentpool/Listtalentpool', title: 'Talentpool', icon: 'ft-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [],permissionName: 'talentpool' },
+      { path: '/jobs/list', title: 'Job', icon: 'fas fa-briefcase', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
+      { path: '/recruiter/list', title: 'Recruiter', icon: 'fas fa-user-tie', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'recruiter' },
+      { path: '/client/list', title: 'Client', icon: 'fas fa-building', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'client' },
+      { path: '/vendor/list', title: 'Vendor', icon: 'fas fa-truck', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'vendor' },
+      { path: '/email-template/list', title: 'Email-Template', icon: 'fas fa-envelope', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'email' },
+      { path: '/talentpool/Listtalentpool', title: 'Talentpool', icon: 'fas fa-users', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'talentpool' },
 
-      //job
 
-      // {
-      //   path: '',
-      //   title: 'Job',
-      //   icon: 'ft-home',
-      //   class: 'has-sub',
-      //   badge: '',
-      //   badgeClass: '',
-      //   isExternalLink: false,
-      //   submenu: [
-      //     { path: '/job/Createjob', title: 'CreateJOb', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-      //     { path: '/job/Listjob', title: 'Listjob', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-      //     { path: '/job/Editjob', title: 'Editjob', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-
-      //   ],
-      //   permissionName: 'job'
-      // },//job end
     ];
 
     return menuItems.filter(menuItem => this.isPermissionsEnable(menuItem.permissionName, permissions));

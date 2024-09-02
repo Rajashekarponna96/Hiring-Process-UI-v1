@@ -110,7 +110,9 @@ export class EditJobsComponent implements OnInit {
     });
   }
 
-
+  cancel(){
+    this.router.navigate(['/jobs/list']);
+  }
 
   updateJob() {
     this.job.department = this.selectedDepartments;
@@ -159,7 +161,7 @@ export class EditJobsComponent implements OnInit {
     return new Date().toISOString().split('T')[0];
   }
 
-    getAllLocationList() {   
+    getAllLocationList() {
           this.jobService.getAllLocations().subscribe((data: Location[]) => {
           //  this.locations1 = data;
             this.changeDetectorRefs.markForCheck();

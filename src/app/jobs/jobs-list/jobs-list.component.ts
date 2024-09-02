@@ -101,7 +101,7 @@ export class JobsListComponent implements OnInit {
   // }
 
   onGlobalFilter( ) {
-    // table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    //  table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
   onGlobalFilter1(event: Event) {
     const inputElement = event.target as HTMLInputElement;
