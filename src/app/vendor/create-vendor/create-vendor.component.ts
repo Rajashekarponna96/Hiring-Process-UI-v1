@@ -23,7 +23,7 @@ export class CreateVendorComponent implements OnInit {
     this.vendorService.addVendor(this.vendor).subscribe(
       res => {
         console.log('Vendor added successfully:', res);
-        this.router.navigate(['/vendor-list']);
+        this.router.navigate(['/vendor/list']);
       },
       error => {
         console.error('Error occurred while adding vendor:', error);

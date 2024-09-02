@@ -1,121 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Email Form</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Include any additional styling if needed -->
-  <style>
-    .required-field::after {
-      content: "*";
-      color: red;
-      margin-left: 0.25rem;
-    }
-    .editor-container {
-      height: 250px;
-    }
-    .form-control {
-      height: 3.5rem;
-    }
-    .btn-custom {
-      margin-left: 10px;
-    }
-    .input-group-prepend .input-group-text {
-      background: transparent;
-      border: none;
-    }
-  </style>
-</head>
-<body>
-  <section>
-    <link rel="stylesheet" type="text/css"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css"
-      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
-    <link rel="stylesheet" type="text/css"
-      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
-    <link rel="stylesheet" type="text/css"
-      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
-    <link rel="stylesheet" type="text/css"
-      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <div class="row">
-      <div class="container-fluid">
-        <div class="row text-left">
-          <div class="col-md-8">
+<section>
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
-            <p class="content-sub-header"> <a routerLink="/dashboard/dashboard1"><span style="font-size: 15px">Home</span></a>
-              <span style="font-size: 15px">/Create Email</span>
-              <!-- <span style="font-size: 15px">/{{storename}}</span> -->
 
-            </p>
-          </div>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <div class="row">
+    <div class="container-fluid">
+      <div class="row text-left">
+        <div class="col-md-8">
+
+          <p class="content-sub-header"> <a routerLink="/dashboard/dashboard1"><span style="font-size: 15px">Home</span></a>
+            <span style="font-size: 15px">/Create Email</span>
+            <!-- <span style="font-size: 15px">/{{storename}}</span> -->
+
+          </p>
         </div>
-      </div>
-    </div>
-  </section>
-  <div class="container mt-4">
-    <div class="card">
-      <div class="card-body">
-        <form #emailForm="ngForm">
-          <div class="form-group">
-            <label for="title" class="font-weight-bold">Title<span class="required-field"></span></label>
-            <select id="title" name="title" class="form-control" [(ngModel)]="candidateEmail.title" (change)="getEmailDataByTitle()">
-              <option value="" disabled>Select Title</option>
-              <option *ngFor="let title of titles" [value]="title.name">{{ title.name }}</option>
-            </select>
-          </div>
 
-          <div class="form-group">
-            <label for="subject" class="font-weight-bold">Subject</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="pi pi-pencil"></i></span>
-              </div>
-              <input id="subject" name="subject" type="text" class="form-control" [(ngModel)]="candidateEmail.subject" placeholder="Subject">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="body" class="font-weight-bold">Body</label>
-            <!-- Use a textarea or integrate a rich text editor -->
-            <textarea id="body" name="body" class="form-control editor-container" [(ngModel)]="candidateEmail.body" placeholder="Enter body here"></textarea>
-            <div *ngIf="body.invalid && (body.dirty || body.touched)">
-              <div style="color: red">Body is required</div>
-            </div>
-          </div>
-
-
-          <div class="form-actions right">
-            <button type="button" class="btn btn-raised btn-warning mr-1" (click)="cancel()">
-              <i class="ft-x"></i> Cancel
-            </button>
-            <button type="button" class="btn btn-raised btn-primary" (click)="addEmail()">
-              <i class="fa fa-check-square-o"></i> Save
-            </button>
-          </div>
-        </form>
       </div>
     </div>
   </div>
+</section>
+<!--  -->
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <form #emailForm="ngForm">
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="title">Title<span *ngIf="!candidateEmail.title" class="text-danger">*</span></label>
+            <select class="form-control" id="title" name="title" [(ngModel)]="candidateEmail.title" (change)="getEmailDataByTitle()">
+              <option *ngFor="let title of titles" [value]="title.name">{{ title.name }}</option>
+            </select>
+            <div *ngIf="emailForm.controls.title.invalid && (emailForm.controls.title.dirty || emailForm.controls.title.touched)" class="text-danger">
+              <div *ngIf="emailForm.controls.title.errors">Title is required</div>
+            </div>
+          </div>
 
-  <!-- Bootstrap JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <!-- Include any additional JavaScript if needed -->
-</body>
-</html>
+          <div class="form-group col-12">
+            <label for="subject">Subject</label>
+            <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject" [(ngModel)]="candidateEmail.subject" #subject="ngModel" />
+            <div *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="text-danger">
+              <div *ngIf="subject.errors">Subject is required</div>
+            </div>
+          </div>
 
+          <div class="form-group col-12">
+            <label for="body">Body</label>
+            <textarea id="body" class="form-control" rows="10" name="body" [(ngModel)]="candidateEmail.body" #body="ngModel" required></textarea>
+            <div *ngIf="body.invalid && (body.dirty || body.touched)" class="text-danger">
+              <div *ngIf="body.errors">Body is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions text-right">
+          <button type="button" class="btn btn-raised btn-warning mr-2" (click)="cancel()">
+            <i class="fa fa-times"></i> Cancel
+          </button>
+          <button type="button" class="btn btn-raised btn-primary" (click)="addEmail()" [disabled]="!emailForm.valid">
+            <i class="fa fa-check"></i> Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -69,7 +69,7 @@ export class EditEmailTemplateComponent implements OnInit {
     this.emailService.updateEmail(this.candidateEmail).subscribe(
       res => {
         console.log(res);
-        this.router.navigateByUrl('/email');
+        this.router.navigateByUrl('/email-template/list');
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {

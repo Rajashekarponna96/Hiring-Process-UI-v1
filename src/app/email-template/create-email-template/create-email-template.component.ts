@@ -100,7 +100,7 @@ export class CreateEmailTemplateComponent {
     this.emailService.addEmail(this.candidateEmail).subscribe(
       res => {
         console.log(res);
-        this.router.navigateByUrl('/email');
+        this.router.navigateByUrl('/email-template/list');
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
