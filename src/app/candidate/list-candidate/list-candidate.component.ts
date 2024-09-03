@@ -13,10 +13,9 @@ import { Vendor } from 'app/shared/model/vendor';
   styleUrls: ['./list-candidate.component.scss']
 })
 export class ListCandidateComponent implements OnInit {
-
-  // @ViewChild('dt', { static: false }) dataTable!: Table;
+  // No longer using Table from PrimeNG
   @ViewChild('dt', { static: false }) dataTable!: ElementRef;
-  // @ViewChild('dt') dataTable!: Table;
+
   submitted: boolean = false;
   productDialog: boolean = false;
   fetchedCandidateStage!: string;
@@ -39,7 +38,6 @@ export class ListCandidateComponent implements OnInit {
   candidates: Candidate[] = [];
   filteredCandidates: Candidate[] = [];
   displayFilterFields = false;
-  //menuitems: MenuItem[] = [];
   temporaryStage!: string;
   vendor!: Vendor;
   showStages: boolean = false;
@@ -54,29 +52,23 @@ export class ListCandidateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getVendorDetailsById();
+    this.getvendorDetailsById();
   }
 
   navigateToCreateCandidate() {
     this.router.navigate(['/forms/archwizard']);
   }
 
-  // onGlobalFilter(table: Table, event: Event) {
-  //   table.filterGlobal(
-  //     (event.target as HTMLInputElement).value,
-  //     'contains'
-  //   );
-  // }
-  onGlobalFilter( ) {
 
-    }
-
+  onGlobalFilter(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.getAllCandidatesListForGlobalFilter(inputValue);
+  }
 
   getAllCandidatesListForGlobalFilter(inputValue: any) {
     this.candidateService.searchCandidates(inputValue, 0, this.selectedRecordsOption1)
       .subscribe((data) => {
-        console.log(data);
-        this.candidates = data.content || [];  // Provide a default empty array
+        this.candidates = data.content || [];
         this.totalElements = data.totalElements;
         this.totalPages = data.totalPages;
         this.currentPage = 0; // Reset to first page
@@ -87,7 +79,7 @@ export class ListCandidateComponent implements OnInit {
   getAllCandidateList() {
     this.candidateService.getCandidatesWithPagination(this.currentPage, this.selectedRecordsOption1)
       .subscribe((data) => {
-        this.candidates = data.content || [];  // Provide a default empty array
+        this.candidates = data.content || [];
         this.pagination = data;
         this.totalElements = data.totalElements;
         this.totalPages = data.totalPages;
@@ -97,86 +89,65 @@ export class ListCandidateComponent implements OnInit {
 
   handleEditcandidate(candidate: Candidate) {
     const candidateId = candidate.id;
-
-    console.log("Candidate object:", candidate);
-    // Instead of using local storage, navigate to the 'editcandidate' route with the candidate object as a parameter in the state
     this.router.navigate(['editcandidate'], { state: { candidateId: candidateId, candidate: candidate } });
   }
 
   candidateDelete(candidate: Candidate) {
-    console.log("candidate is is:" + candidate.id);
-    // this.candidateService.deleteCandidate(candidate.id)
-    //   .subscribe(
-    //     (res) => {
-    //       console.log(res);
-    //       this.getAllCandidateList();
-    //     },
-    //     (err: HttpErrorResponse) => {
-    //       if (err.error instanceof Error) {
-    //         console.log('Client-side error occurred.');
-    //       } else {
-    //         console.log('Server-side error occurred.');
-    //       }
-    //     }
-    //   );
+    this.candidateService.deleteCandidate(candidate.id)
+      .subscribe(
+        (res) => {
+          this.getAllCandidateList();
+        },
+        (err: HttpErrorResponse) => {
+          console.error('Error:', err.message);
+        }
+      );
   }
-
 
   openHiringFlow(candidate: Candidate) {
     localStorage.setItem('candidateid', JSON.stringify(candidate.id));
     this.router.navigate(['hiringflowactivity']);
   }
+
   toggleStages() {
     this.showStages = !this.showStages;
   }
 
   openNew(candidate: Candidate) {
-    console.log("Candidate details for stage: " + candidate.email);
     this.selectededCandidate = candidate;
     this.temporaryStage = candidate.stage;
     this.submitted = false;
     this.productDialog = true;
-}
+  }
 
-hideDialog() {
+  hideDialog() {
     this.productDialog = false;
     this.submitted = false;
-}
+  }
 
-
+  // toggleFilter() {
+  //   this.displayFilterFields = !this.displayFilterFields;
+  //   if (!this.displayFilterFields) {
+  //     // Manually reset your filter fields if necessary
+  //     this.filteredCandidates = [...this.candidates];
+  //   }
+  // }
   toggleFilter() {
     this.displayFilterFields = !this.displayFilterFields;
     if (!this.displayFilterFields) {
-     // this.dataTable.reset();
+      // Manually reset your filter fields if necessary
+      this.filteredCandidates = this.candidates.slice(); // Using slice to clone the array
     }
   }
+
+
   onGlobalFilter1(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
-    console.log('Input Value:', inputValue);
-    this.candidateService.searchCandidates(inputValue, 0, this.selectedRecordsOption1)
-      .subscribe(
-        data => {
-          this.candidates = data.content || []; // Ensure this.candidates is an array
-          this.totalElements = data.totalElements;
-          this.totalPages = data.totalPages;
-          this.currentPage = 0; // Reset to first page
-          this.changeDetectorRefs.markForCheck();
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log('Client-side error occurred:', err.error.message);
-          } else {
-            console.log('Server-side error occurred:', err.status, err.message);
-          }
-        }
-      );
+    this.getAllCandidatesListForGlobalFilter(inputValue);
   }
 
-
-
   updateCandidate(candidate: Candidate, stage: string) {
-    //this.selectededCandidate.stage = this.temporaryStage;
     candidate.stage = stage;
     this.hideDialog();
     const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
@@ -188,113 +159,42 @@ hideDialog() {
         this.submitted = false;
       },
       (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log("Client-side error occurred:", err.error.message);
-        } else {
-          console.log("Server-side error occurred:", err.status, err.message);
-        }
+        console.error('Error:', err.message);
       }
     );
   }
 
+  getvendorDetailsById() {
+    const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
 
-  // getvendorDetailsById() {
-  //   const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-
-  //   if (user.role?.name === 'vendor') {
-  //     this.isVendor = true;
-  //     this.candidateService.getVendorByUserId(user.id)
-  //       .subscribe(
-  //         (data) => {
-  //           console.log("Vendor details:", data);
-  //           this.vendor = data;
-  //           this.getCandidatesByVendorId(this.vendor.id);
-  //         },
-  //         (err: HttpErrorResponse) => {
-  //           console.error("Error fetching vendor details:", err.message);
-  //         }
-  //       );
-  //   } else if (user.role?.name === 'admin') {
-  //     this.isAdmin = true;
-  //     this.getAllCandidateList();
-  //   } else if (user.role?.name === 'recruiter') {
-  //     console.log("User is a recruiter.");
-  //     this.isRecruiter = true;
-  //     this.getAllCandidateList();
-  //   } else if (user.role?.name === 'candidate') {
-  //     this.isCandidateLoggedIn = true;
-  //     this.getCandidatesByCandidateId(user.id);
-  //   } else {
-  //     console.log("User role not recognized or no action specified.");
-  //   }
-  // }
-
-// getVendorDetailsById(): void {
-//   const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-
-//   if (user.role?.name === 'vendor') {
-//     this.isVendor = true;
-//     this.candidateService.getVendorByUserId(user.id)
-//       .subscribe(
-//         (data) => {
-//           console.log("Vendor details:", data);
-//           this.vendor = data;
-//           this.getCandidatesByVendorId(this.vendor.id);
-//         },
-//         (err: HttpErrorResponse) => {
-//           console.error("Error fetching vendor details:", err.message);
-//         }
-//       );
-//   } else if (user.role?.name === 'admin') {
-//     this.isAdmin = true;
-//     this.getAllCandidateList();
-//   } else if (user.role?.name === 'recruiter') {
-//     console.log("User is a recruiter.");
-//     this.isRecruiter = true;
-//     this.getAllCandidateList();
-//   } else if (user.role?.name === 'candidate') {
-//     this.isCandidateLoggedIn = true;
-//     this.getCandidatesByCandidateId(user.id);
-//   } else {
-//     console.log("User role not recognized or no action specified.");
-//   }
-// }
-getVendorDetailsById() {
-  const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-
-  // if (user.role?.name === 'vendor') {
-  //   this.isVendor = true;
-  //   this.candidateService.getVendorByUserId(user.id)
-  //     .subscribe(
-  //       (data) => {
-  //         console.log("Vendor details:", data);
-  //         this.vendor = data;
-  //         this.getCandidatesByVendorId(this.vendor.id);
-  //       },
-  //       (err: HttpErrorResponse) => {
-  //         console.error("Error fetching vendor details:", err.message);
-  //       }
-  //     );
-  // } else if (user.role?.name === 'admin') {
-  //   this.isAdmin = true;
-  //   this.getAllCandidateList();
-  // } else if (user.role?.name === 'recruiter') {
-  //   console.log("User is a recruiter.");
-  //   this.isRecruiter = true;
-  //   this.getAllCandidateList();
-  // } else if (user.role?.name === 'candidate') {
-  //   this.isCandidateLoggedIn = true;
-  //   this.getCandidatesByCandidateId(user.id);
-  // } else {
-  //   console.log("User role not recognized or no action specified.");
-  // }
-}
-
+    // if (user.role?.name === 'vendor') {
+    //   this.isVendor = true;
+    //   this.candidateService.getVendorByUserId(user.id)
+    //     .subscribe(
+    //       (data) => {
+    //         this.vendor = data;
+    //         this.getCandidatesByVendorId(this.vendor.id);
+    //       },
+    //       (err: HttpErrorResponse) => {
+    //         console.error('Error fetching vendor details:', err.message);
+    //       }
+    //     );
+    // } else if (user.role?.name === 'admin') {
+    //   this.isAdmin = true;
+    //   this.getAllCandidateList();
+    // } else if (user.role?.name === 'recruiter') {
+    //   this.isRecruiter = true;
+    //   this.getAllCandidateList();
+    // } else if (user.role?.name === 'candidate') {
+    //   this.isCandidateLoggedIn = true;
+    //   this.getCandidatesByCandidateId(user.id);
+    // }
+  }
 
   getCandidatesByVendorId(vendorId: any) {
     this.candidateService.getCandidatesByVendorId(vendorId, this.currentPage, this.selectedRecordsOption1)
       .subscribe((data) => {
-        this.candidates = data.content || [];  // Provide a default empty array
+        this.candidates = data.content || [];
         this.pagination = data;
         this.totalElements = data.totalElements;
         this.totalPages = data.totalPages;
@@ -302,46 +202,45 @@ getVendorDetailsById() {
       });
   }
 
-  getCandidatesByCandidateId(candiadteId: any) {
-    this.candidateService.getCandidateByUserId(candiadteId)
+  getCandidatesByCandidateId(candidateId: any) {
+    this.candidateService.getCandidateByUserId(candidateId)
       .subscribe(
         (data) => {
-          console.log("Vendor details:", data);
           this.candidate1 = data;
         },
         (err: HttpErrorResponse) => {
-          console.error("Error fetching candidate details:", err.message);
+          console.error('Error fetching candidate details:', err.message);
         }
       );
   }
 
   goToFirstPage() {
     this.currentPage = 0;
-    this.getVendorDetailsById();
+    this.getvendorDetailsById();
   }
 
   goToPreviousPage() {
     if (this.currentPage > 0) {
       this.currentPage--;
-      this.getVendorDetailsById();
+      this.getvendorDetailsById();
     }
   }
 
   goToNextPage() {
     if (this.currentPage < this.totalPages - 1) {
       this.currentPage++;
-      this.getVendorDetailsById();
+      this.getvendorDetailsById();
     }
   }
 
   goToLastPage() {
     this.currentPage = this.totalPages - 1;
-    this.getVendorDetailsById();
+    this.getvendorDetailsById();
   }
 
   onRecordsPerPageChange(event: Event) {
     this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
     this.currentPage = 0;
-    this.getVendorDetailsById();
+    this.getvendorDetailsById();
   }
 }
