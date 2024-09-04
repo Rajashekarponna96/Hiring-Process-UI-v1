@@ -115,7 +115,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Generate menu items based on user permissions
   generateMenuItems(): RouteInfo[] {
-    debugger;
+
     const userJson = localStorage.getItem('userDetails');
     const user: UserAccout = userJson ? JSON.parse(userJson) : { role: { permissions: [] } };
     const permissions: Permission[] = user.role.permissions || [];
@@ -146,7 +146,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
       { path: '/client/list', title: 'Client', icon: 'fas fa-building', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'client' },
       { path: '/vendor/list', title: 'Vendor', icon: 'fas fa-truck', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'vendor' },
       { path: '/email-template/list', title: 'Email-Template', icon: 'fas fa-envelope', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'email' },
-      { path: '/talentpool/Listtalentpool', title: 'Talentpool', icon: 'fas fa-users', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'talentpool' },
+      { path: '/talentpool/Listtalentpool', title: 'Talentpool', icon: 'fas fa-users', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'email' },
 
 
     ];
