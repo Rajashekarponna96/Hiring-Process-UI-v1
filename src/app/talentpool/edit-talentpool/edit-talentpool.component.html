@@ -1,62 +1,112 @@
-<!-- Talent Pool Form Section Start -->
-<section id="talent-pool-form">
-  <div class="row text-left justify-content-md-center">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header pb-2">
-          <h4 class="card-title" id="talent-pool-form-header">
-            Talent Pool Form
-          </h4>
-        </div>
-        <div class="card-content">
-          <div class="px-3">
-            <form #talentPoolForm="ngForm" class="form">
-              <div class="form-body">
-                <!-- Skill Input -->
-                <div class="form-group">
-                  <label for="talentPoolName">Skill
-                    <span [style.display]="talentPool.name ? 'none' : 'inline'" style="color: red">*</span>
-                  </label>
-                  <input type="text" id="talentPoolName" class="form-control" name="talentPoolName" placeholder="Enter Talent Pool Name"
-                    [(ngModel)]="talentPool.name" required #talentPoolName="ngModel" />
-                  <div *ngIf="talentPoolName.invalid && (talentPoolName.dirty || talentPoolName.touched)">
-                    <div style="color: red" *ngIf="talentPoolName.errors">
-                      Talent Pool Name is required
-                    </div>
-                  </div>
-                </div>
+<!--  -->
 
-                <!-- Description Input -->
-                <div class="form-group">
-                  <label for="talentPoolDescription">Description
-                    <span [style.display]="talentPool.description ? 'none' : 'inline'" style="color: red">*</span>
-                  </label>
-                  <textarea id="talentPoolDescription" class="form-control" name="talentPoolDescription" rows="4"
-                    placeholder="Enter Talent Pool Description" [(ngModel)]="talentPool.description" required
-                    #talentPoolDescription="ngModel"></textarea>
-                  <div *ngIf="talentPoolDescription.invalid && (talentPoolDescription.dirty || talentPoolDescription.touched)">
-                    <div style="color: red" *ngIf="talentPoolDescription.errors">
-                      Talent Pool Description is required
-                    </div>
-                  </div>
-                </div>
-              </div>
+<section>
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
-              <!-- Buttons -->
-              <div class="form-actions center mt-3">
-                <button type="button" class="btn btn-raised btn-warning mr-1" [routerLink]="['/talentpool/Listtalentpool']">
-                  <i class="ft-x"></i> Cancel
-                </button>
-                <button type="button" class="btn btn-raised btn-primary" (click)="updateTalentPool()"
-                  [disabled]="!talentPoolForm.valid">
-                  <i class="fa fa-check-square-o"></i> Update
-                </button>
-              </div>
-            </form>
-          </div>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <div class="row">
+    <div class="container-fluid">
+      <div class="row text-left">
+        <div class="col-md-8">
+
+          <p class="content-sub-header"> <a routerLink="/dashboard/dashboard1"><span
+                style="font-size: 15px">Home</span></a>
+            <span style="font-size: 15px">/Talentpool-Edit</span>
+            <!-- <span style="font-size: 15px">/{{storename}}</span> -->
+
+          </p>
         </div>
+
       </div>
     </div>
   </div>
 </section>
-<!-- Talent Pool Form Section End -->
+
+
+<!--  -->
+ <!-- Basic form layout section start -->
+ <section id="basic-form-layouts">
+  <div class="row justify-content-center">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="card-header pb-2">
+                  <!-- Header can go here if needed -->
+              </div>
+              <div class="card-content">
+                  <div class="px-5 py-4">
+
+                    <form #talentPoolForm="ngForm" class="form h-100 d-flex flex-column justify-content-between">
+                      <div class="form-body">
+                        <!-- Skill Input -->
+                        <div class="form-group">
+                          <label for="talentPoolName">Skill
+                            <span [style.display]="talentPool.name ? 'none' : 'inline'" style="color: red">*</span>
+                          </label>
+                          <input type="text" id="talentPoolName" class="form-control" name="talentPoolName"
+                            placeholder="Enter Talent Pool Name" [(ngModel)]="talentPool.name" required
+                            #talentPoolName="ngModel" />
+                          <div *ngIf="talentPoolName.invalid && (talentPoolName.dirty || talentPoolName.touched)">
+                            <div style="color: red" *ngIf="talentPoolName.errors">
+                              Talent Pool Name is required
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Description Input -->
+                        <div class="form-group">
+                          <label for="talentPoolDescription">Description
+                            <span [style.display]="talentPool.description ? 'none' : 'inline'" style="color: red">*</span>
+                          </label>
+                          <textarea id="talentPoolDescription" class="form-control" name="talentPoolDescription" rows="4"
+                            placeholder="Enter Talent Pool Description" [(ngModel)]="talentPool.description" required
+                            #talentPoolDescription="ngModel"></textarea>
+                          <div *ngIf="talentPoolDescription.invalid && (talentPoolDescription.dirty || talentPoolDescription.touched)">
+                            <div style="color: red" *ngIf="talentPoolDescription.errors">
+                              Talent Pool Description is required
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Buttons -->
+                      <!-- <div class="form-actions d-flex justify-content-between">
+                        <button type="button" class="btn btn-raised btn-warning" [routerLink]="['/talentpool/Listtalentpool']">
+                          <i class="ft-x"></i> Cancel
+                        </button>
+                        <button type="button" class="btn btn-raised btn-primary" (click)="updateTalentPool()"
+                          [disabled]="!talentPoolForm.valid">
+                          <i class="fa fa-check-square-o"></i> Update
+                        </button>
+                      </div> -->
+                      <div class="form-actions text-right">
+                        <button type="button" class="btn btn-raised btn-warning mr-2" (click)="cancel()">
+                          <i class="fa fa-times"></i> Cancel
+                        </button>
+                        <button type="button" class="btn btn-raised btn-primary" (click)="updateTalentPool()" [disabled]="!talentPoolForm.valid">
+                          <i class="fa fa-check"></i> update
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

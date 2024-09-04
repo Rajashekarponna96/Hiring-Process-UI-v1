@@ -457,7 +457,26 @@
               <div class="row">
                 <!-- Summary of all provided information for final confirmation -->
                 <!-- Copy the summary-related fields from the original code here -->
-              </div>
+                <button
+                style="margin-left: 10px"
+                pButton
+                class="w-auto mt-3"
+                icon="pi pi-check"
+                (click)="addCandidate()"
+                label="Save"
+            ></button>
+
+            <!-- Cancel Button -->
+            <button
+                style="margin-left: 10px"
+                pButton
+                class="w-auto mt-3 p-button-danger"
+                icon="pi pi-times"
+                routerLink="/candidate"
+                label="Cancel"
+            ></button>
+        </div>
+
               <div class="text-center">
                 <button type="button" class="btn btn-secondary" awPreviousStep>
                   <span style="margin-right:10px;">

@@ -50,7 +50,7 @@ export class CreatetalentpoolComponent implements OnInit {
         this.getAllTalentPoolList();
         this.talentpoolForm.reset();
         // Navigate to a specific route after saving
-        this.router.navigate(['/inbox']);
+        this.router.navigate(['/talentpool/Listtalentpool']);
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {

@@ -70,7 +70,7 @@ export class ListtalentpoolComponent implements OnInit {
   }
 
   navigateToCreateTalentPool() {
-      this.router.navigate(['talentpool']);
+      this.router.navigate(['/talentpool/Createtalentpool']);
   }
 
   handleEditTalentPool(talentPool: TalentPoolOne) {

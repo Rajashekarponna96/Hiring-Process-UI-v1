@@ -116,7 +116,7 @@ export class ArchwizardComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/candidate']);
+    this.router.navigate(['/candidate/list']);
   }
 
   addCandidate() {
@@ -513,6 +513,9 @@ onUploadAndClose(): void {
     this.cdr.detectChanges(); // Update the view
   }
 }
-
+submit() {
+  // Handle form submission
+  alert('Form submitted successfully!');
+}
 //
 }
