@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { Dashboard1Component } from "./dashboard1/dashboard1.component";
 import { Dashboard2Component } from "./dashboard2/dashboard2.component";
 import { Dashboard3Component } from './dashboard3/dashboard3.component';
+import { ResumeViewComponent } from './resume-view/resume-view.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,13 @@ const routes: Routes = [
         component: Dashboard3Component,
         data: {
           title: 'Dashboard 3'
+        }
+      },
+      {
+        path: 'resumeview',
+        component: ResumeViewComponent,
+        data: {
+          title: 'resumeview'
         }
       },
     ]

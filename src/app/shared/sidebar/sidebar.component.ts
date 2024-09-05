@@ -131,24 +131,22 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         isExternalLink: false,
         submenu: [
           { path: '/dashboard/dashboard1', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/dashboard/dashboard2', title: 'Dashboard21', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/dashboard/dashboard3', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+          { path: '/dashboard/dashboard2', title: 'Dashboard21', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+          // { path: '/dashboard/dashboard3', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          // { path: '/dashboard/resumeview', title: 'resumeview', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+
 
         ],
         permissionName: 'home'
       },
-
-
       { path: '/candidate/list', title: 'Candidate', icon: 'fas fa-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
-
+      { path: '/dashboard/resumeview', title: 'resumeview', icon: 'fas fa-file-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'email' },
       { path: '/jobs/list', title: 'Job', icon: 'fas fa-briefcase', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
       { path: '/recruiter/list', title: 'Recruiter', icon: 'fas fa-user-tie', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'recruiter' },
       { path: '/client/list', title: 'Client', icon: 'fas fa-building', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'client' },
       { path: '/vendor/list', title: 'Vendor', icon: 'fas fa-truck', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'vendor' },
       { path: '/email-template/list', title: 'Email-Template', icon: 'fas fa-envelope', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'email' },
-      { path: '/talentpool/Listtalentpool', title: 'Talentpool', icon: 'fas fa-users', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'email' },
-
-
+      { path: '/talentpool/Listtalentpool', title: 'Talentpool', icon: 'fas fa-users', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'email' }
     ];
 
     return menuItems.filter(menuItem => this.isPermissionsEnable(menuItem.permissionName, permissions));

@@ -9,6 +9,7 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
 import { Dashboard1Component } from "./dashboard1/dashboard1.component";
 import { Dashboard2Component } from "./dashboard2/dashboard2.component";
 import { Dashboard3Component } from './dashboard3/dashboard3.component';
+import { ResumeViewComponent } from './resume-view/resume-view.component';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { Dashboard3Component } from './dashboard3/dashboard3.component';
     exports: [],
     declarations: [
         Dashboard1Component,
-        Dashboard2Component,Dashboard3Component
+        Dashboard2Component,Dashboard3Component, ResumeViewComponent
     ],
     providers: [],
 })
