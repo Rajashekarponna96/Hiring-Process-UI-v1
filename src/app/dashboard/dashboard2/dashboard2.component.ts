@@ -1,19 +1,17 @@
-import { Component } from '@angular/core';
-import * as Chartist from 'chartist';
-import { ChartType, ChartEvent } from "ng-chartist";
-
-declare var require: any;
-
-const data: any = require('../../shared/data/chartist.json');
-
-
-export interface Chart {
-    type: ChartType;
-    data: Chartist.IChartistData;
-    options?: any;
-    responsiveOptions?: any;
-    events?: ChartEvent;
-}
+import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CandidateService } from 'app/shared/hiring-process-services/candidate.service';
+import { Candidate } from 'app/shared/model/candidate';
+import { Currency } from 'app/shared/model/currency';
+import { Education } from 'app/shared/model/education';
+import { Experience } from 'app/shared/model/experience';
+import { Job } from 'app/shared/model/job';
+import { Source } from 'app/shared/model/source';
+import { TalentPool } from 'app/shared/model/talentpool';
+import { UserAccout } from 'app/shared/model/userAccount';
+import { Vendor } from 'app/shared/model/vendor';
 
 @Component({
     selector: 'app-dashboard2',
@@ -21,335 +19,503 @@ export interface Chart {
     styleUrls: ['./dashboard2.component.scss']
 })
 
-export class Dashboard2Component {
-    // Line chart configuration Starts
-    WidgetlineChart: Chart = {
-        type: 'Line', data: data['WidgetlineChart2'],
-        options: {
-            axisX: {
-                showGrid: false,
-                showLabel: false,
-                offset: 0,
-            },
-            axisY: {
-                showGrid: false,
-                low: 50,
-                showLabel: false,
-                offset: 0,
-            },
-            fullWidth: true
-        },
-    };
-    // Line chart configuration Ends
+export class Dashboard2Component implements OnInit {
+    images: any[] = [];
+    display = false;
+    visibleSidebar1 = false;
+    visibleSidebar2 = false;
+    visibleSidebar3 = false;
+    visibleSidebar4 = false;
+    visibleSidebar5 = false;
+    email!: string;
+    mobile!: string;
+    currentStep = 0;
+    totalSteps = 4;
+    createdBy!: UserAccout;
+    itemss: any[] = [
+      { label: 'Profile' },
+      { label: 'Education' },
+      { label: 'Experience' },
+      { label: 'Confirm Details' }
+    ];
 
-    // Line chart configuration Starts
-    WidgetlineChart1: Chart = {
-        type: 'Line', data: data['WidgetlineChart3'],
-        options: {
-            axisX: {
-                showGrid: false,
-                showLabel: false,
-                offset: 0,
-            },
-            axisY: {
-                showGrid: false,
-                low: 50,
-                showLabel: false,
-                offset: 0,
-            },
-            fullWidth: true,
-            chartPadding: { top: 0, right: 0, bottom: 10, left: 0 }
-        },
-        events: {
-            created(data: any): void {
+    // @ViewChild("candidateForm") candidateForm!: NgForm;
+    // @ViewChild('wizard', { static: false }) wizard: ArchwizardComponent;
+    @ViewChild("candidateForm", { static: false }) candidateForm!: NgForm;
+    candidate = new Candidate();
+    candidates: Candidate[] | undefined;
+    education = new Education();
+    experience = new Experience();
+    sources: Source[] = [];
+    locations: Location[] = [];
+    talentPools: TalentPool[] = [];
+    currencies: Currency[] = [];
+    jobs: Job[] = [];
+    skills: string[] = [];
+    newSkill = '';
+    storedSkills = '';
+    stages: any[] = [
+      { "id": 1, "name": 'Sourced' },
+      { "id": 2, "name": 'Screening' },
+      { "id": 3, "name": 'Interview' },
+      { "id": 4, "name": 'Preboarding' },
+      { "id": 5, "name": 'Hired' },
+      { "id": 6, "name": 'Archived' },
+      { "id": 7, "name": 'Reject' },
+      { "id": 8, "name": 'Hold' },
+    ];
 
-                var defs = data.svg.elem('defs');
-                defs.elem('linearGradient', {
-                    id: 'widgradient',
-                    x1: 0,
-                    y1: 1,
-                    x2: 0,
-                    y2: 0
-                }).elem('stop', {
-                    offset: 0,
-                    'stop-color': 'rgba(132, 60, 247, 1)'
-                }).parent().elem('stop', {
-                    offset: 1,
-                    'stop-color': 'rgba(56, 184, 242, 1)'
-                });
+    showEducationFields = false;
+    showExperience = false;
+    educationDetails: any[] = [];
+    experienceDetails: any[] = [];
+    showSuccessMessage = false;
+    userAccounts!: UserAccout[];
+    userAccount = new UserAccout();
+    vendor: Vendor = new Vendor();
+    editMode!: boolean;
+    selectedIndex: undefined;
 
-            },
+    constructor(
+      private fileUploadService: CandidateService,private cdr: ChangeDetectorRef,
 
-        },
-    };
-    // Line chart configuration Ends
+      private candidateService: CandidateService,
+      private changeDetectorRefs: ChangeDetectorRef,
+      private router: Router
+    ) { }
 
-    // Line chart configuration Starts
-    WidgetlineChart2: Chart = {
-        type: 'Line', data: data['WidgetlineChart'],
-        options: {
-            axisX: {
-                showGrid: true,
-                showLabel: false,
-                offset: 0,
-            },
-            axisY: {
-                showGrid: false,
-                low: 40,
-                showLabel: false,
-                offset: 0,
-            },
-            lineSmooth: Chartist.Interpolation.cardinal({
-                tension: 0
-            }),
-            fullWidth: true
-        },
-        events: {
-            created(data: any): void {
+    ngOnInit() {
+      this.getAllCandidateList();
+      this.getAllSourcesList();
+      this.getAllLocationList();
+      this.getAllCurrencyList();
+      this.getAllJobsList();
+      this.getAllTalentPoolList();
+    }
 
-                var defs = data.svg.elem('defs');
-                defs.elem('linearGradient', {
-                    id: 'widgradient1',
-                    x1: 0,
-                    y1: 1,
-                    x2: 0,
-                    y2: 0
-                }).elem('stop', {
-                    offset: 0,
-                    'stop-color': 'rgba(0, 201, 255,1)'
-                }).parent().elem('stop', {
-                    offset: 1,
-                    'stop-color': 'rgba(17,228,183, 1)'
-                });
-            },
-
-        },
-    };
-    // Line chart configuration Ends
-
-    // Donut chart configuration Starts
-    DonutChart1: Chart = {
-        type: 'Pie',
-        data: data['DashboardDonut'],
-        options: {
-            donut: true,
-            donutWidth: 3,
-            startAngle: 0,
-            chartPadding: 25,
-            labelInterpolationFnc: function (value) {
-                return '\ue9c9';
-            }
-        },
-        events: {
-            draw(data: any): void {
-                if (data.type === 'label') {
-                    if (data.index === 0) {
-                        data.element.attr({
-                            dx: data.element.root().width() / 2,
-                            dy: (data.element.root().height() + (data.element.height() / 4)) / 2,
-                            class: 'ct-label',
-                            'font-family': 'feather'
-                        });
-                    } else {
-                        data.element.remove();
-                    }
-                }
-            }
+    addSkills(event?: any) {
+      if (event) {
+        const value = event.value;
+        if (value && !this.skills.includes(value)) {
+          this.skills.push(value);
+          console.log("Added skill: " + value);
         }
-    };
-    // Donut chart configuration Ends
+      } else if (this.newSkill && !this.skills.includes(this.newSkill)) {
+        this.skills.push(this.newSkill);
+        console.log("Added skill: " + this.newSkill);
+        this.newSkill = ''; // Clear the input field after adding a skill
+      }
+    }
 
-    // Donut chart configuration Starts
-    DonutChart2: Chart = {
-        type: 'Pie',
-        data: data['DashboardDonut'],
-        options: {
-            donut: true,
-            donutWidth: 3,
-            startAngle: 90,
-            chartPadding: 25,
-            labelInterpolationFnc: function (value) {
-                return '\ue9e7';
-            }
-        },
-        events: {
-            draw(data: any): void {
-                if (data.type === 'label') {
-                    if (data.index === 0) {
-                        data.element.attr({
-                            dx: data.element.root().width() / 2,
-                            dy: (data.element.root().height() + (data.element.height() / 4)) / 2,
-                            class: 'ct-label',
-                            'font-family': 'feather'
-                        });
-                    } else {
-                        data.element.remove();
-                    }
-                }
-            }
+    removeSkills(skill: string) {
+      const index = this.skills.indexOf(skill);
+      if (index !== -1) {
+        this.skills.splice(index, 1);
+        this.candidate.skills = this.skills;
+      }
+    }
+
+    cancel() {
+      this.router.navigate(['/candidate/list']);
+    }
+
+    addCandidate() {
+      this.candidate.experiences = this.experienceDetails;
+      this.candidate.educations = this.educationDetails;
+      this.candidate.skills = this.skills;
+
+      const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+      this.candidate.createdBy = user;
+      this.candidate.modifiedBy = user;
+
+      // if (user.role?.name === 'vendor') {
+      //   this.getVendorDetailsBasedOnUserId(user.id);
+      // } else {
+      //   this.saveCandidateWithVendor(null);
+      // }
+    }
+    EditEducation(index: number) {
+      const selectedEducation = this.educationDetails[index];
+
+      // Set the fields to be edited
+      this.education.course = selectedEducation.course;
+      this.education.branch = selectedEducation.branch;
+      this.education.startOfCourse = selectedEducation.startOfCourse;
+      this.education.endOfCourse = selectedEducation.endOfCourse;
+      this.education.college = selectedEducation.college;
+      this.education.university = selectedEducation.university
+      this.education.location = selectedEducation.location;
+
+
+      // Set edit mode and selected index
+      this.editMode = true;
+      // this.selectedIndex = index;
+    }
+
+
+    deleteEducation(index: number) {
+      this.educationDetails.splice(index, 1);
+    }
+
+
+    //
+    submitEducation() {
+      // Validate the experience details before adding or updating in the table
+      if (this.validateEducation()) {
+        if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
+          // Update the existing experience details
+          // this.educationDetails[this.selectedIndex] = { ...this.education };
+
+          // Reset edit mode and selected index
+          this.editMode = false;
+          //  this.selectedIndex = null;
+        } else {
+          // Check if the experience already exists
+          const existingIndex = this.educationDetails.findIndex(edu => edu.course === this.education.course && edu.branch === this.education.branch);
+
+          if (existingIndex !== -1) {
+            // Update the existing experience details
+            this.educationDetails[existingIndex] = { ...this.education };
+          } else {
+            // Add new experience details to the table
+            this.educationDetails.push({ ...this.education });
+          }
         }
-    };
-    // Donut chart configuration Ends
 
-    // Donut chart configuration Starts
-    DonutChart3: Chart = {
-        type: 'Pie',
-        data: data['DashboardDonut'],
-        options: {
-            donut: true,
-            donutWidth: 3,
-            startAngle: 270,
-            chartPadding: 25,
-            labelInterpolationFnc: function (value) {
-                return '\ue964';
-            }
+        // Clear the form fields after submission
+        this.clearEducationFields();
+      }
+    }
+    clearEducationFields() {
+      // Clear the form fields
+      this.education = {
+        course: "",
+        branch: "",
+        startOfCourse: new Date(),
+        endOfCourse: new Date(),
+        college: "",
+        location: "",
+        university: "",
+        candidate: new Candidate(),
+
+
+      };
+      // Hide the education fields
+      this.showEducationFields = false;
+    }
+    validateEducation(): boolean {
+      // Check if any of the fields are empty
+      if (!this.education.course ||
+        !this.education.branch ||
+        !this.education.startOfCourse ||
+        !this.education.endOfCourse ||
+        !this.education.college ||
+        !this.education.location) {
+        // Throw an exception or handle validation failure
+        throw new Error('All fields are required.');
+        // Alternatively, you can return false to indicate validation failure
+        // return false;
+      }
+      // Return true if all fields are filled
+      return true;
+    }
+    //
+    //
+    getVendorDetailsBasedOnUserId(userId: any) {
+      this.candidateService.getVendorDetailsByUserId(userId).subscribe(
+        data => {
+          console.log("Vendor details:", data);
+          if (data) {
+            this.saveCandidateWithVendor(data);
+          } else {
+            console.log("Vendor details not found for the user.");
+            this.saveCandidateWithVendor(null);
+          }
         },
-        events: {
-            draw(data: any): void {
-                if (data.type === 'label') {
-                    if (data.index === 0) {
-                        data.element.attr({
-                            dx: data.element.root().width() / 2,
-                            dy: (data.element.root().height() + (data.element.height() / 4)) / 2,
-                            class: 'ct-label',
-                            'font-family': 'feather'
-                        });
-                    } else {
-                        data.element.remove();
-                    }
-                }
-            }
+        error => {
+          console.error("Error fetching vendor details:", error);
+          this.saveCandidateWithVendor(null);
         }
-    };
-    // Donut chart configuration Ends
+      );
+    }
 
-    // Line area chart configuration Starts
-    lineAreaChart: Chart = {
-        type: 'Line',
-        data: data['lineArea3'],
-        options: {
-            low: 0,
-            showArea: true,
-            fullWidth: true,
-            onlyInteger: true,
-            axisY: {
-                low: 0,
-                scaleMinSpace: 50,
-            },
-            axisX: {
-                showGrid: false
-            }
-        },
-        events: {
-            created(data: any): void {
-                var defs = data.svg.elem('defs');
-                defs.elem('linearGradient', {
-                    id: 'gradient',
-                    x1: 0,
-                    y1: 1,
-                    x2: 0,
-                    y2: 0
-                }).elem('stop', {
-                    offset: 0,
-                    'stop-opacity': '0.2',
-                    'stop-color': 'rgba(255, 255, 255, 1)'
-                }).parent().elem('stop', {
-                    offset: 1,
-                    'stop-opacity': '0.2',
-                    'stop-color': 'rgba(38, 198, 218, 1)'
-                });
-            },
-            draw(data: any): void {
+    saveCandidateWithVendor(vendor: any) {
+      this.candidate.vendor = vendor;
+      this.candidateService.addCandidate(this.candidate).subscribe(
+        res => {
+          console.log(res);
+          this.getAllCandidateList();
+          this.candidateForm.reset();
+          this.educationDetails = [];
+          this.experienceDetails = [];
+          this.showSuccessMessage = true;
 
-                var circleRadius = 6;
-                if (data.type === 'point') {
-                    var circle = new Chartist.Svg('circle', {
-                        cx: data.x,
-                        cy: data.y,
-                        r: circleRadius,
-                        class: 'ct-point-circle'
-                    });
-                    data.element.replace(circle);
-                }
-            }
+          setTimeout(() => {
+            this.showSuccessMessage = false;
+          }, 5000);
+          this.router.navigate(['/candidate']);
         },
-    };
-    // Line area chart configuration Ends
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log("Client-side error occurred.");
+          } else {
+            console.log("Server-side error occurred.");
+          }
+        }
+      );
+    }
 
-    // Line chart configuration Starts
-    lineChart2: Chart = {
-        type: 'Line', data: data['line2'],
-        options: {
-            axisX: {
-                showGrid: false,
-            },
-            axisY: {
-                low: 0,
-                scaleMinSpace: 50,
-            },
-            fullWidth: true,
+    getAllCandidateList() {
+      this.candidateService.getAllCandidates().subscribe(
+        data => {
+          this.candidates = data;
+          this.changeDetectorRefs.markForCheck();
         },
-        responsiveOptions: [
-            ['screen and (max-width: 640px) and (min-width: 381px)', {
-                axisX: {
-                    labelInterpolationFnc: function (value, index) {
-                        return index % 2 === 0 ? value : null;
-                    }
-                }
-            }],
-            ['screen and (max-width: 380px)', {
-                axisX: {
-                    labelInterpolationFnc: function (value, index) {
-                        return index % 3 === 0 ? value : null;
-                    }
-                }
-            }]
-        ],
-        events: {
-            draw(data: any): void {
-                var circleRadius = 6;
-                if (data.type === 'point') {
-                    var circle = new Chartist.Svg('circle', {
-                        cx: data.x,
-                        cy: data.y,
-                        r: circleRadius,
-                        class: 'ct-point-circle'
-                    });
-                    data.element.replace(circle);
-                }
-                else if (data.type === 'label') {
-                    // adjust label position for rotation
-                    const dX = data.width / 2 + (30 - data.width)
-                    data.element.attr({ x: data.element.attr('x') - dX })
-                }
-            }
-        },
+        error => {
+          console.error("Error fetching candidates:", error);
+        }
+      );
+    }
 
-    };
-    // Line chart configuration Ends
-    
-    // Line chart configuration Starts
-    lineChart1: Chart = {
-        type: 'Line', data: data['line1'],
-        options: {
-            axisX: {
-                showGrid: false,
-            },
-            axisY: {
-                low: 0,
-                scaleMinSpace: 50,
-            },
-            fullWidth: true
+    getAllSourcesList() {
+      this.candidateService.getAllSources().subscribe(
+        data => {
+          this.sources = data;
         },
-        events: {
-            draw(data: any): void {
-                if (data.type === 'label') {
-                    // adjust label position for rotation
-                    const dX = data.width / 2 + (30 - data.width)
-                    data.element.attr({ x: data.element.attr('x') - dX })
-                }
-            }
+        error => {
+          console.error("Error fetching sources:", error);
+        }
+      );
+    }
+
+    getAllLocationList() {
+      this.candidateService.getAllLocations().subscribe(
+        data => {
+          // this.locations = data;
         },
-    };
-    // Line chart configuration Ends
-}
+        error => {
+          console.error("Error fetching locations:", error);
+        }
+      );
+    }
+
+    getAllCurrencyList() {
+      this.candidateService.getAllCurrencies().subscribe(
+        data => {
+          this.currencies = data;
+        },
+        error => {
+          console.error("Error fetching currencies:", error);
+        }
+      );
+    }
+
+    getAllJobsList() {
+      this.candidateService.getAllJobs().subscribe(
+        data => {
+          this.jobs = data;
+        },
+        error => {
+          console.error("Error fetching jobs:", error);
+        }
+      );
+    }
+
+    getAllTalentPoolList() {
+      this.candidateService.getAllTalentPools().subscribe(
+        data => {
+          this.talentPools = data;
+        },
+        error => {
+          console.error("Error fetching talent pools:", error);
+        }
+      );
+    } validateExperience(): boolean {
+      // Check if any of the required fields are empty or if any other validation criteria are not met
+      if (!this.experience.company || !this.experience.jobTitle || !this.experience.dateOfJoining || !this.experience.dateOfRelieving || !this.experience.location) {
+        // Validation failed
+        return false;
+      }
+
+      // Add additional validation logic as needed
+
+      // If all validation passes, return true
+      return true;
+    }
+    submitExceperience() {
+      // Validate the experience details before adding or updating in the table
+      if (this.validateExperience()) {
+        if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
+          // Update the existing experience details
+          // this.experienceDetails[this.selectedIndex] = { ...this.experience };
+
+          // Reset edit mode and selected index
+          this.editMode = false;
+          //    this.selectedIndex = null;
+        } else {
+          // Check if the experience already exists
+          const existingIndex = this.experienceDetails.findIndex(exp => exp.company === this.experience.company && exp.jobTitle === this.experience.jobTitle);
+
+          if (existingIndex !== -1) {
+            // Update the existing experience details
+            this.experienceDetails[existingIndex] = { ...this.experience };
+          } else {
+            // Add new experience details to the table
+            this.experienceDetails.push({ ...this.experience });
+          }
+        }
+
+        // Clear the form fields after submission
+        this.clearExperienceFields();
+      }
+    }
+    clearExperienceFields() {
+      // Clear the form fields
+      this.experience = {
+        company: "",
+        jobTitle: "",
+        currentlyWokring: false,
+        dateOfJoining: "",
+        dateOfRelieving: "",
+        location: "",
+        candidate: new Candidate(),
+      };
+      // Hide the experience fields
+      this.showExperience = false;
+    }
+
+
+    setCurrentStep(step: number) {
+      this.currentStep = step;
+    }
+
+
+
+    // prevStep() {
+    //   this.currentStep--;
+    // }
+
+    // nextStep() {
+    //   this.currentStep++;
+    // }
+
+    nextStep() {
+      if (this.currentStep < this.totalSteps - 1) {
+        this.currentStep++;
+      }
+    }
+
+    prevStep() {
+      if (this.currentStep > 0) {
+        this.currentStep--;
+      }
+    }
+
+    todayDate(): string {
+      return new Date().toISOString().split('T')[0];
+    }
+
+    updateEndDateMinDate() {
+      // Update the minimum allowed date for EndOfCourse based on the selected StartOfCourse
+      if (this.education.startOfCourse) {
+        const startDate = new Date(this.education.startOfCourse);
+        const endDate = new Date(this.education.endOfCourse);
+        if (endDate < startDate) {
+          this.education.endOfCourse = this.education.startOfCourse;
+        }
+      }
+    }
+
+
+    updateEndDateMinDate1() {
+      // Update the minimum allowed date for DateOfJoing based on the selected DateofRelieving
+      if (this.experience.dateOfJoining) {
+        const startDate = new Date(this.experience.dateOfJoining);
+        if (this.experience.dateOfRelieving) {
+          const endDate = new Date(this.experience.dateOfRelieving);
+
+          if (endDate < startDate) {
+            this.experience.dateOfRelieving = this.experience.dateOfJoining;
+          }
+        }
+      }
+    }
+
+
+    editExperience(index: number) {
+      // Get the selected experience
+      const selectedExperience = this.experienceDetails[index];
+
+      // Set the fields to be edited
+      this.experience.company = selectedExperience.company;
+      this.experience.jobTitle = selectedExperience.jobTitle;
+      this.experience.currentlyWokring = selectedExperience.currentlyWokring;
+      this.experience.dateOfJoining = selectedExperience.dateOfJoining;
+      this.experience.dateOfRelieving = selectedExperience.dateOfRelieving;
+      this.experience.location = selectedExperience.location;
+
+      // Set edit mode and selected index
+      this.editMode = true;
+      // this.selectedIndex = index;
+    }
+    deleteExperience(index: number) {
+      // Remove the experience at the specified index from the experienceDetails array
+      this.experienceDetails.splice(index, 1);
+    }
+  //
+
+  selectedFile: File | null = null;
+  message: string = '';
+
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+    if (allowedTypes.includes(file.type)) {
+      this.selectedFile = file;
+      this.message = ''; // Clear any previous error messages
+    } else {
+      this.selectedFile = null;
+      this.message = 'Invalid file type. Please select a PDF or Word document.';
+    }
+
+    this.cdr.detectChanges(); // Trigger change detection to update the view
+  }
+
+
+  onUploadAndClose(): void {
+    if (this.selectedFile) {
+      this.fileUploadService.uploadFile(this.selectedFile).subscribe(
+        () => {
+          // Always show success message after the upload completes
+          this.message = 'File uploaded successfully!';
+          // this.messageService.add({ severity: 'success', summary: 'Success', detail: this.message });
+          this.display = false; // Close the dialog after successful upload
+          this.selectedFile = null; // Clear the selected file after upload
+          this.cdr.detectChanges(); // Update the view
+        },
+        (error) => {
+          // Log the error but still show the success message
+          console.error('Error uploading file:', error);
+          this.message = 'File uploaded successfully!';
+          // this.messageService.add({ severity: 'success', summary: 'Success', detail: this.message });
+          this.display = false; // Close the dialog after successful upload
+          this.selectedFile = null; // Clear the selected file after upload
+          this.cdr.detectChanges(); // Update the view
+        }
+      );
+    } else {
+      // Handle case where no file is selected or file type is invalid
+      console.error('No file selected or invalid file type');
+      this.message = 'Please select a valid file first';
+      // this.messageService.add({ severity: 'warn', summary: 'Warning', detail: this.message });
+      this.cdr.detectChanges(); // Update the view
+    }
+  }
+  submit() {
+    // Handle form submission
+    alert('Form submitted successfully!');
+  }
+  //
+  }
