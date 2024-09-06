@@ -5,6 +5,7 @@ import { Dashboard1Component } from "./dashboard1/dashboard1.component";
 import { Dashboard2Component } from "./dashboard2/dashboard2.component";
 import { Dashboard3Component } from './dashboard3/dashboard3.component';
 import { ResumeViewComponent } from './resume-view/resume-view.component';
+import { ResumeUploadComponent } from './resume-upload/resume-upload.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,13 @@ const routes: Routes = [
         component: ResumeViewComponent,
         data: {
           title: 'resumeview'
+        }
+      },
+      {
+        path: 'resumeupload',
+        component: ResumeUploadComponent,
+        data: {
+          title: 'resumeupload'
         }
       },
     ]

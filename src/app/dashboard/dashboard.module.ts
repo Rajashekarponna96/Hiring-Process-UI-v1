@@ -10,6 +10,7 @@ import { Dashboard1Component } from "./dashboard1/dashboard1.component";
 import { Dashboard2Component } from "./dashboard2/dashboard2.component";
 import { Dashboard3Component } from './dashboard3/dashboard3.component';
 import { ResumeViewComponent } from './resume-view/resume-view.component';
+import { ResumeUploadComponent } from './resume-upload/resume-upload.component';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { ResumeViewComponent } from './resume-view/resume-view.component';
     exports: [],
     declarations: [
         Dashboard1Component,
-        Dashboard2Component,Dashboard3Component, ResumeViewComponent
+        Dashboard2Component,Dashboard3Component, ResumeViewComponent, ResumeUploadComponent
     ],
     providers: [],
 })

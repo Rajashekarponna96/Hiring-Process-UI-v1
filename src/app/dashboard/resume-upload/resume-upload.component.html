@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h4>Upload Your Resume</h4>
+
+      <!-- File input -->
+      <div class="mb-3">
+        <input
+          type="file"
+          class="form-control"
+          (change)="onFileSelected($event)"
+          accept=".pdf,.doc,.docx" />
+      </div>
+
+      <!-- Upload button -->
+      <!-- <div class="mb-3">
+        <button class="btn btn-primary" (click)="onUploadAndClose()">Upload & Close</button>
+      </div> -->
+
+      <div class="mb-3">
+        <button class="btn btn-primary" (click)="onUploadAndClose()">
+          Upload & Close
+        </button>
+      </div>
+      <!-- Display the message if available -->
+      <div *ngIf="message" class="alert alert-info">
+        {{ message }}
+      </div>
+    </div>
+  </div>
+</div>
