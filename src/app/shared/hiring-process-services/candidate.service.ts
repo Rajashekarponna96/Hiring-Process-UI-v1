@@ -140,14 +140,31 @@ export class CandidateService {
   //     catchError(this.handleError)
   //   );
   // }
+  // uploadFile(file: File): Observable<any> {
+  //   const formData: FormData = new FormData();
+  //   formData.append('file', file, file.name);
+
+  //   return this.http.post<any>(`${this.baseUrl}/uploadfile`, formData).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
+  // uploadFile(file: File): Observable<any> {
+  //   const formData: FormData = new FormData();
+  //   formData.append('file', file, file.name);
+
+  //   return this.http.post<any>(`${this.baseUrl}/uploadfile`, formData).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
   uploadFile(file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
 
-    return this.http.post<any>(`${this.baseUrl}/uploadfile`, formData).pipe(
+    return this.http.post<any>(`${this.baseUrl}/fileupload/`, formData).pipe(
       catchError(this.handleError)
     );
   }
+
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('Error uploading file:', error);
