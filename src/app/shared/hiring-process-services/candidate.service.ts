@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Candidate } from '../model/candidate';
-import { Location } from '@angular/common';
+//import { Location } from '@angular/common';
 import { Currency } from '../model/currency';
 import { environment } from 'environments/environment';
 import { Job } from '../model/job';
@@ -11,6 +11,7 @@ import { Pagination } from '../model/pagination';
 import { Source } from '../model/source';
 import { TalentPool } from '../model/talentpool';
 import { Vendor } from '../model/vendor';
+import { Location } from '../model/location';
 
 @Injectable({
   providedIn: 'root'

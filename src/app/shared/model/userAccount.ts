@@ -5,5 +5,5 @@ export class UserAccout {
     userName!: string;
     password!: string;
     active!: boolean;
-    role?: Role;
+    role: Role;
 }
