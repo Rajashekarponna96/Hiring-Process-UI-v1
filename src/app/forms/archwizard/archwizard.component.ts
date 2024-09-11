@@ -12,6 +12,7 @@ import { Source } from 'app/shared/model/source';
 import { TalentPool } from 'app/shared/model/talentpool';
 import { UserAccout } from 'app/shared/model/userAccount';
 import { Vendor } from 'app/shared/model/vendor';
+import { Location } from 'app/shared/model/location';
 
 
 @Component({
@@ -124,15 +125,16 @@ export class ArchwizardComponent implements OnInit {
     this.candidate.educations = this.educationDetails;
     this.candidate.skills = this.skills;
 
-    const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}')
     this.candidate.createdBy = user;
-    this.candidate.modifiedBy = user;
+    this.candidate.modifiedBy = user;  
+    //this.getVendorDetailsBasedOnUserId(user.id);
 
-    // if (user.role?.name === 'vendor') {
-    //   this.getVendorDetailsBasedOnUserId(user.id);
-    // } else {
-    //   this.saveCandidateWithVendor(null);
-    // }
+    if (user.role.name === 'vendor') {
+      this.getVendorDetailsBasedOnUserId(user.id);
+    } else {
+      this.saveCandidateWithVendor(null);
+    }
   }
   EditEducation(index: number) {
     const selectedEducation = this.educationDetails[index];
@@ -253,7 +255,7 @@ export class ArchwizardComponent implements OnInit {
         setTimeout(() => {
           this.showSuccessMessage = false;
         }, 5000);
-        this.router.navigate(['/candidate']);
+        this.router.navigate(['/candidate/list']);
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -291,7 +293,7 @@ export class ArchwizardComponent implements OnInit {
   getAllLocationList() {
     this.candidateService.getAllLocations().subscribe(
       data => {
-        // this.locations = data;
+         this.locations = data;
       },
       error => {
         console.error("Error fetching locations:", error);

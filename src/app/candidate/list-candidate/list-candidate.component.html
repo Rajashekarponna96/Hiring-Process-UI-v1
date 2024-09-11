@@ -61,66 +61,92 @@
       </button>
     </div>
 
-    <!-- Candidate Table -->
-    <div *ngIf="isCandidateLoggedIn; else candidateList">
-      <table class="table table-striped">
+    <!-- Candidate Table  when ever candidate login -->
+    <div class="table-container" *ngIf="isCandidateLoggedIn; else candidateList">
+      <table class="table">
         <thead>
           <tr>
+            <th style="width: 10%">Firstname</th>
+            <th style="width: 10%">Lastname</th>
             <th style="width: 10%">Email</th>
             <th style="width: 10%">Mobile</th>
             <th style="width: 10%">Source</th>
+            <th style="width: 10%">Current Location</th>
+            <th style="width: 10%">Preferred Location</th>
+            <th style="width: 10%">Available To Join</th>
             <th style="width: 10%">Stage</th>
+            <!-- <th style="width: 10%">Actions</th> -->
           </tr>
         </thead>
         <tbody>
           <tr *ngIf="candidate1">
+            <td>{{ candidate1.firstName }}</td>
+            <td>{{ candidate1.lastName }}</td>
             <td>{{ candidate1.email }}</td>
             <td>{{ candidate1.mobile }}</td>
             <td>{{ candidate1.source.name }}</td>
+            <td>{{ candidate1.current.name }}</td>
+            <td>{{ candidate1.preferred.name }}</td>
+            <td>{{ candidate1.avialToJoin }}</td>
             <td>{{ candidate1.stage }}</td>
+            <!-- <td>
+              <div class="button-container">
+                <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditCandidate(candidate)" icon="pi pi-pencil"></button>
+                <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete(candidate)" icon="pi pi-trash"></button>
+                <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)" icon="pi pi-ellipsis-v"></button>
+                <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openHiringFlow(candidate)" icon="pi pi-eye"></button>
+              </div>
+            </td> -->
           </tr>
         </tbody>
       </table>
     </div>
+  
 
-    <!-- Candidate List Template -->
+    <!-- Candidate List Template when Admin,Recruiter or vendor login -->
     <ng-template #candidateList>
-      <div class="table-responsive">
-        <table class="table table-striped">
+      <div class="table-container">
+        <table class="table">
           <thead>
             <tr>
+              <th style="width: 10%">Firstname</th>
+              <th style="width: 10%">Lastname</th>
               <th style="width: 10%">Email</th>
               <th style="width: 10%">Mobile</th>
               <th style="width: 10%">Source</th>
+              <th style="width: 10%">Current Location</th>
+              <th style="width: 10%">Preferred Location</th>
+              <th style="width: 10%">Available To Join</th>
               <th style="width: 10%">Stage</th>
               <th style="width: 10%" *ngIf="!isVendor && (isAdmin || isRecruiter)">Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let candidate of candidates">
+              <td>{{ candidate.firstName }}</td>
+              <td>{{ candidate.lastName }}</td>
               <td>{{ candidate.email }}</td>
               <td>{{ candidate.mobile }}</td>
               <td>{{ candidate.source.name }}</td>
+              <td>{{ candidate.current.name }}</td>
+              <td>{{ candidate.preferred.name }}</td>
+              <td>{{ candidate.avialToJoin }}</td>
               <td>{{ candidate.stage }}</td>
               <td *ngIf="!isVendor && (isAdmin || isRecruiter)">
-                <div class="btn-group">
-                  <button class="btn btn-sm btn-success mr-2" (click)="handleEditcandidate(candidate)">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger" (click)="candidateDelete(candidate)">
-                    <i class="bi bi-trash"></i>
-                  </button>
-                  <button class="btn btn-sm btn-secondary" (click)="openNew(candidate)">
-                    <i class="bi bi-three-dots"></i>
-                  </button>
-                  <button class="btn btn-sm btn-secondary" (click)="openHiringFlow(candidate)">
-                    <i class="bi bi-eye"></i>
-                  </button>
+                <div class="button-container">
+                  <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
+                    (click)="handleEditcandidate(candidate)" icon="pi pi-pencil"></button>
+                  <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                    (click)="candidateDelete(candidate)" icon="pi pi-trash"></button>
+                  <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)"
+                    icon="pi pi-ellipsis-v"></button>
+                  <button pButton class="p-button-sm p-button-rounded p-button-secondary"
+                    (click)="openHiringFlow(candidate)" icon="pi pi-eye"></button>
                 </div>
               </td>
             </tr>
             <tr *ngIf="candidates.length === 0">
-              <td colspan="10" class="text-center">No records found</td>
+              <td colspan="10" class="no-records-message">No records found</td>
             </tr>
           </tbody>
         </table>
@@ -172,3 +198,4 @@
     </div>
 
   </div>
+  

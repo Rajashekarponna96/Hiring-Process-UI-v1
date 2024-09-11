@@ -167,28 +167,28 @@ export class ListCandidateComponent implements OnInit {
   getvendorDetailsById() {
     const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
 
-    // if (user.role?.name === 'vendor') {
-    //   this.isVendor = true;
-    //   this.candidateService.getVendorByUserId(user.id)
-    //     .subscribe(
-    //       (data) => {
-    //         this.vendor = data;
-    //         this.getCandidatesByVendorId(this.vendor.id);
-    //       },
-    //       (err: HttpErrorResponse) => {
-    //         console.error('Error fetching vendor details:', err.message);
-    //       }
-    //     );
-    // } else if (user.role?.name === 'admin') {
-    //   this.isAdmin = true;
-    //   this.getAllCandidateList();
-    // } else if (user.role?.name === 'recruiter') {
-    //   this.isRecruiter = true;
-    //   this.getAllCandidateList();
-    // } else if (user.role?.name === 'candidate') {
-    //   this.isCandidateLoggedIn = true;
-    //   this.getCandidatesByCandidateId(user.id);
-    // }
+    if (user.role.name === 'vendor') {
+      this.isVendor = true;
+      this.candidateService.getVendorByUserId(user.id)
+        .subscribe(
+          (data) => {
+            this.vendor = data;
+            this.getCandidatesByVendorId(this.vendor.id);
+          },
+          (err: HttpErrorResponse) => {
+            console.error('Error fetching vendor details:', err.message);
+          }
+        );
+    } else if (user.role.name === 'admin') {
+      this.isAdmin = true;
+      this.getAllCandidateList();
+    } else if (user.role.name === 'recruiter') {
+      this.isRecruiter = true;
+      this.getAllCandidateList();
+    } else if (user.role.name === 'candidate') {
+      this.isCandidateLoggedIn = true;
+      this.getCandidatesByCandidateId(user.id);
+    }
   }
 
   getCandidatesByVendorId(vendorId: any) {

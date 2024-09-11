@@ -1,5 +1,5 @@
 export class Location{
-    id:number | undefined
-    name:string | undefined;
-    code:string | undefined ;
+    id!:number 
+    name!:string 
+    code!:string  
 }
