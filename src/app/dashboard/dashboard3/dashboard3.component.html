@@ -1,80 +1,664 @@
-<p>
-  dashboard3 works!
-</p>
-<div class="card">
-  <!-- Header Container -->
-  <div class="header-container">
-      <!-- Search Input -->
-      <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
-          <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
-              <i class="pi pi-search"></i>
-              <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search"
-                  class="w-full" />
-          </span>
-      </div>
-      <!-- Add New Vendor Button -->
-      <button (click)="navigateToCreateTalentPool()" pButton
-          class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus"
-          label="Add New"></button>
-  </div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <!-- Bootstrap Tabs for Steps -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#profile" role="tab">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#education" role="tab">Education</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#experience" role="tab">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#confirmation" role="tab">Confirmation</a>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content mt-3">
+                <!-- Profile Form -->
+                <div id="profile" class="tab-pane fade show active" role="tabpanel">
+                    <div class="container">
+                        <div class="row">
+                            <form #candidateForm="ngForm" (ngSubmit)="addCandidate()" class="w-100">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstname">First Name <span class="text-danger"
+                                                *ngIf="!candidate.firstName">*</span></label>
+                                        <input type="text" id="firstname" name="firstname" class="form-control"
+                                            placeholder="Enter FirstName" [(ngModel)]="candidate.firstName" required
+                                            #firstname="ngModel" />
+                                        <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+                                            class="text-danger">
+                                            First Name is Required
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName">Last Name <span class="text-danger"
+                                                *ngIf="!candidate.lastName">*</span></label>
+                                        <input type="text" id="lastName" name="lastName" class="form-control"
+                                            placeholder="Enter LastName" [(ngModel)]="candidate.lastName" required
+                                            #lastName="ngModel" />
+                                        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                                            class="text-danger">
+                                            Last Name is Required
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email">Email <span class="text-danger"
+                                                *ngIf="!candidate.email">*</span></label>
+                                        <input type="email" id="email" name="email" class="form-control"
+                                            placeholder="Enter Email" [(ngModel)]="candidate.email" required
+                                            #email="ngModel" />
+                                        <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                                            class="text-danger">
+                                            Invalid Email Format
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="mobile">Mobile <span class="text-danger"
+                                                *ngIf="!candidate.mobile">*</span></label>
+                                        <input type="text" id="mobile" name="mobile" class="form-control"
+                                            placeholder="Enter Mobile Number" [(ngModel)]="candidate.mobile" required
+                                            pattern="[0-9]{10}" #mobile="ngModel" />
+                                        <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)"
+                                            class="text-danger">
+                                            Mobile Number is Required and must be 10 digits
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="alterMobile">Alternate Mobile No</label>
+                                        <input type="text" id="alterMobile" name="alterMobile" class="form-control"
+                                            placeholder="Enter Alt Mobile Number" [(ngModel)]="candidate.alterMobile"
+                                            pattern="[0-9]{10}" #alterMobile="ngModel" />
+                                        <div *ngIf="alterMobile.invalid && (alterMobile.dirty || alterMobile.touched)"
+                                            class="text-danger">
+                                            Alternate Mobile Number must be 10 digits
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="avialToJoin">Notice Period <span class="text-danger"
+                                                *ngIf="!candidate.avialToJoin">*</span></label>
+                                        <input type="text" id="avialToJoin" name="avialToJoin" class="form-control"
+                                            placeholder="Enter Notice Period" [(ngModel)]="candidate.avialToJoin"
+                                            required #avialToJoin="ngModel" />
+                                        <div *ngIf="avialToJoin.invalid && (avialToJoin.dirty || avialToJoin.touched)"
+                                            class="text-danger">
+                                            Notice Period is Required
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="currentSalary">Current Salary (LPA) <span class="text-danger"
+                                                *ngIf="!candidate.currentSalary">*</span></label>
+                                        <input type="number" id="currentSalary" name="currentSalary"
+                                            class="form-control" placeholder="Enter Current Salary"
+                                            [(ngModel)]="candidate.currentSalary" required #currentSalary="ngModel" />
+                                        <div *ngIf="currentSalary.invalid && (currentSalary.dirty || currentSalary.touched)"
+                                            class="text-danger">
+                                            Current Salary is Required
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="expectedSalary">Expected Salary (LPA) <span class="text-danger"
+                                                *ngIf="!candidate.expectedSalary">*</span></label>
+                                        <input type="number" id="expectedSalary" name="expectedSalary"
+                                            class="form-control" placeholder="Enter Expected Salary"
+                                            [(ngModel)]="candidate.expectedSalary" required #expectedSalary="ngModel" />
+                                        <div *ngIf="expectedSalary.invalid && (expectedSalary.dirty || expectedSalary.touched)"
+                                            class="text-danger">
+                                            Expected Salary is Required
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label>Gender <span class="text-danger">*</span></label>
+                                        <div class="form-check">
+                                            <input type="radio" id="male" class="form-check-input" name="gender"
+                                                [(ngModel)]="candidate.gender" value="Male" required />
+                                            <label class="form-check-label" for="male">Male</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="female" class="form-check-input" name="gender"
+                                                [(ngModel)]="candidate.gender" value="Female" required />
+                                            <label class="form-check-label" for="female">Female</label>
+                                        </div>
+                                        <div *ngIf="!candidate.gender" class="text-danger">Please select Gender</div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="dateOfBirth">Date of Birth <span
+                                                class="text-danger">*</span></label>
+                                        <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control"
+                                            [(ngModel)]="candidate.dateOfBirth" max="{{todayDate()}}" required />
+                                        <div *ngIf="candidateForm.controls.dateOfBirth?.invalid && (candidateForm.controls.dateOfBirth?.dirty || candidateForm.controls.dateOfBirth?.touched)"
+                                            class="text-danger">Date of Birth is Required</div>
+                                    </div>
 
 
-  <!-- Table Container -->
-  <div class="table-container">
-      <table>
-          <thead>
-              <tr>
-                  <th style="width: 40%">Skill</th>
-                  <th style="width: 40%">Description</th>
-                  <th style="width: 20%">Actions</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let talentPool of talentPools">
-                  <td>{{ talentPool.name }}</td>
-                  <td>{{ talentPool.description }}</td>
-                  <td>
-                      <div class="button-container">
-                          <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
-                              (click)="handleEditTalentPool(talentPool)" icon="pi pi-pencil"></button>
-                          <button pButton class="p-button-sm p-button-rounded p-button-danger"
-                              (click)="talentpooldelete(talentPool)" icon="pi pi-trash"></button>
-                      </div>
-                  </td>
-              </tr>
-              <tr *ngIf="talentPools.length === 0">
-                  <td colspan="3" class="no-records-message">
-                      No talent pool found
-                  </td>
-              </tr>
-          </tbody>
-      </table>
-  </div>
+                                    <!--
 
-  <!-- Pagination Container -->
-  <div class="pagination-container" *ngIf="talentPools.length > 0">
-      <div class="pagination-info">
-          Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of
-          {{ totalElements }} entries
-      </div>
-      <div class="pagination">
-          <a class="first" (click)="goToFirstPage()">&laquo; First</a>
-          <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="pagination.first ? true : null">&laquo;
-              Prev</a>
-          <a class="next" (click)="goToNextPage()" [attr.disabled]="pagination.last ? true : null">Next &raquo;</a>
-          <a class="last" (click)="goToLastPage()">Last &raquo;</a>
-      </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="skills">Skills <span class="text-danger">*</span></label>
+                                <input type="text" id="skills" class="form-control" aria-placeholder="Enter skills here" [(ngModel)]="candidate.skills" required />
+                                <div *ngIf="!candidate.skills && (candidateForm.controls.skills?.dirty || candidateForm.controls.skills?.touched)"
+                                    class="text-danger">Skills are Required</div>
+                            </div> -->
 
-      <!-- Page Size Selector -->
-      <div class="page-size-selector">
-          <select class="custom-select" (change)="onRecordsPerPageChange($event)">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="5" selected>5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-          </select>
-      </div>
-  </div>
-</div>
+
+                                    <!-- Job Dropdown -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="job">Job</label>
+                                        <select class="form-control" id="job" [(ngModel)]="candidate.job" name="job"
+                                            required>
+                                            <option *ngFor="let job of jobs" [ngValue]="job">{{ job.title }}</option>
+                                        </select>
+                                        <div *ngIf="candidateForm.submitted && !candidate.job" class="text-danger">
+                                            Job is required.
+                                        </div>
+                                    </div>
+
+                                    <!-- Source Dropdown -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="source">Source</label>
+                                        <select class="form-control" id="source" [(ngModel)]="candidate.source"
+                                            name="source" required>
+                                            <option *ngFor="let source of sources" [ngValue]="source">{{ source.name }}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="candidateForm.submitted && !candidate.source" class="text-danger">
+                                            Source is required.
+                                        </div>
+                                    </div>
+
+                                    <!-- Current Location -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="currentLocation">Current Location</label>
+                                        <select class="form-control" id="currentLocation"
+                                            [(ngModel)]="candidate.currentLocation" name="currentLocation" required>
+                                            <option *ngFor="let location of locations" [ngValue]="location">{{
+                                                location.name }}</option>
+                                        </select>
+                                        <div *ngIf="candidateForm.submitted && !candidate.currentLocation"
+                                            class="text-danger">
+                                            Current Location is required.
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Preferred Location dropdown -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="preferredLocation">Preferred Location
+                                            <span [style.display]="candidate.preferred ? 'none' : 'inline'"
+                                                class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-control" id="preferredLocation"
+                                            [(ngModel)]="candidate.preferred" name="preferredLocation" required>
+                                            <option *ngFor="let location of locations" [ngValue]="location">
+                                                {{ location.name }}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="candidateForm.submitted && !candidate.preferred"
+                                            class="text-danger">
+                                            Preferred Location is required.
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Skills -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="skills">Skills</label>
+                                        <input type="text" class="form-control" id="skills"
+                                            [(ngModel)]="candidate.skills" name="skills" placeholder="Enter skills"
+                                            required>
+                                        <div *ngIf="candidateForm.submitted && !candidate.skills" class="text-danger">
+                                            Skills are required.
+                                        </div>
+                                    </div>
+
+                                    <!--  -->
+
+
+                                    <!--  -->
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Form -->
+                <div id="education" class="tab-pane fade" role="tabpanel">
+                    <!-- Add your Education form here, similar to the profile form -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="course">Course<span *ngIf="!education.course"
+                                                    style="color: red">*</span></label>
+                                            <input class="form-control" id="course" name="course" type="text"
+                                                [(ngModel)]="education.course" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="branch">Specialization<span *ngIf="!education.branch"
+                                                    style="color: red">*</span></label>
+                                            <input class="form-control" id="branch" name="branch" type="text"
+                                                [(ngModel)]="education.branch" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="startOfCourse">Start Of Course</label>
+                                            <input class="form-control" id="startOfCourse" name="startOfCourse"
+                                                type="date" [(ngModel)]="education.startOfCourse"
+                                                (ngModelChange)="updateEndDateMinDate()" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="endOfCourse">End Of Course</label>
+                                            <input class="form-control" id="endOfCourse" name="endOfCourse" type="date"
+                                                [(ngModel)]="education.endOfCourse" [min]="education.startOfCourse" />
+                                            <div *ngIf="education.endOfCourse < education.startOfCourse"
+                                                style="color: red">
+                                                End date cannot be before start date.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="college">College<span *ngIf="!education.college"
+                                                    style="color: red">*</span></label>
+                                            <input class="form-control" id="college" name="college" type="text"
+                                                [(ngModel)]="education.college" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="university">University<span *ngIf="!education.university"
+                                                    style="color: red">*</span></label>
+                                            <input class="form-control" id="university" name="university" type="text"
+                                                [(ngModel)]="education.university" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="location">Location<span *ngIf="!education.location"
+                                                    style="color: red">*</span></label>
+                                            <input class="form-control" id="location" name="location" type="text"
+                                                [(ngModel)]="education.location" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Submit button -->
+                                <button class="btn btn-primary mt-3"
+                                    (click)="submitEducation()">Save</button><br /><br /><br />
+                                <!-- Education table -->
+                                <div *ngIf="educationDetails.length > 0">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Course</th>
+                                                <th>Specialization</th>
+                                                <th>Start of Course</th>
+                                                <th>End of Course</th>
+                                                <th>College</th>
+                                                <th>University</th>
+                                                <th>Location</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let edu of educationDetails; let i = index">
+                                                <td>{{ edu.course }}</td>
+                                                <td>{{ edu.branch }}</td>
+                                                <td>{{ edu.startOfCourse }}</td>
+                                                <td>{{ edu.endOfCourse }}</td>
+                                                <td>{{ edu.college }}</td>
+                                                <td>{{ edu.university }}</td>
+                                                <td>{{ edu.location }}</td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm"
+                                                        (click)="EditEducation(i)">Edit</button>
+                                                    <button class="btn btn-danger btn-sm"
+                                                        (click)="deleteEducation(i)">Delete</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Education Form end -->
+                <!-- Experience Form -->
+                <div id="experience" class="tab-pane fade" role="tabpanel">
+                    <!-- Add your Experience form here, similar to the profile form -->
+                    <!--  -->
+                    <div class="container">
+                        <div class="row">
+                            <!-- Experience fields (initially hidden) -->
+                            <div class="col-12">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="company" class="form-label">Company <span
+                                                [style.display]="experience.company ? 'none' : 'inline'"
+                                                style="color: red">*</span></label>
+                                        <input id="company" name="company" type="text" class="form-control"
+                                            [(ngModel)]="experience.company" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="jobTitle" class="form-label">Job Title <span
+                                                [style.display]="experience.jobTitle ? 'none' : 'inline'"
+                                                style="color: red">*</span></label>
+                                        <input id="jobTitle" name="jobTitle" type="text" class="form-control"
+                                            [(ngModel)]="experience.jobTitle" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="dateOfJoining" class="form-label">Date of Joining</label>
+                                        <input id="dateOfJoining" name="dateOfJoining" type="date" class="form-control"
+                                            [(ngModel)]="experience.dateOfJoining" placeholder="Select Date of Joining"
+                                            (ngModelChange)="updateEndDateMinDate1()" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="dateOfRelieving" class="form-label">Date of Relieving</label>
+                                        <input id="dateOfRelieving" name="dateOfRelieving" type="date"
+                                            class="form-control" [(ngModel)]="experience.dateOfRelieving"
+                                            placeholder="Select Date of Relieving" [min]="experience.dateOfJoining" />
+                                        <div *ngIf="experience.dateOfRelieving && experience.dateOfJoining && experience.dateOfRelieving < experience.dateOfJoining"
+                                            class="text-danger">
+                                            End date cannot be before start date.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="location" class="form-label">Location <span
+                                                [style.display]="experience.location ? 'none' : 'inline'"
+                                                style="color: red">*</span></label>
+                                        <input id="location" name="location" type="text" class="form-control"
+                                            [(ngModel)]="experience.location" />
+                                    </div>
+                                </div>
+
+                                <!-- Save Button -->
+                                <button class="btn btn-primary mt-3" (click)="submitExceperience()">Save</button>
+
+                                <!-- Experience table -->
+                                <div *ngIf="experienceDetails.length > 0" class="table-responsive mt-4">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Company</th>
+                                                <th>Job Title</th>
+                                                <th>Currently Working</th>
+                                                <th>Date Of Joining</th>
+                                                <th>Date Of Relieving</th>
+                                                <th>Location</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let exp of experienceDetails; let i = index">
+                                                <td>{{ exp.company }}</td>
+                                                <td>{{ exp.jobTitle }}</td>
+                                                <td>{{ exp.currentlyWorking }}</td>
+                                                <td>{{ exp.dateOfJoining }}</td>
+                                                <td>{{ exp.dateOfRelieving }}</td>
+                                                <td>{{ exp.location }}</td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm me-2"
+                                                        (click)="editExperience(i)">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-danger btn-sm" (click)="deleteExperience(i)">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience Form  end -->
+
+                    <!-- Confirmation -->
+                    <div id="confirmation" class="tab-pane fade" role="tabpanel">
+                        <h3>Review and Confirm Details</h3>
+                        <form #candidateForm="ngForm" novalidate>
+                            <div class="row">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="firstname">First Name</label>
+                                    <input class="form-control" id="firstname" name="firstname" type="text"
+                                        placeholder="Enter First Name" [(ngModel)]="candidate.firstName" required
+                                        #firstname="ngModel" readonly />
+                                    <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+                                        class="text-danger">
+                                        First Name is required
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="lastName">Last Name</label>
+                                    <input class="form-control" id="lastName" name="lastName" type="text"
+                                        placeholder="Enter Last Name" [(ngModel)]="candidate.lastName" required
+                                        #lastName="ngModel" readonly />
+                                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                                        class="text-danger">
+                                        Last Name is required
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="email">Email</label>
+                                    <input class="form-control" id="email" name="email" type="email"
+                                        placeholder="Enter Email" [(ngModel)]="candidate.email" required email
+                                        #email="ngModel" readonly />
+                                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                                        Invalid Email Format
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="mobile">Mobile</label>
+                                    <input class="form-control" id="mobile" name="mobile" type="text"
+                                        placeholder="Enter Mobile Number" [(ngModel)]="candidate.mobile" required
+                                        pattern="[0-9]*" #mobile="ngModel" readonly />
+                                    <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)" class="text-danger">
+                                        Mobile Number is Required
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="alterMobile">Alternate Mobile No</label>
+                                    <input class="form-control" id="alterMobile" name="alterMobile" type="text"
+                                        placeholder="Enter Alt Mobile Number" [(ngModel)]="candidate.alterMobile"
+                                        required pattern="[0-9]{10}" #alterMobile="ngModel" />
+                                    <div *ngIf="alterMobile.invalid && (alterMobile.dirty || alterMobile.touched)"
+                                        class="text-danger">
+                                        Alternate Mobile Number is required
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="avialToJoin">Notice period</label>
+                                    <input class="form-control" id="avialToJoin" name="avialToJoin" type="text"
+                                        placeholder="Enter Notice Period" [(ngModel)]="candidate.avialToJoin" required
+                                        #avialToJoin="ngModel" readonly />
+                                    <div *ngIf="avialToJoin.invalid && (avialToJoin.dirty || avialToJoin.touched)"
+                                        class="text-danger">
+                                        Notice Period is required
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="currentSalary">Current Salary(LPA)(INR)</label>
+                                    <input class="form-control" id="currentSalary" name="currentSalary" type="number"
+                                        placeholder="Enter Current Salary" [(ngModel)]="candidate.currentSalary"
+                                        required #currentSalary="ngModel" readonly />
+                                    <div *ngIf="currentSalary.invalid && (currentSalary.dirty || currentSalary.touched)"
+                                        class="text-danger">
+                                        Current Salary is required
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="expectedSalary">Expected Salary(LPA)(INR)</label>
+                                    <input class="form-control" id="expectedSalary" name="expectedSalary" type="number"
+                                        placeholder="Enter Expected Salary" [(ngModel)]="candidate.expectedSalary"
+                                        required #expectedSalary="ngModel" readonly />
+                                    <div *ngIf="expectedSalary.invalid && (expectedSalary.dirty || expectedSalary.touched)"
+                                        class="text-danger">
+                                        Expected Salary is required
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label>Gender</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="male" name="gender"
+                                            [(ngModel)]="candidate.gender" value="Male" #maleGender="ngModel"
+                                            required />
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="female" name="gender"
+                                            [(ngModel)]="candidate.gender" value="Female" #femaleGender="ngModel"
+                                            required />
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                    <div *ngIf="(maleGender.invalid || femaleGender.invalid) && (maleGender.touched || femaleGender.touched)"
+                                        class="text-danger">
+                                        Please select a gender
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="dateOfBirth">Date Of Birth<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="dateOfBirth" name="dateOfBirth" type="date"
+                                        [(ngModel)]="candidate.dateOfBirth" placeholder="Select Date of Birth"
+                                        [max]="todayDate()" />
+                                    <div *ngIf="candidateForm.controls['dateOfBirth'].invalid && (candidateForm.controls['dateOfBirth'].dirty || candidateForm.controls['dateOfBirth'].touched)"
+                                        class="text-danger">
+                                        Date of Birth is required
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="skills">Skills</label>
+                                    <input type="text" class="form-control" id="skills" [(ngModel)]="skills"
+                                        name="skills" placeholder="Enter skills" (ngModelChange)="addSkills($event)" />
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="job">Job</label>
+                                    <div class="form-control-plaintext">{{ candidate.job ? candidate.job.title : "Select
+                                        Job" }}</div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="source">Source</label>
+                                    <div class="form-control-plaintext">{{ candidate.source ? candidate.source.name :
+                                        "Select Source" }}</div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="current">Current Location</label>
+                                    <select class="form-control" id="current" [(ngModel)]="candidate.current"
+                                        name="current">
+                                        <option *ngFor="let location of locations" [value]="location">{{ location.name
+                                            }}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="preferred">Preferred Location</label>
+                                    <select class="form-control" id="preferred" [(ngModel)]="candidate.preferred"
+                                        name="preferred">
+                                        <option *ngFor="let location of locations" [value]="location">{{ location.name
+                                            }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <h6>Education Details:</h6>
+                            <div *ngIf="educationDetails.length > 0">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Course</th>
+                                            <th>Specialization</th>
+                                            <th>Start Of Course</th>
+                                            <th>End Of Course</th>
+                                            <th>College</th>
+                                            <th>University</th>
+                                            <th>Location</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let edu of educationDetails">
+                                            <td>{{ edu.course }}</td>
+                                            <td>{{ edu.branch }}</td>
+                                            <td>{{ edu.startOfCourse }}</td>
+                                            <td>{{ edu.endOfCourse }}</td>
+                                            <td>{{ edu.college }}</td>
+                                            <td>{{ edu.university }}</td>
+                                            <td>{{ edu.location }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h6>Experience Details:</h6>
+                            <div *ngIf="experienceDetails.length > 0">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Company</th>
+                                            <th>Job Title</th>
+                                            <th>Currently Working</th>
+                                            <th>Date Of Joining</th>
+                                            <th>Date Of Relieving</th>
+                                            <th>Location</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let exp of experienceDetails">
+                                            <td>{{ exp.company }}</td>
+                                            <td>{{ exp.jobTitle }}</td>
+                                            <td>{{ exp.currentlyWorking ? 'Yes' : 'No' }}</td>
+                                            <td>{{ exp.dateOfJoining }}</td>
+                                            <td>{{ exp.dateOfRelieving }}</td>
+                                            <td>{{ exp.location }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <!-- <div class="col-md-12 d-flex justify-content-between mt-3">
+                        <button class="btn btn-primary" (click)="save()">Save</button>
+                        <button class="btn btn-secondary" (click)="back()">Back</button>
+                    </div> -->
+
+                            </div>
+                        </form>
+
+                        <!-- Display a summary here -->
+                        <button type="button" class="btn btn-success" (click)="addCandidate()">Submit All</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
