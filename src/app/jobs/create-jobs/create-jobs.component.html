@@ -1,199 +1,135 @@
-<section>
-  <link rel="stylesheet" type="text/css"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<div class="container">
   <div class="row">
-    <div class="container-fluid">
-      <div class="row text-left">
-        <div class="col-md-8">
+      <div class="col-12">
+          <div class="card">
+              <form #jobForm="ngForm">
+                  <div class="row">
+                      <!-- Title -->
+                      <div class="form-group col-md-6">
+                          <label for="title">Title<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" id="title" name="title" ngModel required minlength="2" maxlength="50" placeholder="Enter Title" [(ngModel)]="job.title" #title="ngModel">
+                          <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">Title is required</div>
+                      </div>
 
-          <p class="content-sub-header"> <a routerLink="/dashboard/dashboard1"><span style="font-size: 15px">Home</span></a>
-            <span style="font-size: 15px">/Create Job</span>
-            <!-- <span style="font-size: 15px">/{{storename}}</span> -->
+                      <!-- Description -->
+                      <div class="form-group col-md-6">
+                          <label for="description">Description<span class="text-danger">*</span></label>
+                          <textarea class="form-control" id="description" name="description" rows="3" ngModel required minlength="2" maxlength="100" placeholder="Enter Description" [(ngModel)]="job.description" #description="ngModel"></textarea>
+                          <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">Description is required</div>
+                      </div>
 
-          </p>
-        </div>
+                      <!-- Primary Skills -->
+                      <div class="form-group col-md-6">
+                          <label for="primarySkills">Primary Skills<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" id="primarySkills" name="primarySkills" ngModel required placeholder="Enter Primary Skills" [(ngModel)]="job.primarySkills" #primarySkills="ngModel">
+                          <div *ngIf="primarySkills.invalid && (primarySkills.dirty || primarySkills.touched)" class="text-danger">Primary Skills is required</div>
+                      </div>
 
-      </div>
-    </div>
-  </div>
-</section>
+                      <!-- Secondary Skills -->
+                      <div class="form-group col-md-6">
+                          <label for="secondarySkills">Secondary Skills<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" id="secondarySkills" name="secondarySkills" ngModel required placeholder="Enter Secondary Skills" [(ngModel)]="job.secondarySkills" #secondarySkills="ngModel">
+                          <div *ngIf="secondarySkills.invalid && (secondarySkills.dirty || secondarySkills.touched)" class="text-danger">Secondary Skills is required</div>
+                      </div>
 
+                      <!-- Good To Have -->
+                      <div class="form-group col-md-6">
+                          <label for="goodToHave">Good To Have<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" id="goodToHave" name="goodToHave" ngModel required placeholder="Enter Good To Have" [(ngModel)]="job.goodToHave" #goodToHave="ngModel">
+                          <div *ngIf="goodToHave.invalid && (goodToHave.dirty || goodToHave.touched)" class="text-danger">Good To Have is required</div>
+                      </div>
 
+                      <!-- Department -->
+                      <div class="form-group col-md-6">
+                          <label for="department">Department<span class="text-danger">*</span></label>
+                          <select class="form-control" id="department" name="department" [(ngModel)]="selectedDepartments" (change)="onDepartmentChange($event.target.value)">
+                              <option *ngFor="let department of departments" [ngValue]="department">{{ department.name }}</option>
+                          </select>
+                          <div *ngIf="!selectedDepartments && (jobForm.controls['department'].touched || jobForm.controls['department'].dirty)" class="text-danger">Department is required</div>
+                      </div>
 
-<div class="container mt-4">
-    <div class="card shadow-sm">
-      <div class="card-body">
-        <!-- <h4 class="card-title mb-4">Create a New Job</h4> -->
-        <form #jobForm="ngForm" (ngSubmit)="addJob()">
-          <div class="row">
+                      <!-- Client -->
+                      <div class="form-group col-md-6">
+                          <label for="clients">Client Name<span class="text-danger">*</span></label>
+                          <select class="form-control" id="clients" name="client" [(ngModel)]="selectedClients" (change)="onClientChange($event.target.value)">
+                              <option *ngFor="let client of clients" [ngValue]="client">{{ client.companyName }}</option>
+                          </select>
+                      </div>
 
-            <!-- Row 1: Title, Description, Primary Skills -->
-            <div class="form-group col-md-4">
-              <label for="title">Title <span *ngIf="!job.title" class="text-danger">*</span></label>
-              <input id="title" name="title" type="text" class="form-control" placeholder="Enter Job Title" [(ngModel)]="job.title" required minlength="2" maxlength="50" #title="ngModel">
-              <div *ngIf="title.invalid && (title.dirty || title.touched)" class="invalid-feedback d-block">
-                <div *ngIf="title.errors?.required">Title is required</div>
-              </div>
-            </div>
+                      <!-- Openings -->
+                      <div class="form-group col-md-6">
+                          <label for="openings">Openings<span class="text-danger">*</span></label>
+                          <input type="number" class="form-control" id="openings" name="openings" ngModel required min="1" placeholder="Enter Openings" [(ngModel)]="job.openings" #openings="ngModel">
+                          <div *ngIf="openings.invalid && (openings.dirty || openings.touched)" class="text-danger">Openings is required</div>
+                      </div>
 
-            <div class="form-group col-md-4">
-              <label for="description">Description <span *ngIf="!job.description" class="text-danger">*</span></label>
-              <textarea id="description" name="description" class="form-control" placeholder="Enter Job Description" [(ngModel)]="job.description" required minlength="2" #description="ngModel"></textarea>
-              <div *ngIf="description.invalid && (description.dirty || description.touched)" class="invalid-feedback d-block">
-                <div *ngIf="description.errors?.required">Description is required</div>
-              </div>
-            </div>
+                      <!-- Target Hire Date -->
+                      <div class="form-group col-md-6">
+                          <label for="targetHireDate">Target Hire Date<span class="text-danger">*</span></label>
+                          <input type="date" class="form-control" id="targetHireDate" name="targetHireDate" [(ngModel)]="job.targetHireDate" required [min]="todayDate()" #targetHireDate="ngModel">
+                          <div *ngIf="targetHireDate.invalid && (targetHireDate.dirty || targetHireDate.touched)" class="text-danger">Target Hire Date is required</div>
+                      </div>
 
-            <div class="form-group col-md-4">
-              <label for="primarySkills">Primary Skills <span *ngIf="!job.primarySkills" class="text-danger">*</span></label>
-              <input id="primarySkills" name="primarySkills" type="text" class="form-control" placeholder="Enter Primary Skills" [(ngModel)]="job.primarySkills" required #primarySkills="ngModel">
-              <div *ngIf="primarySkills.invalid && (primarySkills.dirty || primarySkills.touched)" class="invalid-feedback d-block">
-                <div *ngIf="primarySkills.errors?.required">Primary Skills is required</div>
-              </div>
-            </div>
+                      <!-- Currency -->
+                      <div class="form-group col-md-6">
+                          <label for="currency">Currency<span class="text-danger">*</span></label>
+                          <select class="form-control" id="currency" name="currency" [(ngModel)]="selectedCurrencys" (change)="onCurrencyChange($event.target.value)">
+                              <option *ngFor="let currency of currencys" [ngValue]="currency">{{ currency.name }}</option>
+                          </select>
+                      </div>
 
-            <!-- Row 2: Secondary Skills, Good To Have, Department -->
-            <div class="form-group col-md-4">
-              <label for="secondarySkills">Secondary Skills <span *ngIf="!job.secondarySkills" class="text-danger">*</span></label>
-              <input id="secondarySkills" name="secondarySkills" type="text" class="form-control" placeholder="Enter Secondary Skills" [(ngModel)]="job.secondarySkills" required #secondarySkills="ngModel">
-              <div *ngIf="secondarySkills.invalid && (secondarySkills.dirty || secondarySkills.touched)" class="invalid-feedback d-block">
-                <div *ngIf="secondarySkills.errors?.required">Secondary Skills is required</div>
-              </div>
-            </div>
+                      <!-- Salary Maximum -->
+                      <div class="form-group col-md-6">
+                          <label for="salaryMaximum">Salary Maximum<span class="text-danger">*</span></label>
+                          <input type="number" class="form-control" id="salaryMaximum" name="salaryMaximum" ngModel required min="0" placeholder="Enter Max Salary" [(ngModel)]="job.salaryMaximum" #salaryMaximum="ngModel">
+                          <div *ngIf="salaryMaximum.invalid && (salaryMaximum.dirty || salaryMaximum.touched)" class="text-danger">Salary Maximum is required</div>
+                      </div>
 
-            <div class="form-group col-md-4">
-              <label for="goodToHave">Good To Have <span *ngIf="!job.goodToHave" class="text-danger">*</span></label>
-              <input id="goodToHave" name="goodToHave" type="text" class="form-control" placeholder="Enter Good To Have" [(ngModel)]="job.goodToHave" required #goodToHave="ngModel">
-              <div *ngIf="goodToHave.invalid && (goodToHave.dirty || goodToHave.touched)" class="invalid-feedback d-block">
-                <div *ngIf="goodToHave.errors?.required">Good To Have is required</div>
-              </div>
-            </div>
+                      <!-- Job Type -->
+                      <div class="form-group col-md-6">
+                          <label for="type">Job Type<span class="text-danger">*</span></label>
+                          <select class="form-control" id="type" name="type" [(ngModel)]="job.type">
+                              <option *ngFor="let type of types" [ngValue]="type.name">{{ type.name }}</option>
+                          </select>
+                      </div>
 
-            <div class="form-group col-md-4">
-              <label for="department">Department <span *ngIf="!selectedDepartments" class="text-danger">*</span></label>
-              <select id="department" name="department" class="form-control" [(ngModel)]="selectedDepartments" (change)="onDepartmentChange($event.target.value)">
-                <option *ngFor="let department of departments" [value]="department.name">{{ department.name }}</option>
-              </select>
-              <div *ngIf="!selectedDepartments && (jobForm.controls['department'].touched || jobForm.controls['department'].dirty)" class="invalid-feedback d-block">
-                Department is required
-              </div>
-            </div>
+                      <!-- Location -->
+                      <div class="form-group col-md-6">
+                          <label for="locations">Location<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" id="locations" name="locations" ngModel required placeholder="Enter Location" [(ngModel)]="job.locations" #locations="ngModel">
+                          <div *ngIf="locations.invalid && (locations.dirty || locations.touched)" class="text-danger">Location is required</div>
+                      </div>
 
-            <!-- Row 3: Client Name, Openings, Target Hire Date -->
-            <div class="form-group col-md-4">
-              <label for="clients">Client Name <span *ngIf="!selectedClients" class="text-danger">*</span></label>
-              <select id="clients" name="clients" class="form-control" [(ngModel)]="selectedClients" (change)="onClientChange($event.target.value)">
-                <option *ngFor="let client of clients" [value]="client.companyName">{{ client.companyName }}</option>
-              </select>
-            </div>
+                      <!-- Experience -->
+                      <div class="form-group col-md-6">
+                          <label for="experience">Experience<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" id="experience" name="experience" ngModel required placeholder="Enter Experience" [(ngModel)]="job.experience" #experience="ngModel">
+                          <div *ngIf="experience.invalid && (experience.dirty || experience.touched)" class="text-danger">Experience is required</div>
+                      </div>
 
-            <div class="form-group col-md-4">
-              <label for="openings">Openings <span *ngIf="!job.openings" class="text-danger">*</span></label>
-              <input id="openings" name="openings" type="number" class="form-control" placeholder="Enter Number of Openings" [(ngModel)]="job.openings" required #openings="ngModel" min="1">
-              <div *ngIf="openings.invalid && (openings.dirty || openings.touched)" class="invalid-feedback d-block">
-                <div *ngIf="openings.errors?.required">Openings is required</div>
-              </div>
-            </div>
+                      <!-- Recruiter -->
+                      <div class="form-group col-md-6">
+                          <label for="recruiters">Recruiter<span class="text-danger">*</span></label>
+                          <select class="form-control" id="recruiters" name="recruiters" [(ngModel)]="selectedRecruiters" (change)="onRecruiterChange($event.target.value)">
+                              <option *ngFor="let recruiter of recruiters" [ngValue]="recruiter">{{ recruiter.firstName }}</option>
+                          </select>
+                      </div>
 
-            <div class="form-group col-md-4">
-              <label for="targetHireDate">Target Hire Date <span class="text-danger">*</span></label>
-              <input id="targetHireDate" name="targetHireDate" type="date" class="form-control" [(ngModel)]="job.targetHireDate" required #targetHireDate="ngModel" [min]="todayDate()">
-              <div *ngIf="targetHireDate.invalid && (targetHireDate.dirty || targetHireDate.touched)" class="invalid-feedback d-block">
-                <div *ngIf="targetHireDate.errors?.required">Target Hire Date is required</div>
-              </div>
-            </div>
+                      <!-- Expected Notice Period -->
+                      <div class="form-group col-md-6">
+                          <label for="expectedNoticePeriod">Expected Notice Period<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" id="expectedNoticePeriod" name="expectedNoticePeriod" ngModel required placeholder="Enter Expected Notice Period" [(ngModel)]="job.expectedNoticePeriod" #expectedNoticePeriod="ngModel">
+                          <div *ngIf="expectedNoticePeriod.invalid && (expectedNoticePeriod.dirty || expectedNoticePeriod.touched)" class="text-danger">Expected Notice Period is required</div>
+                      </div>
+                  </div>
 
-            <!-- Row 4: Currency, Salary Maximum, Job Type -->
-            <div class="form-group col-md-4">
-              <label for="currency">Currency <span *ngIf="!selectedCurrencys" class="text-danger">*</span></label>
-              <select id="currency" name="currency" class="form-control" [(ngModel)]="selectedCurrencys" (change)="onCurrencyChange($event.target.value)">
-                <option *ngFor="let currency of currencys" [value]="currency.name">{{ currency.name }}</option>
-              </select>
-            </div>
-
-            <div class="form-group col-md-4">
-              <label for="salaryMaximum">Salary Maximum <span *ngIf="!job.salaryMaximum" class="text-danger">*</span></label>
-              <input id="salaryMaximum" name="salaryMaximum" type="number" class="form-control" placeholder="Enter Maximum Salary" [(ngModel)]="job.salaryMaximum" required #salaryMaximum="ngModel" min="0">
-              <div *ngIf="salaryMaximum.invalid && (salaryMaximum.dirty || salaryMaximum.touched)" class="invalid-feedback d-block">
-                <div *ngIf="salaryMaximum.errors?.required">Salary Maximum is required</div>
-              </div>
-            </div>
-
-            <div class="form-group col-md-4">
-              <label for="type">Job Type <span *ngIf="!job.type" class="text-danger">*</span></label>
-              <select id="type" name="type" class="form-control" [(ngModel)]="job.type" #type="ngModel">
-                <option *ngFor="let type of types" [value]="type.name">{{ type.name }}</option>
-              </select>
-            </div>
-
-            <!-- Row 5: Location, Experience, Recruiter -->
-            <div class="form-group col-md-4">
-              <label for="locations">Location <span *ngIf="!job.locations" class="text-danger">*</span></label>
-              <input id="locations" name="locations" type="text" class="form-control" placeholder="Enter Job Location" [(ngModel)]="job.locations" required #locations="ngModel">
-              <div *ngIf="locations.invalid && (locations.dirty || locations.touched)" class="invalid-feedback d-block">
-                <div *ngIf="locations.errors?.required">Location is required</div>
-              </div>
-            </div>
-
-            <div class="form-group col-md-4">
-              <label for="experience">Experience <span *ngIf="!job.experience" class="text-danger">*</span></label>
-              <input id="experience" name="experience" type="text" class="form-control" placeholder="Enter Required Experience" [(ngModel)]="job.experience" required #experience="ngModel">
-              <div *ngIf="experience.invalid && (experience.dirty || experience.touched)" class="invalid-feedback d-block">
-                <div *ngIf="experience.errors?.required">Experience is required</div>
-              </div>
-            </div>
-
-            <div class="form-group col-md-4">
-              <label for="recruiters">Recruiter <span *ngIf="!selectedRecruiters" class="text-danger">*</span></label>
-              <select id="recruiters" name="recruiters" class="form-control" [(ngModel)]="selectedRecruiters" (change)="onRecruiterChange($event.target.value)">
-                <option *ngFor="let recruiter of recruiters" [value]="recruiter.firstName">{{ recruiter.firstName }}</option>
-              </select>
-            </div>
-
-            <!-- Row 6: Expected Notice Period -->
-            <div class="form-group col-md-4">
-              <label for="expectedNoticePeriod">Expected Notice Period <span *ngIf="!job.expectedNoticePeriod" class="text-danger">*</span></label>
-              <input id="expectedNoticePeriod" name="expectedNoticePeriod" type="text" class="form-control" placeholder="Enter Expected Notice Period" [(ngModel)]="job.expectedNoticePeriod" required #expectedNoticePeriod="ngModel">
-              <div *ngIf="expectedNoticePeriod.invalid && (expectedNoticePeriod.dirty || expectedNoticePeriod.touched)" class="invalid-feedback d-block">
-                <div *ngIf="expectedNoticePeriod.errors?.required">Expected Notice Period is required</div>
-              </div>
-            </div>
-
+                  <!-- Buttons -->
+                  <div class="text-right">
+                      <button type="submit" class="btn btn-primary" (click)="addJob()" [disabled]="!jobForm.valid">Save</button>
+                      <button type="button" class="btn btn-danger" routerLink="/jobs">Cancel</button>
+                  </div>
+              </form>
           </div>
-
-          <!-- <div class="text-right mt-4">
-            <button type="submit" class="btn btn-primary">Save Job</button>
-            <a routerLink="/jobs" class="btn btn-danger ml-2">Cancel</a>
-          </div> -->
-          <div class="form-row mt-4">
-            <div class="form-group col-md-12 text-right">
-              <button type="button" class="btn btn-warning btn-raised mr-1" (click)="cancel()">
-                <i class="fas fa-times"></i> Cancel
-              </button>
-              <button type="button" class="btn btn-primary btn-raised" (click)="addJob()" [disabled]="!createClientForm.valid">
-                <i class="fas fa-check"></i> Save
-              </button>
-            </div>
-          </div>
-        </form>
       </div>
-    </div>
   </div>
+</div>

@@ -11,6 +11,7 @@ import { Dashboard2Component } from "./dashboard2/dashboard2.component";
 import { Dashboard3Component } from './dashboard3/dashboard3.component';
 import { ResumeViewComponent } from './resume-view/resume-view.component';
 import { ResumeUploadComponent } from './resume-upload/resume-upload.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { ResumeUploadComponent } from './resume-upload/resume-upload.component';
         CommonModule,
         DashboardRoutingModule,
         ChartistModule,
-        NgbModule,
+        NgbModule,FormsModule,
         MatchHeightModule
     ],
     exports: [],

@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clients Table</title>
+  <title>Client Table</title>
   <!-- Bootstrap CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- FontAwesome for icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     .no-records-message {
       text-align: center;
-      color: #6c757d;
-      font-style: italic;
+      padding: 1rem;
+    }
+    .button-container .btn {
+      margin-right: 0.5rem;
     }
     .pagination-container {
       display: flex;
@@ -20,63 +22,27 @@
       align-items: center;
     }
     .pagination-info {
-      margin-right: 15px;
+      margin-right: 1rem;
     }
-    .pagination {
-      margin-bottom: 0;
-    }
-    .button-container {
-      display: flex;
-      gap: 0.5rem;
-    }
-    .dropdown-wrapper {
-      display: flex;
-      align-items: center;
-    }
-    .dropdown-wrapper select {
-      margin-left: 1rem;
+    .btn-success, .btn-danger {
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
-
   <section>
-    <link rel="stylesheet" type="text/css"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css"
-      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
-    <link rel="stylesheet" type="text/css"
-      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
-    <link rel="stylesheet" type="text/css"
-      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
-    <link rel="stylesheet" type="text/css"
-      href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <div class="row">
-      <div class="container-fluid">
-        <div class="row text-left">
-          <div class="col-md-8">
-
-            <p class="content-sub-header"> <a routerLink="/dashboard/dashboard1"><span style="font-size: 15px">Home</span></a>
-              <span style="font-size: 15px">/Client</span>
-              <!-- <span style="font-size: 15px">/{{storename}}</span> -->
-
-            </p>
-          </div>
-
+    <div class="container-fluid">
+      <div class="row text-left">
+        <div class="col-md-8">
+          <p class="content-sub-header">
+            <a href="/dashboard/dashboard1" class="text-decoration-none" style="font-size: 15px">Home</a>
+            <span style="font-size: 15px"> / Client</span>
+          </p>
         </div>
       </div>
     </div>
   </section>
+
   <div class="container mt-4">
     <div class="card">
       <!-- Header Container -->
@@ -98,42 +64,47 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th style="width: 25%">Client Name</th>
-              <th style="width: 25%">Location</th>
+              <th style="width: 20%">Client Name</th>
+              <th style="width: 20%">POC Name</th>
+              <th style="width: 20%">POC Mobile No</th>
+              <th style="width: 20%">POC Email</th>
+              <th style="width: 20%">Location</th>
               <th style="width: 20%">Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let client of clients">
               <td>{{ client.companyName }}</td>
-              <td>{{ client.location }}</td>
               <td>
-                <!-- <div class="button-container">
-                  <button class="btn btn-sm btn-success" (click)="handleEditClient(client, client.id)">
-                    <i class="fas fa-pencil-alt"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger" (click)="clientDelete(client)">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                  <button class="btn btn-sm btn-info" (click)="openNew(client)">
-                    <i class="fas fa-eye"></i>
-                  </button>
-                </div> -->
-                <div class="button-container">
-                  <a class="success p-0" data-original-title="" title=""
-                  (click)="handleEditClient(client, client.id)" placement="bottom" ngbTooltip="Edit">
-                  <i class="ft-edit-2 font-medium-3 mr-2"></i>
-                 </a>
+                <ul class="list-unstyled">
+                  <li *ngFor="let contact of client.pocs">{{ contact.name }}</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="list-unstyled">
+                  <li *ngFor="let contact of client.pocs">{{ contact.mobile }}</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="list-unstyled">
+                  <li *ngFor="let contact of client.pocs">{{ contact.email }}</li>
+                </ul>
+              </td>
+              <td>{{ client.location }}</td>
 
-                  <a class="danger p-0" data-original-title="" title=""
-                  (click)="clientDelete(client)" placement="bottom" ngbTooltip="Delete">
-                  <i class="icon-trash font-medium-3 mr-2"></i>
+              <td>
+                <div class="button-container">
+                  <a class="success p-0" (click)="handleEditClient(client, client.id)" ngbTooltip="Edit">
+                    <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                  </a>
+                  <a class="danger p-0" (click)="clientDelete(client)" ngbTooltip="Delete">
+                    <i class="icon-trash font-medium-3 mr-2"></i>
                   </a>
                 </div>
               </td>
             </tr>
             <tr *ngIf="clients.length === 0">
-              <td colspan="3" class="no-records-message">
+              <td colspan="6" class="no-records-message">
                 Client not found
               </td>
             </tr>
@@ -145,32 +116,25 @@
       <div class="card-footer">
         <div class="pagination-container">
           <div class="pagination-info">
-            Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{
-            totalElements }} entries
+            Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries
           </div>
-          <div>
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" (click)="goToFirstPage()">&laquo; First</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo;
-                  Prev</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next
-                  &raquo;</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" (click)="goToLastPage()">Last &raquo;</a>
-              </li>
-            </ul>
-          </div>
+          <ul class="pagination mb-0">
+            <li class="page-item">
+              <a class="page-link" (click)="goToFirstPage()">&laquo; First</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo; Prev</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next &raquo;</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" (click)="goToLastPage()">Last &raquo;</a>
+            </li>
+          </ul>
           <div>
             <select class="custom-select" (change)="onRecordsPerPageChange($event)">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="5" selected>5</option>
+              <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>
               <option value="20">20</option>
@@ -187,4 +151,3 @@
   </div>
 </body>
 </html>
-
