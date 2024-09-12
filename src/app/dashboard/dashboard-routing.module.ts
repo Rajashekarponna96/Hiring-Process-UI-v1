@@ -6,6 +6,7 @@ import { Dashboard2Component } from "./dashboard2/dashboard2.component";
 import { Dashboard3Component } from './dashboard3/dashboard3.component';
 import { ResumeViewComponent } from './resume-view/resume-view.component';
 import { ResumeUploadComponent } from './resume-upload/resume-upload.component';
+import { CandidateeditoneComponent } from './candidateeditone/candidateeditone.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,13 @@ const routes: Routes = [
         component: Dashboard3Component,
         data: {
           title: 'Dashboard 3'
+        }
+      },
+      {
+        path: 'caneditone',
+        component: CandidateeditoneComponent,
+        data: {
+          title: 'candedit1'
         }
       },
       {
