@@ -12,6 +12,7 @@ import { Dashboard3Component } from './dashboard3/dashboard3.component';
 import { ResumeViewComponent } from './resume-view/resume-view.component';
 import { ResumeUploadComponent } from './resume-upload/resume-upload.component';
 import { FormsModule } from '@angular/forms';
+import { CandidateeditoneComponent } from './candidateeditone/candidateeditone.component';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { FormsModule } from '@angular/forms';
     exports: [],
     declarations: [
         Dashboard1Component,
-        Dashboard2Component,Dashboard3Component, ResumeViewComponent, ResumeUploadComponent
+        Dashboard2Component,Dashboard3Component, ResumeViewComponent, ResumeUploadComponent,CandidateeditoneComponent
     ],
     providers: [],
 })

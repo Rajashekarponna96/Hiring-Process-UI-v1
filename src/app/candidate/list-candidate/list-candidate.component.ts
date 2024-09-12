@@ -89,7 +89,7 @@ export class ListCandidateComponent implements OnInit {
 
   handleEditcandidate(candidate: Candidate) {
     const candidateId = candidate.id;
-    this.router.navigate(['editcandidate'], { state: { candidateId: candidateId, candidate: candidate } });
+    this.router.navigate(['/dashboard/caneditone'], { state: { candidateId: candidateId, candidate: candidate } });
   }
 
   candidateDelete(candidate: Candidate) {
