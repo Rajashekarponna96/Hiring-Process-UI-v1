@@ -209,22 +209,22 @@ export class Dashboard3Component implements OnInit {
     this.router.navigate(['/candidate/list']);
   }
 
-  // addCandidate() {debugger
-  //   this.candidate.experiences = this.experienceDetails;
-  //   this.candidate.educations = this.educationDetails;
-  //   this.candidate.skills = this.skills;
+  addCandidate() {
+    this.candidate.experiences = this.experienceDetails;
+    this.candidate.educations = this.educationDetails;
+    this.candidate.skills = this.skills;
 
-  //   const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-  //   this.candidate.createdBy = user;
-  //   this.candidate.modifiedBy = user;
+    const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}')
+    this.candidate.createdBy = user;
+    this.candidate.modifiedBy = user;
+    //this.getVendorDetailsBasedOnUserId(user.id);
 
-  //   // if (user.role?.name === 'vendor') {
-  //   //   this.getVendorDetailsBasedOnUserId(user.id);
-  //   // } else {
-  //   //   this.saveCandidateWithVendor(null);
-  //   // }
-  // }
-
+    if (user.role.name === 'vendor') {
+      this.getVendorDetailsBasedOnUserId(user.id);
+    } else {
+      this.saveCandidateWithVendor(null);
+    }
+  }
   EditEducation(index: number) {
     const selectedEducation = this.educationDetails[index];
 
@@ -344,7 +344,7 @@ export class Dashboard3Component implements OnInit {
         setTimeout(() => {
           this.showSuccessMessage = false;
         }, 5000);
-        this.router.navigate(['/candidate']);
+        this.router.navigate(['/candidate/list']);
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
