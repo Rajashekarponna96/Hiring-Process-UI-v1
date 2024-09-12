@@ -132,7 +132,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         submenu: [
           { path: '/dashboard/dashboard1', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
           { path: '/dashboard/dashboard2', title: 'Dashboard21', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          // { path: '/dashboard/dashboard3', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+           { path: '/dashboard/dashboard3', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
            { path: '/dashboard/resumeupload', title: 'resumeupload', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
 
 

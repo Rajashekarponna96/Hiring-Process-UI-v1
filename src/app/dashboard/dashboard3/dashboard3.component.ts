@@ -16,8 +16,7 @@ import { TalentPoolOne } from 'app/shared/model/talentpoolone';
 import { UserAccout } from 'app/shared/model/userAccount';
 import { Vendor } from 'app/shared/model/vendor';
 
-import { Location } from '@angular/common';
-
+import { Location } from 'app/shared/model/location';
 @Component({
   selector: 'app-dashboard3',
   templateUrl: './dashboard3.component.html',
