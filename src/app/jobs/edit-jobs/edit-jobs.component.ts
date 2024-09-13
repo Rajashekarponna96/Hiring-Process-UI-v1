@@ -125,7 +125,7 @@ export class EditJobsComponent implements OnInit {
       res => {
         this.getAllJobList();
         this.jobForm.reset();
-        this.router.navigateByUrl('/jobs');
+        this.router.navigateByUrl('/jobs/list');
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
