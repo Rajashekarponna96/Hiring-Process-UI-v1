@@ -96,3 +96,48 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+<!--
+
+<div>
+    <div class="col-md-6 mb-3">
+        <label for="department">Department</label>
+        <select class="form-control" id="department" [(ngModel)]="selectedDepartments" name="department"
+            (change)="onDepartmentChange(selectedDepartments)">
+            <option *ngFor="let department of departments" [value]="department">{{ department.name }}</option>
+        </select>
+        <p>Selected Department: {{ selectedDepartments?.name }}</p>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label for="clients">Client Name</label>
+        <select class="form-control" id="clients" [(ngModel)]="selectedClients" name="clients"
+            (change)="onClientChange(selectedClients)">
+            <option *ngFor="let client of clients" [value]="client">{{ client.companyName }}</option>
+        </select>
+        <p>Selected Client: {{ selectedClients?.companyName }}</p>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label for="currency">Currency</label>
+        <select class="form-control" id="currency" [(ngModel)]="selectedCurrencys" name="currency"
+            (change)="onCurrencyChange(selectedCurrencys)">
+            <option *ngFor="let currency of currencys" [value]="currency">{{ currency.name }}</option>
+        </select>
+        <p>Selected Currency: {{ selectedCurrencys?.name }}</p>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label for="recruiters">Recruiter</label>
+        <select class="form-control" id="recruiters" [(ngModel)]="selectedRecruiters" name="recruiters"
+            (change)="onRecruiterChange(selectedRecruiters)">
+            <option *ngFor="let recruiter of recruiters" [value]="recruiter">{{ recruiter.firstName }}</option>
+        </select>
+        <p>Selected Recruiter: {{ selectedRecruiters?.firstName }}</p>
+    </div>
+
+    </div> -->

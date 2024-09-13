@@ -1,135 +1,265 @@
+<section>
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <div class="row">
+        <div class="container-fluid">
+            <div class="row text-left">
+                <div class="col-md-8">
+
+                    <p class="content-sub-header"> <a routerLink="/dashboard/dashboard1"><span
+                                style="font-size: 15px">Home</span></a>
+                        <span style="font-size: 15px">/Create Job</span>
+                        <!-- <span style="font-size: 15px">/{{storename}}</span> -->
+
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
 <div class="container">
-  <div class="row">
-      <div class="col-12">
-          <div class="card">
-              <form #jobForm="ngForm">
-                  <div class="row">
-                      <!-- Title -->
-                      <div class="form-group col-md-6">
-                          <label for="title">Title<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" id="title" name="title" ngModel required minlength="2" maxlength="50" placeholder="Enter Title" [(ngModel)]="job.title" #title="ngModel">
-                          <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">Title is required</div>
-                      </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <form #jobForm="ngForm">
+                    <div class="row">
+                        <!-- Title -->
+                        <div class="form-group col-md-6">
+                            <label for="title">Title<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="title" name="title" ngModel required
+                                minlength="2" maxlength="50" placeholder="Enter Title" [(ngModel)]="job.title"
+                                #title="ngModel">
+                            <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">Title is
+                                required</div>
+                        </div>
 
-                      <!-- Description -->
-                      <div class="form-group col-md-6">
-                          <label for="description">Description<span class="text-danger">*</span></label>
-                          <textarea class="form-control" id="description" name="description" rows="3" ngModel required minlength="2" maxlength="100" placeholder="Enter Description" [(ngModel)]="job.description" #description="ngModel"></textarea>
-                          <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">Description is required</div>
-                      </div>
+                        <!-- Description -->
+                        <div class="form-group col-md-6">
+                            <label for="description">Description<span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="description" name="description" rows="3" ngModel required
+                                minlength="2" maxlength="100" placeholder="Enter Description"
+                                [(ngModel)]="job.description" #description="ngModel"></textarea>
+                            <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                                class="text-danger">Description is required</div>
+                        </div>
 
-                      <!-- Primary Skills -->
-                      <div class="form-group col-md-6">
-                          <label for="primarySkills">Primary Skills<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" id="primarySkills" name="primarySkills" ngModel required placeholder="Enter Primary Skills" [(ngModel)]="job.primarySkills" #primarySkills="ngModel">
-                          <div *ngIf="primarySkills.invalid && (primarySkills.dirty || primarySkills.touched)" class="text-danger">Primary Skills is required</div>
-                      </div>
+                        <!-- Primary Skills -->
+                        <div class="form-group col-md-6">
+                            <label for="primarySkills">Primary Skills<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="primarySkills" name="primarySkills" ngModel
+                                required placeholder="Enter Primary Skills" [(ngModel)]="job.primarySkills"
+                                #primarySkills="ngModel">
+                            <div *ngIf="primarySkills.invalid && (primarySkills.dirty || primarySkills.touched)"
+                                class="text-danger">Primary Skills is required</div>
+                        </div>
 
-                      <!-- Secondary Skills -->
-                      <div class="form-group col-md-6">
-                          <label for="secondarySkills">Secondary Skills<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" id="secondarySkills" name="secondarySkills" ngModel required placeholder="Enter Secondary Skills" [(ngModel)]="job.secondarySkills" #secondarySkills="ngModel">
-                          <div *ngIf="secondarySkills.invalid && (secondarySkills.dirty || secondarySkills.touched)" class="text-danger">Secondary Skills is required</div>
-                      </div>
+                        <!-- Secondary Skills -->
+                        <div class="form-group col-md-6">
+                            <label for="secondarySkills">Secondary Skills<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="secondarySkills" name="secondarySkills" ngModel
+                                required placeholder="Enter Secondary Skills" [(ngModel)]="job.secondarySkills"
+                                #secondarySkills="ngModel">
+                            <div *ngIf="secondarySkills.invalid && (secondarySkills.dirty || secondarySkills.touched)"
+                                class="text-danger">Secondary Skills is required</div>
+                        </div>
 
-                      <!-- Good To Have -->
-                      <div class="form-group col-md-6">
-                          <label for="goodToHave">Good To Have<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" id="goodToHave" name="goodToHave" ngModel required placeholder="Enter Good To Have" [(ngModel)]="job.goodToHave" #goodToHave="ngModel">
-                          <div *ngIf="goodToHave.invalid && (goodToHave.dirty || goodToHave.touched)" class="text-danger">Good To Have is required</div>
-                      </div>
+                        <!-- Good To Have -->
+                        <div class="form-group col-md-6">
+                            <label for="goodToHave">Good To Have<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="goodToHave" name="goodToHave" ngModel required
+                                placeholder="Enter Good To Have" [(ngModel)]="job.goodToHave" #goodToHave="ngModel">
+                            <div *ngIf="goodToHave.invalid && (goodToHave.dirty || goodToHave.touched)"
+                                class="text-danger">Good To Have is required</div>
+                        </div>
 
-                      <!-- Department -->
-                      <div class="form-group col-md-6">
-                          <label for="department">Department<span class="text-danger">*</span></label>
-                          <select class="form-control" id="department" name="department" [(ngModel)]="selectedDepartments" (change)="onDepartmentChange($event.target.value)">
-                              <option *ngFor="let department of departments" [ngValue]="department">{{ department.name }}</option>
-                          </select>
-                          <div *ngIf="!selectedDepartments && (jobForm.controls['department'].touched || jobForm.controls['department'].dirty)" class="text-danger">Department is required</div>
-                      </div>
+                        <!-- Department -->
+                        <div class="form-group col-md-6">
+                            <label for="department">Department<span class="text-danger">*</span></label>
+                            <select class="form-control" id="department" name="department"
+                                [(ngModel)]="selectedDepartments" (change)="onDepartmentChange($event.target.value)">
+                                <option *ngFor="let department of departments" [ngValue]="department">{{ department.name
+                                    }}</option>
+                            </select>
+                            <div *ngIf="!selectedDepartments && (jobForm.controls['department'].touched || jobForm.controls['department'].dirty)"
+                                class="text-danger">Department is required</div>
+                        </div>
 
-                      <!-- Client -->
-                      <div class="form-group col-md-6">
-                          <label for="clients">Client Name<span class="text-danger">*</span></label>
-                          <select class="form-control" id="clients" name="client" [(ngModel)]="selectedClients" (change)="onClientChange($event.target.value)">
-                              <option *ngFor="let client of clients" [ngValue]="client">{{ client.companyName }}</option>
-                          </select>
-                      </div>
+                        <!-- Client -->
+                        <div class="form-group col-md-6">
+                            <label for="clients">Client Name<span class="text-danger">*</span></label>
+                            <select class="form-control" id="clients" name="client" [(ngModel)]="selectedClients"
+                                (change)="onClientChange($event.target.value)">
+                                <option *ngFor="let client of clients" [ngValue]="client">{{ client.companyName }}
+                                </option>
+                            </select>
+                        </div>
 
-                      <!-- Openings -->
-                      <div class="form-group col-md-6">
-                          <label for="openings">Openings<span class="text-danger">*</span></label>
-                          <input type="number" class="form-control" id="openings" name="openings" ngModel required min="1" placeholder="Enter Openings" [(ngModel)]="job.openings" #openings="ngModel">
-                          <div *ngIf="openings.invalid && (openings.dirty || openings.touched)" class="text-danger">Openings is required</div>
-                      </div>
+                        <!-- Openings -->
+                        <div class="form-group col-md-6">
+                            <label for="openings">Openings<span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="openings" name="openings" ngModel required
+                                min="1" placeholder="Enter Openings" [(ngModel)]="job.openings" #openings="ngModel">
+                            <div *ngIf="openings.invalid && (openings.dirty || openings.touched)" class="text-danger">
+                                Openings is required</div>
+                        </div>
 
-                      <!-- Target Hire Date -->
-                      <div class="form-group col-md-6">
-                          <label for="targetHireDate">Target Hire Date<span class="text-danger">*</span></label>
-                          <input type="date" class="form-control" id="targetHireDate" name="targetHireDate" [(ngModel)]="job.targetHireDate" required [min]="todayDate()" #targetHireDate="ngModel">
-                          <div *ngIf="targetHireDate.invalid && (targetHireDate.dirty || targetHireDate.touched)" class="text-danger">Target Hire Date is required</div>
-                      </div>
+                        <!-- Target Hire Date -->
+                        <div class="form-group col-md-6">
+                            <label for="targetHireDate">Target Hire Date<span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" id="targetHireDate" name="targetHireDate"
+                                [(ngModel)]="job.targetHireDate" required [min]="todayDate()" #targetHireDate="ngModel">
+                            <div *ngIf="targetHireDate.invalid && (targetHireDate.dirty || targetHireDate.touched)"
+                                class="text-danger">Target Hire Date is required</div>
+                        </div>
 
-                      <!-- Currency -->
-                      <div class="form-group col-md-6">
-                          <label for="currency">Currency<span class="text-danger">*</span></label>
-                          <select class="form-control" id="currency" name="currency" [(ngModel)]="selectedCurrencys" (change)="onCurrencyChange($event.target.value)">
-                              <option *ngFor="let currency of currencys" [ngValue]="currency">{{ currency.name }}</option>
-                          </select>
-                      </div>
+                        <!-- Currency -->
+                        <div class="form-group col-md-6">
+                            <label for="currency">Currency<span class="text-danger">*</span></label>
+                            <select class="form-control" id="currency" name="currency" [(ngModel)]="selectedCurrencys"
+                                (change)="onCurrencyChange($event.target.value)">
+                                <option *ngFor="let currency of currencys" [ngValue]="currency">{{ currency.name }}
+                                </option>
+                            </select>
+                        </div>
 
-                      <!-- Salary Maximum -->
-                      <div class="form-group col-md-6">
-                          <label for="salaryMaximum">Salary Maximum<span class="text-danger">*</span></label>
-                          <input type="number" class="form-control" id="salaryMaximum" name="salaryMaximum" ngModel required min="0" placeholder="Enter Max Salary" [(ngModel)]="job.salaryMaximum" #salaryMaximum="ngModel">
-                          <div *ngIf="salaryMaximum.invalid && (salaryMaximum.dirty || salaryMaximum.touched)" class="text-danger">Salary Maximum is required</div>
-                      </div>
+                        <!-- Salary Maximum -->
+                        <div class="form-group col-md-6">
+                            <label for="salaryMaximum">Salary Maximum<span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="salaryMaximum" name="salaryMaximum" ngModel
+                                required min="0" placeholder="Enter Max Salary" [(ngModel)]="job.salaryMaximum"
+                                #salaryMaximum="ngModel">
+                            <div *ngIf="salaryMaximum.invalid && (salaryMaximum.dirty || salaryMaximum.touched)"
+                                class="text-danger">Salary Maximum is required</div>
+                        </div>
 
-                      <!-- Job Type -->
-                      <div class="form-group col-md-6">
-                          <label for="type">Job Type<span class="text-danger">*</span></label>
-                          <select class="form-control" id="type" name="type" [(ngModel)]="job.type">
-                              <option *ngFor="let type of types" [ngValue]="type.name">{{ type.name }}</option>
-                          </select>
-                      </div>
+                        <!-- Job Type -->
+                        <div class="form-group col-md-6">
+                            <label for="type">Job Type<span class="text-danger">*</span></label>
+                            <select class="form-control" id="type" name="type" [(ngModel)]="job.type">
+                                <option *ngFor="let type of types" [ngValue]="type.name">{{ type.name }}</option>
+                            </select>
+                        </div>
 
-                      <!-- Location -->
-                      <div class="form-group col-md-6">
-                          <label for="locations">Location<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" id="locations" name="locations" ngModel required placeholder="Enter Location" [(ngModel)]="job.locations" #locations="ngModel">
-                          <div *ngIf="locations.invalid && (locations.dirty || locations.touched)" class="text-danger">Location is required</div>
-                      </div>
+                        <!-- Location -->
+                        <div class="form-group col-md-6">
+                            <label for="locations">Location<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="locations" name="locations" ngModel required
+                                placeholder="Enter Location" [(ngModel)]="job.locations" #locations="ngModel">
+                            <div *ngIf="locations.invalid && (locations.dirty || locations.touched)"
+                                class="text-danger">Location is required</div>
+                        </div>
 
-                      <!-- Experience -->
-                      <div class="form-group col-md-6">
-                          <label for="experience">Experience<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" id="experience" name="experience" ngModel required placeholder="Enter Experience" [(ngModel)]="job.experience" #experience="ngModel">
-                          <div *ngIf="experience.invalid && (experience.dirty || experience.touched)" class="text-danger">Experience is required</div>
-                      </div>
+                        <!-- Experience -->
+                        <div class="form-group col-md-6">
+                            <label for="experience">Experience<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="experience" name="experience" ngModel required
+                                placeholder="Enter Experience" [(ngModel)]="job.experience" #experience="ngModel">
+                            <div *ngIf="experience.invalid && (experience.dirty || experience.touched)"
+                                class="text-danger">Experience is required</div>
+                        </div>
 
-                      <!-- Recruiter -->
-                      <div class="form-group col-md-6">
-                          <label for="recruiters">Recruiter<span class="text-danger">*</span></label>
-                          <select class="form-control" id="recruiters" name="recruiters" [(ngModel)]="selectedRecruiters" (change)="onRecruiterChange($event.target.value)">
-                              <option *ngFor="let recruiter of recruiters" [ngValue]="recruiter">{{ recruiter.firstName }}</option>
-                          </select>
-                      </div>
+                        <!-- Recruiter -->
+                        <div class="form-group col-md-6">
+                            <label for="recruiters">Recruiter<span class="text-danger">*</span></label>
+                            <select class="form-control" id="recruiters" name="recruiters"
+                                [(ngModel)]="selectedRecruiters" (change)="onRecruiterChange($event.target.value)">
+                                <option *ngFor="let recruiter of recruiters" [ngValue]="recruiter">{{
+                                    recruiter.firstName }}</option>
+                            </select>
+                        </div>
 
-                      <!-- Expected Notice Period -->
-                      <div class="form-group col-md-6">
-                          <label for="expectedNoticePeriod">Expected Notice Period<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" id="expectedNoticePeriod" name="expectedNoticePeriod" ngModel required placeholder="Enter Expected Notice Period" [(ngModel)]="job.expectedNoticePeriod" #expectedNoticePeriod="ngModel">
-                          <div *ngIf="expectedNoticePeriod.invalid && (expectedNoticePeriod.dirty || expectedNoticePeriod.touched)" class="text-danger">Expected Notice Period is required</div>
-                      </div>
-                  </div>
+                        <!-- Expected Notice Period -->
+                        <div class="form-group col-md-6">
+                            <label for="expectedNoticePeriod">Expected Notice Period<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="expectedNoticePeriod"
+                                name="expectedNoticePeriod" ngModel required placeholder="Enter Expected Notice Period"
+                                [(ngModel)]="job.expectedNoticePeriod" #expectedNoticePeriod="ngModel">
+                            <div *ngIf="expectedNoticePeriod.invalid && (expectedNoticePeriod.dirty || expectedNoticePeriod.touched)"
+                                class="text-danger">Expected Notice Period is required</div>
+                        </div>
+                    </div>
 
-                  <!-- Buttons -->
-                  <div class="text-right">
-                      <button type="submit" class="btn btn-primary" (click)="addJob()" [disabled]="!jobForm.valid">Save</button>
-                      <button type="button" class="btn btn-danger" routerLink="/jobs">Cancel</button>
-                  </div>
-              </form>
-          </div>
-      </div>
-  </div>
+
+                    <div class="form-actions text-right">
+
+                        <button type="button" class="btn btn-raised btn-primary" (click)="addJob()">
+                            <i class="fa fa-check"></i> Save
+                        </button>
+                        <button type="button" class="btn btn-raised btn-warning mr-2" (click)="cancel()">
+                            <i class="fa fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+
+<!--  -->
+
+
+
+<!--
+
+<div>
+    <div class="col-md-6 mb-3">
+        <label for="department">Department</label>
+        <select class="form-control" id="department" [(ngModel)]="selectedDepartments" name="department"
+            (change)="onDepartmentChange(selectedDepartments)">
+            <option *ngFor="let department of departments" [value]="department">{{ department.name }}</option>
+        </select>
+        <p>Selected Department: {{ selectedDepartments?.name }}</p>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label for="clients">Client Name</label>
+        <select class="form-control" id="clients" [(ngModel)]="selectedClients" name="clients"
+            (change)="onClientChange(selectedClients)">
+            <option *ngFor="let client of clients" [value]="client">{{ client.companyName }}</option>
+        </select>
+        <p>Selected Client: {{ selectedClients?.companyName }}</p>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label for="currency">Currency</label>
+        <select class="form-control" id="currency" [(ngModel)]="selectedCurrencys" name="currency"
+            (change)="onCurrencyChange(selectedCurrencys)">
+            <option *ngFor="let currency of currencys" [value]="currency">{{ currency.name }}</option>
+        </select>
+        <p>Selected Currency: {{ selectedCurrencys?.name }}</p>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label for="recruiters">Recruiter</label>
+        <select class="form-control" id="recruiters" [(ngModel)]="selectedRecruiters" name="recruiters"
+            (change)="onRecruiterChange(selectedRecruiters)">
+            <option *ngFor="let recruiter of recruiters" [value]="recruiter">{{ recruiter.firstName }}</option>
+        </select>
+        <p>Selected Recruiter: {{ selectedRecruiters?.firstName }}</p>
+    </div>
+
+    </div> -->
