@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreateCandidateComponent } from './create-candidate/create-candidate.component';
 import { ListCandidateComponent } from './list-candidate/list-candidate.component';
 import { EditCandidateComponent } from './edit-candidate/edit-candidate.component';
+import { HiringflowactivityComponent } from './hiringflowactivity/hiringflowactivity.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,13 @@ const routes: Routes = [
         component: EditCandidateComponent,
         data: {
           title: 'Dashboard 3'
+        }
+      },
+      {
+        path: 'hiringflowactivity',
+        component: HiringflowactivityComponent,
+        data: {
+          title: 'Hiringflowactivity'
         }
       },
     ]

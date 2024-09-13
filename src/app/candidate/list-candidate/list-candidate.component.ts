@@ -106,7 +106,7 @@ export class ListCandidateComponent implements OnInit {
 
   openHiringFlow(candidate: Candidate) {
     localStorage.setItem('candidateid', JSON.stringify(candidate.id));
-    this.router.navigate(['hiringflowactivity']);
+    this.router.navigate(['candidate/hiringflowactivity']);
   }
 
   toggleStages() {
