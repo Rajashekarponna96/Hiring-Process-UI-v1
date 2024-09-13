@@ -101,7 +101,7 @@
         </tbody>
       </table>
     </div>
-  
+
 
     <!-- Candidate List Template when Admin,Recruiter or vendor login -->
     <ng-template #candidateList>
@@ -133,7 +133,7 @@
               <td>{{ candidate.avialToJoin }}</td>
               <td>{{ candidate.stage }}</td>
               <td *ngIf="!isVendor && (isAdmin || isRecruiter)">
-                <div class="button-container">
+                <!-- <div class="button-container">
                   <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
                     (click)="handleEditcandidate(candidate)" icon="pi pi-pencil"></button>
                   <button pButton class="p-button-sm p-button-rounded p-button-danger"
@@ -142,7 +142,27 @@
                     icon="pi pi-ellipsis-v"></button>
                   <button pButton class="p-button-sm p-button-rounded p-button-secondary"
                     (click)="openHiringFlow(candidate)" icon="pi pi-eye"></button>
-                </div>
+                </div> -->
+
+<!-- Edit Icon -->
+<a class="warning p-0" (click)="handleEditcandidate(candidate)" placement="bottom" ngbTooltip="Edit Candidate">
+  <i class="icon-pencil font-medium-3 mr-2"></i>
+</a>
+
+
+<!-- Info Icon -->
+<a class="info p-0" (click)="openNew(candidate)" placement="bottom" ngbTooltip="Candidate Info">
+  <i class="icon-info font-medium-3 mr-2"></i>
+</a>
+
+<!-- Add Icon -->
+<a class="success p-0" (click)="openHiringFlow(candidate)" placement="bottom" ngbTooltip="Add Candidate">
+  <i class="icon-plus font-medium-3 mr-2"></i>
+</a>
+ <!-- Delete Icon -->
+ <a class="danger p-0" (click)="candidateDelete(candidate)" placement="bottom" ngbTooltip="Delete">
+  <i class="icon-trash font-medium-3 mr-2"></i>
+</a>
               </td>
             </tr>
             <tr *ngIf="candidates.length === 0">
@@ -198,4 +218,4 @@
     </div>
 
   </div>
-  
+
