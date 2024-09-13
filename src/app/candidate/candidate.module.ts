@@ -6,9 +6,10 @@ import { CreateCandidateComponent } from './create-candidate/create-candidate.co
 import { EditCandidateComponent } from './edit-candidate/edit-candidate.component';
 import { ListCandidateComponent } from './list-candidate/list-candidate.component';
 import { FormsModule } from '@angular/forms';
+import { HiringflowactivityComponent } from './hiringflowactivity/hiringflowactivity.component';
 
 @NgModule({
-  declarations: [CreateCandidateComponent, EditCandidateComponent, ListCandidateComponent],
+  declarations: [CreateCandidateComponent, EditCandidateComponent, ListCandidateComponent, HiringflowactivityComponent],
   imports: [
     CommonModule,
     CandidateRoutingModule,FormsModule,
