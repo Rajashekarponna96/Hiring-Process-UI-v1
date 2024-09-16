@@ -30,7 +30,7 @@
                               <!-- <h4 class="text-center">Please provide the candidate details.</h4> -->
                               <div class="row">
                                 <div class="form-group col-md-6">
-                                  <label for="firstname">First Name<span [style.display]="candidate.firstName ? 'none' : 'inline'"
+                                  <label for="firstname">First Name<span [style.display]="canFdidate.firstName ? 'none' : 'inline'"
                                       class="text-danger">*</span></label>
                                   <input class="form-control" id="firstname" name="firstname" type="text" placeholder="Enter First Name"
                                     [(ngModel)]="candidate.firstName" required #firstname="ngModel" />
@@ -146,7 +146,7 @@
                                   <label for="job">Job<span [style.display]="candidate.job ? 'none' : 'inline'"
                                       class="text-danger">*</span></label>
                                   <select class="form-control" [(ngModel)]="candidate.job" name="job" required>
-                                    <option *ngFor="let job of jobs" [ngValue]="job">
+                                    <option *ngFor="let job of jobs" [value]="job">
                                       {{ job.title }}
                                     </option>
                                   </select>
@@ -161,7 +161,7 @@
                                   <label for="source">Source<span [style.display]="candidate.source ? 'none' : 'inline'"
                                       class="text-danger">*</span></label>
                                   <select class="form-control" [(ngModel)]="candidate.source" name="source" required>
-                                    <option *ngFor="let source of sources" [ngValue]="source">
+                                    <option *ngFor="let source of sources" [value]="source">
                                       {{ source.name }}
                                     </option>
                                   </select>
@@ -176,7 +176,7 @@
                                   <label for="current">Current Location<span [style.display]="candidate.current ? 'none' : 'inline'"
                                       class="text-danger">*</span></label>
                                   <select class="form-control" [(ngModel)]="candidate.current" name="current" required>
-                                    <option *ngFor="let location of locations" [ngValue]="location">
+                                    <option *ngFor="let location of locations" [value]="location">
                                       {{ location.name }}
                                     </option>
                                   </select>
@@ -191,7 +191,7 @@
                                   <label for="preferred">Preferred Location<span
                                       [style.display]="candidate.preferred ? 'none' : 'inline'" class="text-danger">*</span></label>
                                   <select class="form-control" [(ngModel)]="candidate.preferred" name="preferred" required>
-                                    <option *ngFor="let location of locations" [ngValue]="location">
+                                    <option *ngFor="let location of locations" [value]="location">
                                       {{ location.name }}
                                     </option>
                                   </select>
@@ -446,8 +446,8 @@
                             pButton
                             class="w-auto mt-3"
                             icon="pi pi-check"
-                            (click)="addCandidate()"
-                            label="Save"
+                            (click)=" updateCandidate()"
+                            label="Update"
                         ></button>
 
                         <!-- Cancel Button -->
