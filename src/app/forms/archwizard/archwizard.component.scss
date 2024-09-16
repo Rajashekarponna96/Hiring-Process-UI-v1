@@ -8,4 +8,40 @@
 }
 
 
+/* Container for skills */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap; /* To ensure the skills wrap to the next row if needed */
+  gap: 10px; /* Small gap between each skill */
+  margin-top: 10px; /* Add some space between input and skill display */
+}
+
+/* Style for each skill */
+.skill-chip {
+  display: flex;
+  align-items: center;
+  background-color: #e0e0e0; /* Light grey background */
+  border-radius: 15px; /* Rounded corners */
+  padding: 5px 10px; /* Padding around the text */
+  font-size: 14px; /* Adjust font size if needed */
+  color: #333; /* Text color */
+  border: 1px solid #ccc; /* Optional border */
+}
+
+/* Button to remove skill */
+.remove-btn {
+  background-color: transparent; /* Transparent background */
+  border: none; /* Remove border */
+  color: red; /* Red color for 'x' */
+  font-size: 16px; /* Adjust size of the 'x' */
+  margin-left: 5px; /* Small space between text and 'x' */
+  cursor: pointer; /* Pointer cursor for button */
+}
+
+/* Hover effect on remove button */
+.remove-btn:hover {
+  color: darkred; /* Darker red on hover */
+}
+
+
 

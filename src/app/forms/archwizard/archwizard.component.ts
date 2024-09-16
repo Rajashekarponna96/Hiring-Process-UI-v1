@@ -76,6 +76,7 @@ export class ArchwizardComponent implements OnInit {
   vendor: Vendor = new Vendor();
   editMode!: boolean;
   selectedIndex: undefined;
+  
 
   constructor(
     private fileUploadService: CandidateService,private cdr: ChangeDetectorRef,
@@ -520,4 +521,25 @@ submit() {
   alert('Form submitted successfully!');
 }
 //
+
+addSkill() {
+  if (this.newSkill) {
+    this.skills.push(this.newSkill);
+    this.newSkill = ''; // Clear the input after adding
+  }
+}
+
+// Remove skill from the list
+removeSkill(index: number) {
+  this.skills.splice(index, 1);
+}
+
+// For handling form submission (optional)
+onSubmit() {
+  if (this.skills.length > 0) {
+    console.log('Skills submitted:', this.skills);
+  } else {
+    console.log('No skills added.');
+  }
+}
 }
