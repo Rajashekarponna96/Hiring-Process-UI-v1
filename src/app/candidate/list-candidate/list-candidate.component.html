@@ -48,14 +48,22 @@
     <!-- Header Container -->
     <div class="card-header d-flex justify-content-between align-items-center">
       <!-- Search Input -->
-
       <div class="input-group w-50 w-sm-auto">
         <input type="text" class="form-control" placeholder="Global Search" (input)="onGlobalFilter1($event)" />
         <div class="input-group-append">
           <span class="input-group-text"><i class="fas fa-search"></i></span>
         </div>
       </div>
-      <!-- Add New Vendor Button -->
+    
+      <!-- Filter Dropdown -->
+      <div class="input-group mx-2">
+        <select class="form-select" (change)="onFilterChange($event.target.value)">
+          <option value="" selected>Select Status</option>
+          <option *ngFor="let source of stages" [value]="source">{{ source }}</option>
+        </select>
+      </div>
+    
+      <!-- Add New Candidate Button -->
       <button (click)="navigateToCreateCandidate()" class="btn btn-outline-primary">
         <i class="bi bi-person-plus"></i> Add New
       </button>

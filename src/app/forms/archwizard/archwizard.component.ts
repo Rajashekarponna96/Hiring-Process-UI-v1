@@ -76,6 +76,10 @@ export class ArchwizardComponent implements OnInit {
   vendor: Vendor = new Vendor();
   editMode!: boolean;
   selectedIndex: undefined;
+
+  selectedFile: File | null = null;
+message: string = '';
+
   
 
   constructor(
@@ -272,6 +276,7 @@ export class ArchwizardComponent implements OnInit {
     this.candidateService.getAllCandidates().subscribe(
       data => {
         this.candidates = data;
+        this.candidates.sort((a, b) => new Date(b.createdTimestamp).getTime() - new Date(a.createdTimestamp).getTime());//this line for sort the records which records added recently
         this.changeDetectorRefs.markForCheck();
       },
       error => {
@@ -467,16 +472,15 @@ export class ArchwizardComponent implements OnInit {
   }
 //
 
-selectedFile: File | null = null;
-message: string = '';
 
 
-onFileSelected(event: any): void {
+onFileSelected(event: any): void {debugger;
   const file: File = event.target.files[0];
   const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 
   if (allowedTypes.includes(file.type)) {
     this.selectedFile = file;
+    this.onUploadAndClose();
     this.message = ''; // Clear any previous error messages
   } else {
     this.selectedFile = null;
@@ -542,4 +546,31 @@ onSubmit() {
     console.log('No skills added.');
   }
 }
+
+// onFileSelected(event: any) {
+//   const file: File = event.target.files[0];
+
+//   // Check if file is selected and the type is allowed
+//   if (file) {
+//     const allowedTypes = ['application/pdf', 'application/msword', 
+//                           'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    
+//     if (allowedTypes.includes(file.type)) {
+//       console.log('Selected file:', file);
+//       // You can now upload the file using a service
+//       this.uploadFile(file);
+//     } else {
+//       alert('Invalid file type. Please select a PDF, DOC, or DOCX file.');
+//     }
+//   }
+// }
+
+// uploadFile(file: File) {
+//   // Implement the file upload logic here
+//   console.log('Uploading file:', file);
+//   // You can call an API to upload the file using HttpClient
+// }
+
+
+
 }
