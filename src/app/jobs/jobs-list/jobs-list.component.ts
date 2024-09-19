@@ -103,9 +103,14 @@ export class JobsListComponent implements OnInit {
   // onGlobalFilter(table: Table, event: Event) {
   //   table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   // }
-  handleViewJob(){
-    this.router.navigate(['/jobs/view']);
+  // handleViewJob(){
+  //   this.router.navigate(['/jobs/view']);
 
+  // }
+  handleViewJob(job: Job): void {
+    console.log('Job object to view:', job); // Log the job object
+    // Navigate to the 'jobview' route with the job object as a parameter in the state
+    this.router.navigate(['jobs/view'], { state: { job: job } });
   }
   onGlobalFilter( ) {
     //  table.filterGlobal((event.target as HTMLInputElement).value, 'contains');

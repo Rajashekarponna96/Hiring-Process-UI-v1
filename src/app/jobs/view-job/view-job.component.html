@@ -1,3 +1,98 @@
-<p>
-  view-job works!
-</p>
+<section>
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <div class="row">
+    <div class="container-fluid">
+      <div class="row text-left">
+        <div class="col-md-8">
+
+          <p class="content-sub-header"> <a routerLink="/dashboard/dashboard1"><span style="font-size: 15px">Home</span></a>
+            <span style="font-size: 15px">/View Job</span>
+            <!-- <span style="font-size: 15px">/{{storename}}</span> -->
+
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container mt-5">
+  <div class="card">
+    <!-- <div class="card-header bg-primary text-white">
+      <h5>Job Details</h5>
+    </div> -->
+    <div class="card-body">
+      <div class="mb-4">
+        <h6 class="text-primary">Description:</h6>
+        <p class="value">{{ job?.description }}</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="text-primary">Title:</h6>
+          <p class="value">{{ job?.title }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h6 class="text-primary">Expected Notice Period:</h6>
+          <p class="value">{{ job?.expectedNoticePeriod }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h6 class="text-primary">Openings:</h6>
+          <p class="value">{{ job?.openings }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h6 class="text-primary">Target Hire Date:</h6>
+          <p class="value">{{ job?.targetHireDate }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h6 class="text-primary">Salary Maximum:</h6>
+          <p class="value">{{ job?.salaryMaximum }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h6 class="text-primary">Type:</h6>
+          <p class="value">{{ job?.type }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h6 class="text-primary">Locations:</h6>
+          <p class="value">{{ job?.locations }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h6 class="text-primary">Experience:</h6>
+          <p class="value">{{ job?.experience }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h6 class="text-primary">Primary Skills:</h6>
+          <p class="value">{{ job?.primarySkills }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h6 class="text-primary">Secondary Skills:</h6>
+          <p class="value">{{ job?.secondarySkills }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h6 class="text-primary">Good To Have:</h6>
+          <p class="value">{{ job?.goodToHave }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
