@@ -36,6 +36,7 @@ export class Candidate {
     vendor!: Vendor;
     createdBy!: UserAccout;
     modifiedBy!: UserAccout;
+    createdTimestamp: Date;
 
 
 }

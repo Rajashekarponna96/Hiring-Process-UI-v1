@@ -78,4 +78,13 @@ export class Candidate4Service {
       catchError(this.handleError)
     );
   }
+
+
+  getCandidatesByStage(stage: string, page: number, size: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/candidate/candidateStage1/${stage}`, {
+      params: { page: page.toString(), size: size.toString() }
+    });
+  }
+
+  
 }

@@ -80,6 +80,7 @@ export class ListCandidateComponent implements OnInit {
     this.candidateService.getCandidatesWithPagination(this.currentPage, this.selectedRecordsOption1)
       .subscribe((data) => {
         this.candidates = data.content || [];
+        this.candidates.sort((a, b) => new Date(b.createdTimestamp).getTime() - new Date(a.createdTimestamp).getTime());//this line for sort the records which records added recently
         this.pagination = data;
         this.totalElements = data.totalElements;
         this.totalPages = data.totalPages;
@@ -195,6 +196,7 @@ export class ListCandidateComponent implements OnInit {
     this.candidateService.getCandidatesByVendorId(vendorId, this.currentPage, this.selectedRecordsOption1)
       .subscribe((data) => {
         this.candidates = data.content || [];
+        this.candidates.sort((a, b) => new Date(b.createdTimestamp).getTime() - new Date(a.createdTimestamp).getTime());//this line for sort the records which records added recently
         this.pagination = data;
         this.totalElements = data.totalElements;
         this.totalPages = data.totalPages;
@@ -242,5 +244,28 @@ export class ListCandidateComponent implements OnInit {
     this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
     this.currentPage = 0;
     this.getvendorDetailsById();
+  }
+
+
+  // Handle the filter change
+  onFilterChange(selectedSource: string) {debugger;
+    console.log('Selected Source:', selectedSource);
+    // You can now use the selectedSource value to filter candidates or perform other actions.
+    this.applyFilter(selectedSource);
+  }
+
+  // Example filter logic
+  applyFilter(filterValue: string) {
+    this.candidateService.getCandidatesByStage(filterValue, this.currentPage, this.selectedRecordsOption1)
+    .subscribe((data) => {
+      this.candidates = data.content ;
+      this.pagination = data;
+      this.totalElements = data.totalElements;
+      this.totalPages = data.totalPages;
+      this.changeDetectorRefs.markForCheck();
+    }, (error) => {
+      console.error('Error fetching candidate list:', error);
+    });
+
   }
 }
