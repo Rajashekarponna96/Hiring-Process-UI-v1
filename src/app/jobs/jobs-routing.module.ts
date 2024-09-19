@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
 import { JobsListComponent } from './jobs-list/jobs-list.component';
 import { EditJobsComponent } from './edit-jobs/edit-jobs.component';
+import { ViewJobComponent } from './view-job/view-job.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,13 @@ const routes: Routes = [
           title: 'client-edit'
         }
       },
+      {
+        path: 'view',
+        component: ViewJobComponent,
+        data: {
+          title: 'client-view'
+        }
+      }
     ]
   }
 ];

@@ -99,7 +99,10 @@ export class JobsListComponent implements OnInit {
   // onGlobalFilter(table: Table, event: Event) {
   //   table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   // }
+  handleViewJob(){
+    this.router.navigate(['/jobs/view']);
 
+  }
   onGlobalFilter( ) {
     //  table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
