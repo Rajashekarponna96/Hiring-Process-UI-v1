@@ -21,49 +21,27 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <div class="row">
 
+    <div class="col-md-8">
 
+      <p class="content-sub-header"> <a routerLink="/dashboard/dashboard1"><span style="font-size: 15px">Home</span></a>
+        <span style="font-size: 15px">/Create Candidate</span>
+        <!-- <span style="font-size: 15px">/{{storename}}</span> -->
 
-  </div>
-
-</section>
-
-
-<!-- <div class="col-md-8">
-
-  <p class="content-sub-header"> <a routerLink="/dashboard/dashboard1"><span style="font-size: 15px">Home</span></a>
-    <span style="font-size: 15px">/Create Candidate</span>
-
-
-  </p>
-  <button (click)="fileInput.click()"
-    style="color: black; background-color: white; border: 1px solid #ccc; padding: 10px 20px; cursor: pointer;">
-<i class="pi pi-upload"></i> Upload Resume
+      </p>
+      <button (click)="fileInput.click()" 
+      style="color: #838284; background-color: white; border: 1px solid #ccc; padding: 10px 20px; cursor: pointer;">
+<i class="pi pi-upload"></i> {{ selectedFileName || '↑Upload Resume' }}
 </button>
 
 <input type="file" #fileInput accept=".pdf,.doc,.docx" style="display: none" (change)="onFileSelected($event)" />
 
 
 
-</div> -->
+    </div>
 
+  </div>
 
-<div class="col-md-8">
-
-  <p class="content-sub-header">
-    <a routerLink="/dashboard/dashboard1" class="text-decoration-none">
-      <span style="font-size: 15px" class="text-primary">Home</span>
-    </a>
-    <span style="font-size: 15px"> / Create Candidate</span>
-  </p>
-
-  <button (click)="fileInput.click()" class="btn btn-light border" style="padding: 10px 20px;">
-    <i class="pi pi-upload"></i> Upload Resume
-  </button>
-
-  <input type="file" #fileInput accept=".pdf,.doc,.docx" style="display: none" (change)="onFileSelected($event)" />
-
-</div>
-
+</section>
 
 <section id="ngx">
   <div class="card">
@@ -183,12 +161,12 @@
                       [style.display]="candidate.dateOfBirth ? 'none' : 'inline'" class="text-danger">*</span></label>
                   <input class="form-control" id="dateOfBirth" name="dateOfBirth" type="date"
                     [(ngModel)]="candidate.dateOfBirth" placeholder="Select Date of Birth" [max]="todayDate()" />
-                  <div
+                  <!-- <div
                     *ngIf="candidateForm.controls['dateOfBirth'].invalid && (candidateForm.controls['dateOfBirth'].dirty || candidateForm.controls['dateOfBirth'].touched)">
                     <small class="text-danger">Date of Birth is Required.</small>
-                  </div>
+                  </div> -->
                 </div>
-
+                
 
                 <div class="form-group col-md-6">
                   <label for="job">Job<span [style.display]="candidate.job ? 'none' : 'inline'"
@@ -251,52 +229,25 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="skills" class="font-weight-bold">Skills:</label>
-
+                  <label for="skills">Skills:</label>
+                
                   <!-- Validation message for required skills -->
-                  <div *ngIf="skills.length === 0 && candidateForm.submitted" class="text-danger mb-2">
+                  <div *ngIf="skills.length === 0 && candidateForm.submitted" style="color: red">
                     Skills are required
                   </div>
-
+                
                   <!-- Input for adding new skill -->
-                  <div class="input-group mb-3">
-                    <input type="text" [(ngModel)]="newSkill" name="newSkill" placeholder="Enter a skill" class="form-control" />
-                    <div class="input-group-append">
-                      <button type="button" class="btn btn-primary" (click)="addSkill()">Add Skill</button>
-                    </div>
-                  </div>
-
+                  <input type="text" [(ngModel)]="newSkill" name="newSkill" placeholder="Enter a skill">
+                  <button type="button" (click)="addSkill()">Add Skill</button>
+                  
                   <!-- Display the list of added skills -->
                   <div class="skills-container">
-                    <span class="skill-chip badge badge-info mr-2" *ngFor="let skill of skills; let i = index">
+                    <span class="skill-chip" *ngFor="let skill of skills; let i = index">
                       {{ skill }}
-                      <button type="button" class="close remove-btn" (click)="removeSkill(i)" aria-label="Remove">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                      <button type="button" class="remove-btn" (click)="removeSkill(i)">x</button>
                     </span>
                   </div>
                 </div>
-<!--  -->
-
-<!-- <div class="form-group col-md-6">
-  <label for="skills">Skills:</label>
-
-  <div *ngIf="skills.length === 0 && candidateForm.submitted" style="color: red">
-    Skills are required
-  </div>
-
-  <input type="text" [(ngModel)]="newSkill" name="newSkill" placeholder="Enter a skill">
-  <button type="button" (click)="addSkill()">Add Skill</button>
-
-  <div class="skills-container">
-    <span class="skill-chip" *ngFor="let skill of skills; let i = index">
-      {{ skill }}
-      <button type="button" class="remove-btn" (click)="removeSkill(i)">x</button>
-    </span>
-  </div>
-</div> -->
-
-                <!--  -->
 
               </div>
 

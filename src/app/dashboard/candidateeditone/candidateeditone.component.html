@@ -202,12 +202,27 @@
                                   </div>
                                 </div>
 
-                                <div class="form-group col-md-12">
-                                  <label for="skills">Skills</label>
-                                  <input class="form-control" id="skills" name="skills" type="text" placeholder="Enter Skills"
-                                    [(ngModel)]="candidate.skills" />
+                                <div class="form-group col-md-6">
+                                  <label for="skills">Skills:</label>
+                                
+                                  <!-- Validation message for required skills -->
+                                  <div *ngIf="skills.length === 0 && candidateForm.submitted" style="color: red">
+                                    Skills are required
+                                  </div>
+                                
+                                  <!-- Input for adding new skill -->
+                                  <input type="text" [(ngModel)]="newSkill" name="newSkill" placeholder="Enter a skill">
+                                  <button type="button" (click)="addSkill()">Add Skill</button>
+                                  
+                                  <!-- Display the list of added skills -->
+                                  <div class="skills-container">
+                                    <span class="skill-chip" *ngFor="let skill of skills; let i = index">
+                                      {{ skill }}
+                                      <button type="button" class="remove-btn" (click)="removeSkill(i)">x</button>
+                                    </span>
+                                  </div>
                                 </div>
-                              </div>
+                                </div>
 
                               <!-- Next Button -->
                               <!-- <div class="button-container text-end">
