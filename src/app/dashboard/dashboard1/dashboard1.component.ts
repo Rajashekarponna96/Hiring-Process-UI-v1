@@ -48,7 +48,7 @@ export class Dashboard1Component implements OnInit, OnDestroy {
   handleViewJob(job: Job): void {
     console.log('Job object to view:', job); // Log the job object
     // Navigate to the 'jobview' route with the job object as a parameter in the state
-    this.router.navigate(['jobview'], { state: { job: job } });
+    this.router.navigate(['jobs/view'], { state: { job: job } });
   }
 
   onSortChange(event: any): void {

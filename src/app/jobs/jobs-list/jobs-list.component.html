@@ -87,19 +87,19 @@
                      (click)="handleEditJob(job)" placement="bottom" ngbTooltip="Edit">
                     <i class="ft-edit-2 font-medium-3 mr-2"></i>
                   </a>
-                
+
                   <!-- Delete Button -->
                   <a class="danger p-0" data-original-title="" title=""
                      (click)="Jobdelete(job)" placement="bottom" ngbTooltip="Delete">
                     <i class="icon-trash font-medium-3 mr-2"></i>
                   </a>
-                
+
                   <!-- View Button -->
                   <a class="info p-0" data-original-title="" title=""
                      (click)="handleViewJob(job)" placement="bottom" ngbTooltip="View">
                     <i class="ft-eye font-medium-3 mr-2"></i>
                   </a>
-                
+
                   <!-- Upload Button -->
                   <a class="primary p-0" data-original-title="" title=""
                      (click)="handleUpload(job)" placement="bottom" ngbTooltip="Upload">
@@ -107,11 +107,11 @@
                   </a>
 
                   <!-- View Job Button -->
-  <a class="info p-0" (click)="handleViewJob()" placement="bottom" ngbTooltip="View">
+  <!-- <a class="info p-0" (click)="handleViewJob(job)" placement="bottom" ngbTooltip="View">
     <i class="icon-eye font-medium-3 mr-2"></i>
-  </a>
+  </a> -->
                 </div>
-                
+
               </td>
             </tr>
             <tr *ngIf="jobs.length === 0">
