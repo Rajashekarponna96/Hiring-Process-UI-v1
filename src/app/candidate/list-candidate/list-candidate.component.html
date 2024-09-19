@@ -54,15 +54,27 @@
           <span class="input-group-text"><i class="fas fa-search"></i></span>
         </div>
       </div>
-    
+
       <!-- Filter Dropdown -->
-      <div class="input-group mx-2">
+      <!-- <div class="input-group mx-2">
         <select class="form-select" (change)="onFilterChange($event.target.value)">
           <option value="" selected>Select Status</option>
           <option *ngFor="let source of stages" [value]="source">{{ source }}</option>
         </select>
+      </div> -->
+
+      <!-- form-select custom-select d-block w-100 -->
+
+      <div class="input-group mx-2">
+        <select class="form-select " (change)="onFilterChange($event.target.value)">
+          <option value="" selected>Select Stage</option>
+          <option *ngFor="let source of stages" [value]="source">{{ source }}</option>
+        </select>
+        <div class="input-group-append">
+          <span class="input-group-text"><i class="fas fa-filter"></i></span>
+        </div>
       </div>
-    
+
       <!-- Add New Candidate Button -->
       <button (click)="navigateToCreateCandidate()" class="btn btn-outline-primary">
         <i class="bi bi-person-plus"></i> Add New
