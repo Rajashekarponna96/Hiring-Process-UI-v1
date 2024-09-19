@@ -37,6 +37,8 @@ export class Candidate {
     createdBy!: UserAccout;
     modifiedBy!: UserAccout;
     createdTimestamp: Date;
+    fileName:String;
+    
 
 
 }
