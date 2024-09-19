@@ -82,16 +82,31 @@
               <td>{{ job.experience }}</td>
               <td>
                 <div class="button-container">
-                  <a class="success p-0" data-original-title="" title="
-                  (click)="(click)="handleEditJob(job)" placement="bottom" ngbTooltip="Edit">
-                  <i class="ft-edit-2 font-medium-3 mr-2"></i>
-                 </a>
-
-                  <a class="danger p-0" data-original-title="" title="
-                  (click)="(click)="Jobdelete(job)" placement="bottom" ngbTooltip="Delete">
-                  <i class="icon-trash font-medium-3 mr-2"></i>
+                  <!-- Edit Button -->
+                  <a class="success p-0" data-original-title="" title=""
+                     (click)="handleEditJob(job)" placement="bottom" ngbTooltip="Edit">
+                    <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                  </a>
+                
+                  <!-- Delete Button -->
+                  <a class="danger p-0" data-original-title="" title=""
+                     (click)="Jobdelete(job)" placement="bottom" ngbTooltip="Delete">
+                    <i class="icon-trash font-medium-3 mr-2"></i>
+                  </a>
+                
+                  <!-- View Button -->
+                  <a class="info p-0" data-original-title="" title=""
+                     (click)="handleViewJob(job)" placement="bottom" ngbTooltip="View">
+                    <i class="ft-eye font-medium-3 mr-2"></i>
+                  </a>
+                
+                  <!-- Upload Button -->
+                  <a class="primary p-0" data-original-title="" title=""
+                     (click)="handleUpload(job)" placement="bottom" ngbTooltip="Upload">
+                    <i class="ft-upload font-medium-3 mr-2"></i>
                   </a>
                 </div>
+                
               </td>
             </tr>
             <tr *ngIf="jobs.length === 0">

@@ -45,6 +45,10 @@ export class JobsListComponent implements OnInit {
     this.router.navigate(['jobs/edit'], { state: { job: job } });
   }
 
+  handleUpload(job: Job) {
+    this.router.navigate(['forms/archwizard'], { state: { job: job } });
+  }
+
   Jobdelete(job: Job) {
     this.jobService.deleteJob(job.id)
       .subscribe(
