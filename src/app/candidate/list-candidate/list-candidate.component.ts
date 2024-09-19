@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Candidate4Service } from 'app/shared/hiring-process-services/candidate4.service';
+import { FileUploadService } from 'app/shared/hiring-process-services/file-upload.service';
 import { Candidate } from 'app/shared/model/candidate';
 import { Pagination } from 'app/shared/model/pagination';
 import { UserAccout } from 'app/shared/model/userAccount';
@@ -48,7 +49,8 @@ export class ListCandidateComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private changeDetectorRefs: ChangeDetectorRef,
-    private candidateService: Candidate4Service
+    private candidateService: Candidate4Service,
+    private fileUploadService: FileUploadService,
   ) { }
 
   ngOnInit() {
@@ -120,6 +122,16 @@ export class ListCandidateComponent implements OnInit {
     this.submitted = false;
     this.productDialog = true;
   }
+  fileName:any
+  openNew1(candidate: Candidate) {
+    this.fileName=candidate.fileName;
+    this.fileUploadService.viewFile(this.fileName).subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    });
+  }
+
+
 
   hideDialog() {
     this.productDialog = false;

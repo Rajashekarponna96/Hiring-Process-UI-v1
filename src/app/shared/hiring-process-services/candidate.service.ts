@@ -88,8 +88,26 @@ export class CandidateService {
   }
 
 
+  // addCandidate(candidate: Candidate, file: File): Observable<Candidate> {
+  //   // Create a FormData object to send both the candidate and the file
+  //   const formData: FormData = new FormData();
+  
+  //   // Append the candidate data as a JSON string
+  //   formData.append('candidate', new Blob([JSON.stringify(candidate)], { type: 'application/json' }));
+  
+  //   // Append the file if it exists
+  //   if (file) {
+  //     formData.append('file', file);
+  //   }
+  
+  //   // Send the form data to the backend using HttpClient
+  //   return this.http.post<Candidate>(`${this.baseUrl}/candidate/add`, formData).pipe(
+  //     catchError(this.handleError)  // Handle any errors
+  //   );
+  // }
 
-  deleteCandidate(candidateId: number): Observable<any> {
+
+deleteCandidate(candidateId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/candidate/${candidateId}`).pipe(
       catchError(this.handleError)
     );

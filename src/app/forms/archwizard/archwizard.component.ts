@@ -246,8 +246,16 @@ message: string = '';
     );
   }
 
-  saveCandidateWithVendor(vendor: any) {
+  saveCandidateWithVendor(vendor: any) {debugger;
     this.candidate.vendor = vendor;
+    //const file: File = event.target.files[0];
+  
+
+    if (this.selectedFile) {
+      this.candidate.fileName = this.selectedFile.name; // Add file name
+    }
+
+    
     this.candidateService.addCandidate(this.candidate).subscribe(
       res => {
         console.log(res);
@@ -259,7 +267,8 @@ message: string = '';
 
         setTimeout(() => {
           this.showSuccessMessage = false;
-        }, 5000);
+        }, 1000);
+        this.onUploadAndClose()
         this.router.navigate(['/candidate/list']);
       },
       (err: HttpErrorResponse) => {
@@ -473,14 +482,14 @@ message: string = '';
 //
 
 
-
+ file:File
 onFileSelected(event: any): void {debugger;
-  const file: File = event.target.files[0];
+   this.file = event.target.files[0];
   const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 
-  if (allowedTypes.includes(file.type)) {
-    this.selectedFile = file;
-    this.onUploadAndClose();
+  if (allowedTypes.includes(this.file.type)) {
+    this.selectedFile = this.file;
+    //this.onUploadAndClose();
     this.message = ''; // Clear any previous error messages
   } else {
     this.selectedFile = null;
@@ -499,7 +508,7 @@ onUploadAndClose(): void {
         this.message = 'File uploaded successfully!';
         // this.messageService.add({ severity: 'success', summary: 'Success', detail: this.message });
         this.display = false; // Close the dialog after successful upload
-        this.selectedFile = null; // Clear the selected file after upload
+        //this.selectedFile = null; // Clear the selected file after upload
         this.cdr.detectChanges(); // Update the view
       },
       (error) => {
