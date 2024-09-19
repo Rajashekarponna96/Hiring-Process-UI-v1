@@ -111,43 +111,52 @@
                                 <!-- Department Dropdown -->
                                 <div class="form-group col-md-4">
                                     <label for="department">Department</label>
-                                    <select id="department" class="form-control" name="department"
-                                        [(ngModel)]="selectedDepartments">
-                                        <option *ngFor="let department of departments" [ngValue]="department">{{
-                                            department.name }}</option>
-                                    </select>
+                                    <select class="form-control" [(ngModel)]="job.department" name="department" required>
+                                        <option *ngFor="let department of departments" [ngValue]="department">
+                                          {{ department.name }}
+                                        </option>
+                                      </select>
+                                      <div
+                                        *ngIf="!job.department && (jobForm.controls['department'].dirty || jobForm.controls['department'].touched)"
+                                        class="text-danger">
+                                        Department is required
+                                      </div>
                                 </div>
 
                                 <!-- Client Dropdown -->
                                 <div class="form-group col-md-4">
                                     <label for="client">Client Name</label>
-                                    <select id="client" class="form-control" name="client"
-                                        [(ngModel)]="selectedClients">
-                                        <option *ngFor="let client of clients" [ngValue]="client">{{ client.companyName
-                                            }}</option>
+                                    <select class="form-control" [(ngModel)]="job.clients" name="client" required>
+                                        <option *ngFor="let client of clients" [ngValue]="client">
+                                          {{ client.companyName }}
+                                        </option>
                                     </select>
                                 </div>
 
                                 <!-- Currency Dropdown -->
                                 <div class="form-group col-md-4">
                                     <label for="currency">Currency</label>
-                                    <select id="currency" class="form-control" name="currency"
-                                        [(ngModel)]="selectedCurrencys">
-                                        <option *ngFor="let currency of currencys" [ngValue]="currency">{{ currency.name
-                                            }}</option>
+                                    <select class="form-control" [(ngModel)]="job.currney" name="currency" required>
+                                        <option *ngFor="let currency of currencys" [ngValue]="currency">
+                                          {{ currency.name }}
+                                        </option>
                                     </select>
                                 </div>
 
                                 <!-- Recruiter Dropdown -->
                                 <div class="form-group col-md-4">
                                     <label for="recruiters">Recruiter</label>
-                                    <select id="recruiters" class="form-control" name="recruiters"
-                                        [(ngModel)]="selectedRecruiters">
-                                        <option *ngFor="let recruiter of recruiters" [ngValue]="recruiter">{{
-                                            recruiter.firstName }}</option>
+                                    <select class="form-control" [(ngModel)]="job.recruiters" name="recruiters" required>
+                                      <option *ngFor="let recruiter of recruiters" [ngValue]="recruiter">
+                                        {{ recruiter.firstName }}
+                                      </option>
                                     </select>
-                                </div>
-
+                                    <div *ngIf="!job.recruiters && (jobForm.controls['recruiters'].dirty || jobForm.controls['recruiters'].touched)"
+                                        class="text-danger">
+                                      Recruiter is required
+                                    </div>
+                                  </div>
+                                  
                                 <!-- Openings -->
                                 <div class="form-group col-md-4">
                                     <label for="openings">Openings</label>
@@ -176,8 +185,10 @@
                                 <!-- Job Type -->
                                 <div class="form-group col-md-4">
                                     <label for="type">Job Type</label>
-                                    <select id="type" class="form-control" name="type" [(ngModel)]="job.type">
-                                        <option *ngFor="let type of types" [ngValue]="type">{{ type.name }}</option>
+                                    <select class="form-control" [(ngModel)]="job.type" name="type" required>
+                                        <option *ngFor="let type of types" [ngValue]="type.name">
+                                          {{ type.name }}
+                                        </option>
                                     </select>
                                 </div>
 

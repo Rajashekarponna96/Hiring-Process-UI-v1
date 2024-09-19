@@ -23,16 +23,12 @@ export class EditJobsComponent implements OnInit {
   job: Job = new Job();
   jobs: Job[] = [];
   client = new Client();
-  selectedClients: any;
   clients: Client[] = [];
   department = new Department();
-  selectedDepartments: any;
   departments: Department[] = [];
   currency = new Currency();
-  selectedCurrencys: any;
   currencys: Currency[] = [];
   recruiter = new Recruiter();
-  selectedRecruiters: any;
   recruiters: Recruiter[] = [];
   locations1: locations1[] = [];
 
@@ -58,11 +54,6 @@ export class EditJobsComponent implements OnInit {
 
     if (job) {
       this.job = job;
-      this.selectedDepartments = this.job.department;
-      this.selectedCurrencys = this.job.currney;
-      this.selectedRecruiters = this.job.recruiters;
-      this.selectedJobType = this.job.type;
-      this.selectedClients = this.job.clients;
     } else {
       console.error('Job data is missing in state.');
     }
@@ -86,6 +77,9 @@ export class EditJobsComponent implements OnInit {
     this.jobService.getAllDepartments().subscribe((data: Department[]) => {
       this.departments = data;
       this.changeDetectorRefs.markForCheck();
+      if (this.job.department) {
+        this.job.department = this.departments.find(dep => dep.id === this.job.department.id);
+      }
     });
   }
 
@@ -93,6 +87,9 @@ export class EditJobsComponent implements OnInit {
     this.jobService.getAllCurrencies().subscribe((data: Currency[]) => {
       this.currencys = data;
       this.changeDetectorRefs.markForCheck();
+      if (this.job.currney) {
+        this.job.currney = this.currencys.find(currency => currency.id === this.job.currney.id) || null;
+      }
     });
   }
 
@@ -100,13 +97,22 @@ export class EditJobsComponent implements OnInit {
     this.jobService.getAllRecruiters().subscribe((data: Recruiter[]) => {
       this.recruiters = data;
       this.changeDetectorRefs.markForCheck();
+  
+      // Ensure that the recruiter object is selected properly
+      if (this.job.recruiters) {
+        this.job.recruiters = this.recruiters.find(recruiter => recruiter.id === this.job.recruiters.id) || null;
+      }
     });
   }
+  
 
   getAllClientList() {
     this.jobService.getAllClients().subscribe((data: Client[]) => {
       this.clients = data;
       this.changeDetectorRefs.markForCheck();
+      if (this.job.clients) {
+        this.job.clients = this.clients.find(client => client.id === this.job.clients.id);
+      }
     });
   }
 
@@ -114,12 +120,12 @@ export class EditJobsComponent implements OnInit {
     this.router.navigate(['/jobs/list']);
   }
 
-  updateJob() {
-    this.job.department = this.selectedDepartments;
-    this.job.recruiters = this.selectedRecruiters;
-    this.job.currney = this.selectedCurrencys;
-    this.job.type = this.selectedJobType;
-    this.job.clients = this.selectedClients;
+  updateJob() { debugger
+   //  this.job.department = this.departments;
+  //   this.job.recruiters = this.recruiter;
+  //   this.job.currney = this.currency;
+  //  // this.job.type = this.types;
+  //   this.job.clients = this.client;
 
     this.jobService.updateJob(this.job).subscribe(
       res => {
@@ -137,25 +143,25 @@ export class EditJobsComponent implements OnInit {
     );
   }
 
-  onDepartmentChange(data: any) {
-    console.log("selected department:", data);
-    console.log("departments: " + JSON.stringify(this.selectedDepartments));
-  }
+  // onDepartmentChange(data: any) {
+  //   console.log("selected department:", data);
+  //   console.log("departments: " + JSON.stringify(this.selectedDepartments));
+  // }
 
-  onRecruiterChange(data: any) {
-    console.log("selected recruiter:", data);
-    console.log("Recruiters: " + JSON.stringify(this.selectedRecruiters));
-  }
+  // onRecruiterChange(data: any) {
+  //   console.log("selected recruiter:", data);
+  //   console.log("Recruiters: " + JSON.stringify(this.selectedRecruiters));
+  // }
 
-  onCurrencyChange(data: any) {
-    console.log("selected currency:", data);
-    console.log("Currencies: " + JSON.stringify(this.selectedCurrencys));
-  }
+  // onCurrencyChange(data: any) {
+  //   console.log("selected currency:", data);
+  //   console.log("Currencies: " + JSON.stringify(this.selectedCurrencys));
+  // }
 
-  onClientChange(data: any) {
-    console.log("selected client:", data);
-    console.log("clients: " + JSON.stringify(this.selectedClients));
-  }
+  // onClientChange(data: any) {
+  //   console.log("selected client:", data);
+  //   console.log("clients: " + JSON.stringify(this.selectedClients));
+  // }
 
   todayDate(): string {
     return new Date().toISOString().split('T')[0];
