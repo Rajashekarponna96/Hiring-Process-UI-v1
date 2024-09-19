@@ -29,8 +29,8 @@
 
       </p>
       <button (click)="fileInput.click()" 
-        style="color: black; background-color: white; border: 1px solid #ccc; padding: 10px 20px; cursor: pointer;">
-  <i class="pi pi-upload"></i> Upload Resume
+      style="color: #838284; background-color: white; border: 1px solid #ccc; padding: 10px 20px; cursor: pointer;">
+<i class="pi pi-upload"></i> {{ selectedFileName || '↑Upload Resume' }}
 </button>
 
 <input type="file" #fileInput accept=".pdf,.doc,.docx" style="display: none" (change)="onFileSelected($event)" />
@@ -161,10 +161,10 @@
                       [style.display]="candidate.dateOfBirth ? 'none' : 'inline'" class="text-danger">*</span></label>
                   <input class="form-control" id="dateOfBirth" name="dateOfBirth" type="date"
                     [(ngModel)]="candidate.dateOfBirth" placeholder="Select Date of Birth" [max]="todayDate()" />
-                  <div
+                  <!-- <div
                     *ngIf="candidateForm.controls['dateOfBirth'].invalid && (candidateForm.controls['dateOfBirth'].dirty || candidateForm.controls['dateOfBirth'].touched)">
                     <small class="text-danger">Date of Birth is Required.</small>
-                  </div>
+                  </div> -->
                 </div>
                 
 

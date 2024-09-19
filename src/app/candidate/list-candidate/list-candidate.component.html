@@ -117,8 +117,9 @@
         <table class="table">
           <thead>
             <tr>
-              <th style="width: 10%">Firstname</th>
-              <th style="width: 10%">Lastname</th>
+              <!-- <th style="width: 10%">Firstname</th>
+              <th style="width: 10%">Lastname</th> -->
+              <th style="width: 10%">CandidateName</th>
               <th style="width: 10%">Email</th>
               <th style="width: 10%">Mobile</th>
               <th style="width: 10%">Source</th>
@@ -131,8 +132,9 @@
           </thead>
           <tbody>
             <tr *ngFor="let candidate of candidates">
-              <td>{{ candidate.firstName }}</td>
-              <td>{{ candidate.lastName }}</td>
+              <!-- <td>{{ candidate.firstName }}</td>
+              <td>{{ candidate.lastName }}</td> -->
+              <td>{{ candidate.firstName }} {{ candidate.lastName }}</td>
               <td>{{ candidate.email }}</td>
               <td>{{ candidate.mobile }}</td>
               <td>{{ candidate.source.name }}</td>
@@ -205,7 +207,7 @@
     </div>
 
     <!-- Bootstrap Modal for Hiring Flow Stages -->
-    <div class="modal fade" id="productDialog" tabindex="-1" aria-labelledby="productDialogLabel" aria-hidden="true" [class.show]="productDialog" (click)="hideDialog()">
+    <!-- <div class="modal fade" id="productDialog" tabindex="-1" aria-labelledby="productDialogLabel" aria-hidden="true" [class.show]="productDialog" (click)="hideDialog()">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -216,6 +218,45 @@
             <div class="form-check form-check-inline" *ngFor="let stage of stages">
               <input class="form-check-input" type="radio" [id]="stage.toLowerCase()" name="stage" [value]="stage" [(ngModel)]="temporaryStage" [disabled]="stages.indexOf(stage) <= stages.indexOf(selectededCandidate.stage)" />
               <label class="form-check-label" [for]="stage.toLowerCase()">{{ stage }}</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="hideDialog()">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="updateCandidate(selectededCandidate, temporaryStage)">Save</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+
+
+    <div class="modal" tabindex="-1" [ngClass]="{'show': productDialog}" [style.display]="productDialog ? 'block' : 'none'" role="dialog">
+      <div class="modal-dialog" role="document" [style.width.px]="450">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">HiringFlow Stages</h5>
+            <button type="button" class="close" (click)="hideDialog()">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-6" *ngFor="let stage of stages">
+                  <div class="form-check">
+                    <input 
+                      type="radio" 
+                      class="form-check-input" 
+                      [id]="stage.toLowerCase()" 
+                      name="stage" 
+                      [value]="stage" 
+                      [(ngModel)]="temporaryStage"
+                      [disabled]="stages.indexOf(stage) <= stages.indexOf(selectededCandidate.stage)">
+                    <label class="form-check-label" [for]="stage.toLowerCase()">{{ stage }}</label>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="modal-footer">

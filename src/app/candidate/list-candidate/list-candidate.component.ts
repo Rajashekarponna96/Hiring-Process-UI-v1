@@ -42,8 +42,10 @@ export class ListCandidateComponent implements OnInit {
   temporaryStage!: string;
   vendor!: Vendor;
   showStages: boolean = false;
+  fileName:any
+  fullName:any
 
-  stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived', 'Hold', 'Reject'];
+  stages: any[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived', 'Hold', 'Reject'];
 
   constructor(
     private router: Router,
@@ -82,7 +84,7 @@ export class ListCandidateComponent implements OnInit {
     this.candidateService.getCandidatesWithPagination(this.currentPage, this.selectedRecordsOption1)
       .subscribe((data) => {
         this.candidates = data.content || [];
-        this.candidates.sort((a, b) => new Date(b.createdTimestamp).getTime() - new Date(a.createdTimestamp).getTime());//this line for sort the records which records added recently
+       // this.candidates.sort((a, b) => new Date(b.createdTimestamp).getTime() - new Date(a.createdTimestamp).getTime());//this line for sort the records which records added recently
         this.pagination = data;
         this.totalElements = data.totalElements;
         this.totalPages = data.totalPages;
@@ -116,13 +118,13 @@ export class ListCandidateComponent implements OnInit {
     this.showStages = !this.showStages;
   }
 
-  openNew(candidate: Candidate) {
+  openNew(candidate: Candidate) {debugger;
     this.selectededCandidate = candidate;
     this.temporaryStage = candidate.stage;
     this.submitted = false;
     this.productDialog = true;
   }
-  fileName:any
+  
   openNew1(candidate: Candidate) {
     this.fileName=candidate.fileName;
     this.fileUploadService.viewFile(this.fileName).subscribe(blob => {

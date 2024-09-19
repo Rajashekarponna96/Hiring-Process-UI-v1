@@ -483,21 +483,24 @@ message: string = '';
 
 
  file:File
-onFileSelected(event: any): void {debugger;
+ selectedFileName: string | null = null;
+
+ onFileSelected(event: any): void {
    this.file = event.target.files[0];
-  const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-
-  if (allowedTypes.includes(this.file.type)) {
-    this.selectedFile = this.file;
-    //this.onUploadAndClose();
-    this.message = ''; // Clear any previous error messages
-  } else {
-    this.selectedFile = null;
-    this.message = 'Invalid file type. Please select a PDF or Word document.';
-  }
-
-  this.cdr.detectChanges(); // Trigger change detection to update the view
-}
+   const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+ 
+   if (this.file && allowedTypes.includes(this.file.type)) {
+     this.selectedFile = this.file;
+     this.selectedFileName = this.file.name;  // Set the selected file name to display on the button
+     this.message = ''; // Clear any previous error messages
+   } else {
+     this.selectedFile = null;
+     this.selectedFileName = null;  // Clear file name if invalid
+     this.message = 'Invalid file type. Please select a PDF or Word document.';
+   }
+ 
+   this.cdr.detectChanges(); // Trigger change detection to update the view
+ }
 
 
 onUploadAndClose(): void {
