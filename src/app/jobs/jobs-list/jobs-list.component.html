@@ -67,9 +67,10 @@
             <tr>
               <th style="width: 25%">Title</th>
               <th style="width: 25%">Description</th>
-              <th style="width: 25%">Openings</th>
+              <th style="width: 20%">Openings</th>
               <th style="width: 20%">Target Hire Date</th>
-              <th style="width: 25%">Experience</th>
+              <th style="width: 20%">Experience</th>
+              <th style="width: 20%">Client</th>
               <th style="width: 20%">Actions</th>
             </tr>
           </thead>
@@ -80,6 +81,7 @@
               <td>{{ job.openings }}</td>
               <td>{{ job.targetHireDate }}</td>
               <td>{{ job.experience }}</td>
+              <td>{{ job.clients.companyName}}</td>
               <td>
                 <div class="button-container">
                   <!-- Edit Button -->
