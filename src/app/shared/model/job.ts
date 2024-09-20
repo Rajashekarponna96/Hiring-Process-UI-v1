@@ -19,7 +19,7 @@ export class Job {
     type!: string;
     locations!: Location;
     flows!: HiringFlow;
-    experience!: number;
+    experience!: string;
     candidates!: Candidate;
     recruiters!: Recruiter;
     clients!: Client;
