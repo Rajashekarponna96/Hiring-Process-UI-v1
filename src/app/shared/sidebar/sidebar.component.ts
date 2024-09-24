@@ -142,7 +142,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
         ],
         permissionName: 'home'
       },
-      { path: '/candidate/list', title: 'Candidate', icon: 'fas fa-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
+      { path: '/candidate/list', title: 'Candidate', icon: 'fas fa-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'candidate' },
       { path: '/dashboard/resumeview', title: 'resumeview', icon: 'fas fa-file-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'email' },
       { path: '/jobs/list', title: 'Job', icon: 'fas fa-briefcase', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },
       { path: '/recruiter/list', title: 'Recruiter', icon: 'fas fa-user-tie', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'recruiter' },
