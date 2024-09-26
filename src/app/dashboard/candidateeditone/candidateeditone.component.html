@@ -91,6 +91,17 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
+                                  <label for="avialToJoin">Primary Skill<span
+                                      [style.display]="candidate.primarySkill ? 'none' : 'inline'" class="text-danger">*</span></label>
+                                  <input class="form-control" id="primarySkill" name="primarySkill" type="text"
+                                    placeholder="Enter Primary Skill" [(ngModel)]="candidate.primarySkill" required
+                                    #primarySkill="ngModel" />
+                                  <div *ngIf="primarySkill.invalid && (primarySkill.dirty || primarySkill.touched)">
+                                    <div class="text-danger">Primary Skill is required</div>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-6">
                                   <label for="currentSalary">Current Salary (LPA) (INR)<span
                                       [style.display]="candidate.currentSalary ? 'none' : 'inline'" class="text-danger">*</span></label>
                                   <input class="form-control" id="currentSalary" name="currentSalary" type="number"

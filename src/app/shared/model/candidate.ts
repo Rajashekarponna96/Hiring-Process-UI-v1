@@ -38,6 +38,7 @@ export class Candidate {
     modifiedBy!: UserAccout;
     createdTimestamp: Date;
     fileName:String;
+    primarySkill:String;
     
 
 

@@ -267,7 +267,7 @@ message: string = '';
 
         setTimeout(() => {
           this.showSuccessMessage = false;
-        }, 1000);
+        }, 500);
         this.onUploadAndClose()
         this.router.navigate(['/candidate/list']);
       },
