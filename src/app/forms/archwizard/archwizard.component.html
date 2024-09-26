@@ -424,11 +424,27 @@
                   <input id="dateOfJoining" name="dateOfJoining" type="date" class="form-control"
                     [(ngModel)]="experience.dateOfJoining" (ngModelChange)="updateEndDateMinDate1()" />
                 </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                   <label for="dateOfRelieving" class="form-label">Date of Relieving</label>
                   <input id="dateOfRelieving" name="dateOfRelieving" type="date" class="form-control"
                     [(ngModel)]="experience.dateOfRelieving" [min]="experience.dateOfJoining" />
+                </div> -->
+                <div class="col-md-6">
+                  <label for="dateOfRelieving" class="form-label">Date of Relieving</label>
+                
+                  <!-- Dropdown for 'Still working' or 'Enter relieving date' -->
+                  <select id="relievingOption" name="relievingOption" class="form-control" [(ngModel)]="experience.relievingOption" (change)="onRelievingOptionChange($event)">
+                    <option value="stillWorking">Still working</option>
+                    <option value="enterDate">Enter relieving date</option>
+                  </select>
+                
+                  <!-- Date input for 'Enter relieving date' - Show only if selected -->
+                  <div *ngIf="experience.relievingOption === 'enterDate'">
+                    <input id="dateOfRelieving" name="dateOfRelieving" type="date" class="form-control mt-2"
+                           [(ngModel)]="experience.dateOfRelieving" [min]="experience.dateOfJoining" />
+                  </div>
                 </div>
+
               </div>
               <div class="row mb-3">
                 <div class="col-md-6">
