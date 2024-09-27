@@ -250,8 +250,15 @@
                   </div>
                 
                   <!-- Input for adding new skill -->
-                  <input type="text" [(ngModel)]="newSkill" name="newSkill" placeholder="Enter a skill">
-                  <button type="button" (click)="addSkill()">Add Skill</button>
+                  <!-- <input type="text" [(ngModel)]="newSkill" name="newSkill" placeholder="Enter a skill">
+                  <button type="button" (click)="addSkill()">Add Skill</button> -->
+
+                  <div class="input-group mb-3">
+                    <input type="text" [(ngModel)]="newSkill" name="newSkill" placeholder="Enter a skill" class="form-control" />
+                    <div class="input-group-append">
+                    <button type="button" class="btn btn-primary" (click)="addSkill()">Add Skill</button>
+                    </div>
+                    </div>
                   
                   <!-- Display the list of added skills -->
                   <div class="skills-container">
