@@ -1,22 +1,19 @@
-
-
 <section>
   <link rel="stylesheet" type="text/css"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css"
-    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css" />
   <link rel="stylesheet" type="text/css"
-    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css" />
   <link rel="stylesheet" type="text/css"
-    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css" />
   <link rel="stylesheet" type="text/css"
-    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
 
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -25,91 +22,89 @@
     <div class="container-fluid">
       <div class="row text-left">
         <div class="col-md-8">
-
-          <p class="content-sub-header"> <a routerLink="/dashboard/dashboard1"><span style="font-size: 15px">Home</span></a>
+          <p class="content-sub-header">
+            <a routerLink="/dashboard/dashboard1"><span style="font-size: 15px">Home</span></a>
             <span style="font-size: 15px">/Candidate</span>
             <!-- <span style="font-size: 15px">/{{storename}}</span> -->
-
           </p>
         </div>
-
       </div>
     </div>
   </div>
 </section>
 
+<!--  -->
 
-  <!--  -->
+<!--  -->
 
-  <!--  -->
-
-  <div class="card">
-
-    <!-- Header Container -->
-    <div class="card-header d-flex justify-content-between align-items-center">
-      <!-- Search Input -->
-      <div class="input-group w-50 w-sm-auto">
-        <input type="text" class="form-control" placeholder="Global Search" (input)="onGlobalFilter1($event)" />
-        <div class="input-group-append">
-          <span class="input-group-text"><i class="fas fa-search"></i></span>
-        </div>
+<div class="card">
+  <!-- Header Container -->
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <!-- Search Input -->
+    <div class="input-group w-50 w-sm-auto">
+      <input type="text" class="form-control" placeholder="Global Search" (input)="onGlobalFilter1($event)" />
+      <div class="input-group-append">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
       </div>
+    </div>
 
-      <!-- Filter Dropdown -->
-      <!-- <div class="input-group mx-2">
+    <!-- Filter Dropdown -->
+    <!-- <div class="input-group mx-2">
         <select class="form-select" (change)="onFilterChange($event.target.value)">
           <option value="" selected>Select Status</option>
           <option *ngFor="let source of stages" [value]="source">{{ source }}</option>
         </select>
       </div> -->
 
-      <!-- form-select custom-select d-block w-100 -->
+    <!-- form-select custom-select d-block w-100 -->
 
-      <div class="input-group mx-2">
-        <select class="form-select " (change)="onFilterChange($event.target.value)">
-          <option value="" selected>Select Stage</option>
-          <option *ngFor="let source of stages" [value]="source">{{ source }}</option>
-        </select>
-        <div class="input-group-append">
-          <span class="input-group-text"><i class="fas fa-filter"></i></span>
-        </div>
+    <div class="input-group mx-2">
+      <select class="form-select" (change)="onFilterChange($event.target.value)">
+        <option value="" selected>Select Stage</option>
+        <option *ngFor="let source of stages" [value]="source">
+          {{ source }}
+        </option>
+      </select>
+      <div class="input-group-append">
+        <span class="input-group-text"><i class="fas fa-filter"></i></span>
       </div>
-
-      <!-- Add New Candidate Button -->
-      <button (click)="navigateToCreateCandidate()" class="btn btn-outline-primary">
-        <i class="bi bi-person-plus"></i> Add New
-      </button>
     </div>
 
-    <!-- Candidate Table  when ever candidate login -->
-    <div class="table-container" *ngIf="isCandidateLoggedIn; else candidateList">
-      <table class="table">
-        <thead>
-          <tr>
-            <th style="width: 10%">Firstname</th>
-            <th style="width: 10%">Lastname</th>
-            <th style="width: 10%">Email</th>
-            <th style="width: 10%">Mobile</th>
-            <th style="width: 10%">Primary Skill</th>
-            <th style="width: 10%">Current Location</th>
-            <th style="width: 10%">Preferred Location</th>
-            <th style="width: 10%">Available To Join</th>
-            <th style="width: 10%">Stage</th>
-            <!-- <th style="width: 10%">Actions</th> -->
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngIf="candidate1">
-            <td>{{ candidate1.firstName }}</td>
-            <td>{{ candidate1.lastName }}</td>
-            <td>{{ candidate1.email }}</td>
-            <td>{{ candidate1.mobile }}</td>
-            <td>{{ candidate1.primarySkill }}</td>
-            <td>{{ candidate1.current.name }}</td>
-            <td>{{ candidate1.preferred.name }}</td>
-            <td>{{ candidate1.avialToJoin }}</td>
-            <td>{{ candidate1.stage }}</td>
-            <!-- <td>
+    <!-- Add New Candidate Button -->
+    <button (click)="navigateToCreateCandidate()" class="btn btn-outline-primary">
+      <i class="bi bi-person-plus"></i> Add New
+    </button>
+  </div>
+
+  <!-- Candidate Table  when ever candidate login -->
+  <div class="table-container" *ngIf="isCandidateLoggedIn; else candidateList">
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width: 10%">Firstname</th>
+          <th style="width: 10%">Lastname</th>
+          <th style="width: 10%">Email</th>
+          <th style="width: 10%">Mobile</th>
+          <th style="width: 10%">Primary Skill</th>
+          <th style="width: 10%">Current Location</th>
+          <th style="width: 10%">Preferred Location</th>
+          <th style="width: 10%">Available To Join</th>
+          <th style="width: 10%">Stage</th>
+          <!-- <th style="width: 10%">Actions</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="candidate1">
+          <td>{{ candidate1.firstName }}</td>
+          <td>{{ candidate1.lastName }}</td>
+          <td>{{ candidate1.email }}</td>
+          <td>{{ candidate1.mobile }}</td>
+          <td>{{ candidate1.primarySkill }}</td>
+          <td>{{ candidate1.current.name }}</td>
+          <td>{{ candidate1.preferred.name }}</td>
+          <td>{{ candidate1.avialToJoin }}</td>
+          <td>{{ candidate1.stage }}</td>
+          <!-- <td>
               <div class="button-container">
                 <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditCandidate(candidate)" icon="pi pi-pencil"></button>
                 <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete(candidate)" icon="pi pi-trash"></button>
@@ -117,167 +112,172 @@
                 <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openHiringFlow(candidate)" icon="pi pi-eye"></button>
               </div>
             </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Candidate List Template when Admin,Recruiter or vendor login -->
+  <ng-template #candidateList>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <!-- <th style="width: 10%">Firstname</th>
+              <th style="width: 10%">Lastname</th> -->
+            <th style="width: 10%">CandidateName</th>
+            <th style="width: 10%">Email</th>
+            <th style="width: 10%">Mobile</th>
+            <th style="width: 10%">Primary Skill</th>
+            <th style="width: 10%">Current Location</th>
+            <th style="width: 10%">Preferred Location</th>
+            <th style="width: 10%">Available To Join</th>
+            <th style="width: 10%">Stage</th>
+            <th style="width: 10%" *ngIf="!isVendor && (isAdmin || isRecruiter)">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let candidate of candidates">
+            <!-- <td>{{ candidate.firstName }}</td>
+              <td>{{ candidate.lastName }}</td> -->
+            <td>{{ candidate.firstName }} {{ candidate.lastName }}</td>
+            <td>{{ candidate.email }}</td>
+            <td>{{ candidate.mobile }}</td>
+            <td>{{ candidate.primarySkill }}</td>
+            <td>{{ candidate.current.name }}</td>
+            <td>{{ candidate.preferred.name }}</td>
+            <td>{{ candidate.avialToJoin }}</td>
+            <td>{{ candidate.stage }}</td>
+            <td *ngIf="!isVendor && (isAdmin || isRecruiter)">
+              <!-- Info Icon change the stage -->
+              <a class="info p-0" (click)="openNew(candidate)" placement="bottom" ngbTooltip="Candidate Info">
+                <i class="icon-info font-medium-3 mr-2"></i>
+              </a>
+
+
+
+
+
+              <!-- Edit Icon -->
+              <a class="warning p-0" (click)="handleEditcandidate(candidate)" placement="bottom"
+                ngbTooltip="Edit Candidate">
+                <i class="icon-pencil font-medium-3 mr-2"></i>
+              </a>
+
+              <!-- Info Icon -->
+              <a class="info p-0" (click)="openNew1(candidate)" placement="bottom" ngbTooltip="Candidate Info">
+                <i class="icon-info font-medium-3 mr-2"></i>
+              </a>
+
+              <!--  -->
+
+              <a class="info p-0" (click)="openNew1(candidate)" placement="bottom" ngbTooltip="Download Candidate Info">
+                <i class="icon-download font-medium-3 mr-2"></i>
+              </a>
+
+              <!-- Add Icon -->
+              <a class="info p-0" (click)="openHiringFlow(candidate)" placement="bottom" ngbTooltip="Add Candidate">
+                <i class="icon-plus font-medium-3 mr-2"></i>
+              </a>
+
+              <!-- new  -->
+
+              <!-- <button pButton class="p-button-sm p-button-rounded p-button-secondary"
+(click)="openHiringFlow(candidate)" icon="pi pi-eye"></button> -->
+
+              <!--  -->
+              <!-- Delete Icon -->
+              <a class="danger p-0" (click)="candidateDelete(candidate)" placement="bottom" ngbTooltip="Delete">
+                <i class="icon-trash font-medium-3 mr-2"></i>
+              </a>
+            </td>
+          </tr>
+          <tr *ngIf="candidates.length === 0">
+            <td colspan="10" class="no-records-message">No records found</td>
           </tr>
         </tbody>
       </table>
     </div>
+  </ng-template>
 
-
-    <!-- Candidate List Template when Admin,Recruiter or vendor login -->
-    <ng-template #candidateList>
-      <div class="table-container">
-        <table class="table">
-          <thead>
-            <tr>
-              <!-- <th style="width: 10%">Firstname</th>
-              <th style="width: 10%">Lastname</th> -->
-              <th style="width: 10%">CandidateName</th>
-              <th style="width: 10%">Email</th>
-              <th style="width: 10%">Mobile</th>
-              <th style="width: 10%">Primary Skill</th>
-              <th style="width: 10%">Current Location</th>
-              <th style="width: 10%">Preferred Location</th>
-              <th style="width: 10%">Available To Join</th>
-              <th style="width: 10%">Stage</th>
-              <th style="width: 10%" *ngIf="!isVendor && (isAdmin || isRecruiter)">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let candidate of candidates">
-              <!-- <td>{{ candidate.firstName }}</td>
-              <td>{{ candidate.lastName }}</td> -->
-              <td>{{ candidate.firstName }} {{ candidate.lastName }}</td>
-              <td>{{ candidate.email }}</td>
-              <td>{{ candidate.mobile }}</td>
-              <td>{{ candidate.primarySkill }}</td>
-              <td>{{ candidate.current.name }}</td>
-              <td>{{ candidate.preferred.name }}</td>
-              <td>{{ candidate.avialToJoin }}</td>
-              <td>{{ candidate.stage }}</td>
-              <td *ngIf="!isVendor && (isAdmin || isRecruiter)">
-                <!-- <div class="button-container">
-                  <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
-                    (click)="handleEditcandidate(candidate)" icon="pi pi-pencil"></button>
-                  <button pButton class="p-button-sm p-button-rounded p-button-danger"
-                    (click)="candidateDelete(candidate)" icon="pi pi-trash"></button>
-                  <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)"
-                    icon="pi pi-ellipsis-v"></button>
-                  <button pButton class="p-button-sm p-button-rounded p-button-secondary"
-                    (click)="openHiringFlow(candidate)" icon="pi pi-eye"></button>
-                </div> -->
-
-<!-- Edit Icon -->
-<a class="warning p-0" (click)="handleEditcandidate(candidate)" placement="bottom" ngbTooltip="Edit Candidate">
-  <i class="icon-pencil font-medium-3 mr-2"></i>
-</a>
-
-
-<!-- Info Icon -->
-<a class="info p-0" (click)="openNew(candidate)" placement="bottom" ngbTooltip="Candidate Info">
-  <i class="icon-info font-medium-3 mr-2"></i>
-</a>
-
-<!-- Add Icon -->
-<a class="info p-0" (click)="openNew1(candidate)" placement="bottom" ngbTooltip="Add Candidate">
-  <i class="icon-plus font-medium-3 mr-2"></i>
-</a>
-
- <!-- Delete Icon -->
- <a class="danger p-0" (click)="candidateDelete(candidate)" placement="bottom" ngbTooltip="Delete">
-  <i class="icon-trash font-medium-3 mr-2"></i>
-</a>
-              </td>
-            </tr>
-            <tr *ngIf="candidates.length === 0">
-              <td colspan="10" class="no-records-message">No records found</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </ng-template>
-
-    <!-- Pagination Container -->
-    <div class="d-flex justify-content-between align-items-center mt-3" *ngIf="!isCandidateLoggedIn && (isAdmin || isRecruiter || isVendor) && totalElements > 0">
-      <div>
-        Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-outline-secondary" (click)="goToFirstPage()">&laquo; First</button>
-        <button class="btn btn-outline-secondary" (click)="goToPreviousPage()" [disabled]="pagination.first">&laquo; Prev</button>
-        <button class="btn btn-outline-secondary" (click)="goToNextPage()" [disabled]="pagination.last">Next &raquo;</button>
-        <button class="btn btn-outline-secondary" (click)="goToLastPage()">Last &raquo;</button>
-      </div>
-      <!-- Page Size Selector -->
-      <select class="form-select" (change)="onRecordsPerPageChange($event)">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="5" selected>5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-      </select>
+  <!-- Pagination Container -->
+  <div class="d-flex justify-content-between align-items-center mt-3" *ngIf="
+      !isCandidateLoggedIn &&
+      (isAdmin || isRecruiter || isVendor) &&
+      totalElements > 0
+    ">
+    <div>
+      Showing {{ pagination.number * pagination.size + 1 }} to
+      {{ (pagination.number + 1) * pagination.size }} of
+      {{ totalElements }} entries
     </div>
+    <div class="btn-group">
+      <button class="btn btn-outline-secondary" (click)="goToFirstPage()">
+        &laquo; First
+      </button>
+      <button class="btn btn-outline-secondary" (click)="goToPreviousPage()" [disabled]="pagination.first">
+        &laquo; Prev
+      </button>
+      <button class="btn btn-outline-secondary" (click)="goToNextPage()" [disabled]="pagination.last">
+        Next &raquo;
+      </button>
+      <button class="btn btn-outline-secondary" (click)="goToLastPage()">
+        Last &raquo;
+      </button>
+    </div>
+    <!-- Page Size Selector -->
+    <select class="form-select" (change)="onRecordsPerPageChange($event)">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="5" selected>5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+  </div>
 
-    <!-- Bootstrap Modal for Hiring Flow Stages -->
-    <!-- <div class="modal fade" id="productDialog" tabindex="-1" aria-labelledby="productDialogLabel" aria-hidden="true" [class.show]="productDialog" (click)="hideDialog()">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="productDialogLabel">HiringFlow Stages</h5>
-            <button type="button" class="btn-close" aria-label="Close" (click)="hideDialog()"></button>
-          </div>
-          <div class="modal-body">
-            <div class="form-check form-check-inline" *ngFor="let stage of stages">
-              <input class="form-check-input" type="radio" [id]="stage.toLowerCase()" name="stage" [value]="stage" [(ngModel)]="temporaryStage" [disabled]="stages.indexOf(stage) <= stages.indexOf(selectededCandidate.stage)" />
-              <label class="form-check-label" [for]="stage.toLowerCase()">{{ stage }}</label>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="hideDialog()">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="updateCandidate(selectededCandidate, temporaryStage)">Save</button>
-          </div>
+  <div class="modal" tabindex="-1" [ngClass]="{ show: productDialog }"
+    [style.display]="productDialog ? 'block' : 'none'" role="dialog">
+    <div class="modal-dialog" role="document" [style.width.px]="450">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">HiringFlow Stages</h5>
+          <button type="button" class="close" (click)="hideDialog()">
+            <span>&times;</span>
+          </button>
         </div>
-      </div>
-    </div> -->
-
-
-
-
-    <div class="modal" tabindex="-1" [ngClass]="{'show': productDialog}" [style.display]="productDialog ? 'block' : 'none'" role="dialog">
-      <div class="modal-dialog" role="document" [style.width.px]="450">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">HiringFlow Stages</h5>
-            <button type="button" class="close" (click)="hideDialog()">
-              <span>&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <div class="row">
-                <div class="col-6" *ngFor="let stage of stages">
-                  <div class="form-check">
-                    <input 
-                      type="radio" 
-                      class="form-check-input" 
-                      [id]="stage.toLowerCase()" 
-                      name="stage" 
-                      [value]="stage" 
-                      [(ngModel)]="temporaryStage"
-                      [disabled]="stages.indexOf(stage) <= stages.indexOf(selectededCandidate.stage)">
-                    <label class="form-check-label" [for]="stage.toLowerCase()">{{ stage }}</label>
-                  </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-6" *ngFor="let stage of stages">
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" [id]="stage.toLowerCase()" name="stage" [value]="stage"
+                    [(ngModel)]="temporaryStage" [disabled]="
+                      stages.indexOf(stage) <=
+                      stages.indexOf(selectededCandidate.stage)
+                    " />
+                  <label class="form-check-label" [for]="stage.toLowerCase()">{{
+                    stage
+                    }}</label>
                 </div>
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="hideDialog()">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="updateCandidate(selectededCandidate, temporaryStage)">Save</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="hideDialog()">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" (click)="updateCandidate(selectededCandidate, temporaryStage)">
+            Save
+          </button>
         </div>
       </div>
     </div>
-
   </div>
+</div>
+
+
 

@@ -1,3 +1,269 @@
-<p>
-  hiringflowactivity works!
-</p>
+
+<div class="container">
+  <div class="tab-menu">
+    <div class="tab" *ngFor="let tab of tabs; index as i" [class.active]="currentStep === i" (click)="goToStep(i)">
+      {{ tab }}
+    </div>
+  </div>
+
+  <div class="step-content">
+    <div *ngIf="currentStep === 0" class="container mt-4">
+      <div class="card p-4">
+        <form #candidateForm="ngForm">
+          <div class="row g-3">
+            <!-- First Name -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="firstname" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name"
+                  [(ngModel)]="hiringFlowActivity.candidate.firstName" required #firstname="ngModel" readonly />
+              </div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name"
+                  [(ngModel)]="hiringFlowActivity.candidate.lastName" required #lastName="ngModel" readonly />
+                <div class="text-danger" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                  Last Name is Required
+                </div>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email"
+                  [(ngModel)]="hiringFlowActivity.candidate.email" required #email="ngModel" readonly />
+                <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                  Invalid Email Format
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="mobile" class="form-label">Mobile</label>
+                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number"
+                  [(ngModel)]="hiringFlowActivity.candidate.mobile" required pattern="[0-9]*" #mobile="ngModel" readonly />
+                <div class="text-danger" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
+                  Mobile Number is Required
+                </div>
+              </div>
+            </div>
+
+            <!-- Alternate Mobile -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="alterMobile" class="form-label">Alternate Mobile</label>
+                <input type="text" class="form-control" id="alterMobile" name="alterMobile"
+                  placeholder="Enter Alternate Mobile Number" [(ngModel)]="hiringFlowActivity.candidate.alterMobile"
+                  required pattern="[0-9]{10}*" #alterMobile="ngModel" readonly />
+                <div class="text-danger" *ngIf="alterMobile.invalid && (alterMobile.dirty || alterMobile.touched)">
+                  Alternate Mobile Number is Required
+                </div>
+              </div>
+            </div>
+
+            <!-- Hiring Stage -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="stage" class="form-label">Hiring Stage</label>
+                <input type="text" class="form-control" id="stage" name="stage" placeholder="Enter Hiring Stage"
+                  [(ngModel)]="hiringFlowActivity.candidate.stage" required #stage="ngModel" readonly />
+              </div>
+            </div>
+
+            <!-- Notice Period -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="avialToJoin" class="form-label">Notice Period</label>
+                <input type="text" class="form-control" id="avialToJoin" name="avialToJoin" placeholder="Enter Notice Period"
+                  [(ngModel)]="hiringFlowActivity.candidate.avialToJoin" required #avialToJoin="ngModel" readonly />
+                <div class="text-danger" *ngIf="avialToJoin.invalid && (avialToJoin.dirty || avialToJoin.touched)">
+                  Notice Period is Required
+                </div>
+              </div>
+            </div>
+
+            <!-- Current Salary -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="currentSalary" class="form-label">Current Salary</label>
+                <input type="number" class="form-control" id="currentSalary" name="currentSalary"
+                  placeholder="Enter Current Salary" [(ngModel)]="hiringFlowActivity.candidate.currentSalary" required
+                  #currentSalary="ngModel" readonly />
+                <div class="text-danger" *ngIf="currentSalary.invalid && (currentSalary.dirty || currentSalary.touched)">
+                  Current Salary is Required
+                </div>
+              </div>
+            </div>
+
+            <!-- Expected Salary -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="expectedSalary" class="form-label">Expected Salary</label>
+                <input type="number" class="form-control" id="expectedSalary" name="expectedSalary"
+                  placeholder="Enter Expected Salary" [(ngModel)]="hiringFlowActivity.candidate.expectedSalary" required
+                  #expectedSalary="ngModel" readonly />
+                <div class="text-danger" *ngIf="expectedSalary.invalid && (expectedSalary.dirty || expectedSalary.touched)">
+                  Expected Salary is Required
+                </div>
+              </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="skills" class="form-label">Skills</label>
+                <input type="text" class="form-control" id="skills" name="skills" placeholder="Enter Skills"
+                  [(ngModel)]="hiringFlowActivity.candidate.skills" required #skills="ngModel" readonly />
+              </div>
+            </div>
+
+            <!-- <div class="field col-12 md:col-6">
+              <label for="skills">Skills</label>
+              <ul class="list-group">
+
+                <li *ngFor="let skill of hiringFlowActivity.candidate.skills" class="list-group-item">
+                  {{ skill }}
+                </li>
+              </ul>
+            </div> -->
+
+            <!-- Validation message for required skills -->
+            <!-- <div *ngIf="skills.length === 0 && candidateForm.submitted" style="color: red">
+              Skills are required
+            </div> -->
+
+            <!-- Job Title -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="job" class="form-label">Job</label>
+                <input type="text" class="form-control" id="job" name="job" placeholder="Enter Job Title"
+                  [(ngModel)]="hiringFlowActivity.candidate.job.title" required #job="ngModel" readonly />
+              </div>
+            </div>
+
+            <!-- Source -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="source" class="form-label">Source</label>
+                <input type="text" class="form-control" id="source" name="source" placeholder="Enter Source"
+                  [(ngModel)]="hiringFlowActivity.candidate.source.name" required #source="ngModel" readonly />
+              </div>
+            </div>
+
+            <!-- Current Location -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="current" class="form-label">Current Location</label>
+                <input type="text" class="form-control" id="current" name="current" placeholder="Enter Current Location"
+                  [(ngModel)]="hiringFlowActivity.candidate.current.name" required #current="ngModel" readonly />
+              </div>
+            </div>
+
+            <!-- Preferred Location -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="preffered" class="form-label">Preferred Location</label>
+                <input type="text" class="form-control" id="preffered" name="preffered" placeholder="Enter Preferred Location"
+                  [(ngModel)]="hiringFlowActivity.candidate.preferred.name" required #preferred="ngModel" readonly />
+              </div>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                <div class="form-control">
+                  {{ hiringFlowActivity.candidate.dateOfBirth | date : "dd/MM/yyyy" }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Gender -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="gender" class="form-label">Gender</label>
+                <div class="form-control">
+                  {{ hiringFlowActivity.candidate.gender }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    <div *ngIf="currentStep === 1">
+
+
+      <div class="card">
+        <div class="header-container">
+          <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+            <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search"
+                class="w-full" />
+            </span>
+          </div>
+        </div>
+
+
+
+        <!-- Table Container -->
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 25%">Createad Date</th>
+                <th style="width: 25%">Hiring Flow Type</th>
+                <th style="width: 25%">UpdatedBy</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let hiringFlowActivity of hiringFlowActivitys">
+                <td>{{hiringFlowActivity.createdDate}}</td>
+                <td>{{hiringFlowActivity.hiringFlowType}}</td>
+                <td>{{hiringFlowActivity.userAccount.userName }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div *ngIf="currentStep === 2">
+      <p>This is the Screening step content.</p>
+    </div>
+    <div *ngIf="currentStep === 3">
+      <p>This is the Interview step content.</p>
+    </div>
+    <div *ngIf="currentStep === 4">
+      <p>This is the Preboarding step content.</p>
+    </div>
+    <div *ngIf="currentStep === 5">
+      <p>This is the Hired step content.</p>
+    </div>
+    <div *ngIf="currentStep === 6">
+      <p>This is the Archived step content.</p>
+    </div>
+    <div *ngIf="currentStep === 7">
+      <p>This is the Sourced step content.</p>
+    </div>
+  </div>
+</div>
+
+
+<!--  -->
+
+
