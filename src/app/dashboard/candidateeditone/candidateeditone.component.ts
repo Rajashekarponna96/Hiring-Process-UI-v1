@@ -338,18 +338,21 @@ export class CandidateeditoneComponent implements OnInit {
   }
 
 
+  cancel(){
+    this.router.navigate(['candidate/list']);
+  }
   addSkill() {
     if (this.newSkill) {
       this.skills.push(this.newSkill);
       this.newSkill = ''; // Clear the input after adding
     }
   }
-  
+
   // Remove skill from the list
   removeSkill(index: number) {
     this.skills.splice(index, 1);
   }
-  
+
   // For handling form submission (optional)
   onSubmit() {
     if (this.skills.length > 0) {
