@@ -267,7 +267,7 @@ message: string = '';
 
         setTimeout(() => {
           this.showSuccessMessage = false;
-        }, 1000);
+        }, 500);
         this.onUploadAndClose()
         this.router.navigate(['/candidate/list']);
       },
@@ -359,7 +359,7 @@ message: string = '';
     // If all validation passes, return true
     return true;
   }
-  submitExceperience() {
+  submitExceperience() {debugger;
     // Validate the experience details before adding or updating in the table
     if (this.validateExperience()) {
       if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
@@ -556,6 +556,14 @@ onSubmit() {
     console.log('Skills submitted:', this.skills);
   } else {
     console.log('No skills added.');
+  }
+}
+
+
+onRelievingOptionChange(event: any) {
+  const value = event.target.value;
+  if (value === 'stillWorking') {
+    this.experience.dateOfRelieving = 'stillWorking'; // Clear the date field if 'Still working' is selected
   }
 }
 

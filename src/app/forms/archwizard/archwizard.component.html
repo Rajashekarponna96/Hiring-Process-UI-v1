@@ -29,7 +29,7 @@
 
       </p>
       <button (click)="fileInput.click()" 
-      style="color: #838284; background-color: white; border: 1px solid #ccc; padding: 10px 20px; cursor: pointer;">
+      style="color: #838284; background-color: #f0f0f0; border: none; padding: 10px 20px; cursor: pointer;">
 <i class="pi pi-upload"></i> {{ selectedFileName || '↑Upload Resume' }}
 </button>
 
@@ -116,6 +116,17 @@
                 </div>
 
                 <div class="form-group col-md-6">
+                  <label for="avialToJoin">Primary Skill<span
+                      [style.display]="candidate.primarySkill ? 'none' : 'inline'" class="text-danger">*</span></label>
+                  <input class="form-control" id="primarySkill" name="primarySkill" type="text"
+                    placeholder="Enter Primary Skill" [(ngModel)]="candidate.primarySkill" required
+                    #primarySkill="ngModel" />
+                  <div *ngIf="primarySkill.invalid && (primarySkill.dirty || primarySkill.touched)">
+                    <div class="text-danger">Primary Skill is required</div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
                   <label for="currentSalary">Current Salary (LPA) (INR)<span
                       [style.display]="candidate.currentSalary ? 'none' : 'inline'" class="text-danger">*</span></label>
                   <input class="form-control" id="currentSalary" name="currentSalary" type="number"
@@ -176,11 +187,11 @@
                       {{ job.title }}
                     </option>
                   </select>
-                  <div
+                  <!-- <div
                     *ngIf="!candidate.job && (candidateForm.controls['job'].dirty || candidateForm.controls['job'].touched)"
                     class="text-danger">
                     Job is required
-                  </div>
+                  </div> -->
                 </div>
 
                 <div class="form-group col-md-6">
@@ -228,6 +239,8 @@
                   </div>
                 </div>
 
+                
+
                 <div class="form-group col-md-6">
                   <label for="skills">Skills:</label>
                 
@@ -237,8 +250,15 @@
                   </div>
                 
                   <!-- Input for adding new skill -->
-                  <input type="text" [(ngModel)]="newSkill" name="newSkill" placeholder="Enter a skill">
-                  <button type="button" (click)="addSkill()">Add Skill</button>
+                  <!-- <input type="text" [(ngModel)]="newSkill" name="newSkill" placeholder="Enter a skill">
+                  <button type="button" (click)="addSkill()">Add Skill</button> -->
+
+                  <div class="input-group mb-3">
+                    <input type="text" [(ngModel)]="newSkill" name="newSkill" placeholder="Enter a skill" class="form-control" />
+                    <div class="input-group-append">
+                    <button type="button" class="btn btn-primary" (click)="addSkill()">Add Skill</button>
+                    </div>
+                    </div>
                   
                   <!-- Display the list of added skills -->
                   <div class="skills-container">
@@ -248,6 +268,7 @@
                     </span>
                   </div>
                 </div>
+                
 
               </div>
 
@@ -410,11 +431,27 @@
                   <input id="dateOfJoining" name="dateOfJoining" type="date" class="form-control"
                     [(ngModel)]="experience.dateOfJoining" (ngModelChange)="updateEndDateMinDate1()" />
                 </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                   <label for="dateOfRelieving" class="form-label">Date of Relieving</label>
                   <input id="dateOfRelieving" name="dateOfRelieving" type="date" class="form-control"
                     [(ngModel)]="experience.dateOfRelieving" [min]="experience.dateOfJoining" />
+                </div> -->
+                <div class="col-md-6">
+                  <label for="dateOfRelieving" class="form-label">Date of Relieving</label>
+                
+                  <!-- Dropdown for 'Still working' or 'Enter relieving date' -->
+                  <select id="relievingOption" name="relievingOption" class="form-control" [(ngModel)]="experience.relievingOption" (change)="onRelievingOptionChange($event)">
+                    <option value="stillWorking">Still working</option>
+                    <option value="enterDate">Enter relieving date</option>
+                  </select>
+                
+                  <!-- Date input for 'Enter relieving date' - Show only if selected -->
+                  <div *ngIf="experience.relievingOption === 'enterDate'">
+                    <input id="dateOfRelieving" name="dateOfRelieving" type="date" class="form-control mt-2"
+                           [(ngModel)]="experience.dateOfRelieving" [min]="experience.dateOfJoining" />
+                  </div>
                 </div>
+
               </div>
               <div class="row mb-3">
                 <div class="col-md-6">
