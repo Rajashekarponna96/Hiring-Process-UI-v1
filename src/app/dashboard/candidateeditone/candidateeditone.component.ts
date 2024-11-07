@@ -338,9 +338,6 @@ export class CandidateeditoneComponent implements OnInit {
   }
 
 
-  cancel(){
-    this.router.navigate(['candidate/list']);
-  }
   addSkill() {
     if (this.newSkill) {
       this.skills.push(this.newSkill);
