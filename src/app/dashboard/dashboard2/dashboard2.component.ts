@@ -29,8 +29,12 @@ export class Dashboard2Component implements OnInit {
     visibleSidebar5 = false;
     email!: string;
     mobile!: string;
-    currentStep = 0;
-    totalSteps = 4;
+
+
+    // currentStep = 0;
+    // totalSteps = 4;
+
+
     createdBy!: UserAccout;
     itemss: any[] = [
       { label: 'Profile' },
@@ -399,17 +403,17 @@ export class Dashboard2Component implements OnInit {
     //   this.currentStep++;
     // }
 
-    nextStep() {
-      if (this.currentStep < this.totalSteps - 1) {
-        this.currentStep++;
-      }
-    }
+    // nextStep() {
+    //   if (this.currentStep < this.totalSteps - 1) {
+    //     this.currentStep++;
+    //   }
+    // }
 
-    prevStep() {
-      if (this.currentStep > 0) {
-        this.currentStep--;
-      }
-    }
+    // prevStep() {
+    //   if (this.currentStep > 0) {
+    //     this.currentStep--;
+    //   }
+    // }
 
     todayDate(): string {
       return new Date().toISOString().split('T')[0];
@@ -518,4 +522,22 @@ export class Dashboard2Component implements OnInit {
     alert('Form submitted successfully!');
   }
   //
+
+
+  currentStep = 1;
+  totalSteps = 4;
+
+  // Method to go to the next step
+  nextStep() {
+    if (this.currentStep < this.totalSteps) {
+      this.currentStep++;
+    }
+  }
+
+  // Method to go to the previous step
+  previousStep() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+    }
+  }
   }
