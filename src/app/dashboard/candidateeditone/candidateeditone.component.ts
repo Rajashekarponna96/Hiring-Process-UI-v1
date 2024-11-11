@@ -359,5 +359,11 @@ export class CandidateeditoneComponent implements OnInit {
     }
   }
 
+  // In your component.ts file
+compareLocations(location1: any, location2: any): boolean {
+  return location1 && location2 ? location1.id === location2.id : location1 === location2;
+}
+
+
 }
 

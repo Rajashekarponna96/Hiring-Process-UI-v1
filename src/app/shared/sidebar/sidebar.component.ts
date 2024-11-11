@@ -121,27 +121,26 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     const permissions: Permission[] = user.role.permissions || [];
 
     const menuItems: RouteInfo[] = [
-      {
-        path: '',
-        title: 'Dashboard',
-        icon: 'ft-home',
-        class: 'has-sub',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: [
-          { path: '/dashboard/dashboard1', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/dashboard/dashboard2', title: 'Dashboard21', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-           { path: '/dashboard/dashboard3', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-           { path: '/dashboard/resumeupload', title: 'resumeupload', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-           { path: '/dashboard/caneditone', title: 'candedit1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+      // {
+      //   path: '',
+      //   title: 'Dashboard',
+      //   icon: 'ft-home',
+      //   class: 'has-sub',
+      //   badge: '',
+      //   badgeClass: '',
+      //   isExternalLink: false,
 
 
-
-
-        ],
-        permissionName: 'home'
-      },
+      //   submenu: [
+      //     // { path: '/dashboard/dashboard1', title: 'Dashboard1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      //     { path: '/dashboard/dashboard2', title: 'Dashboard21', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      //     //  { path: '/dashboard/dashboard3', title: 'Dashboard31', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      //     //  { path: '/dashboard/resumeupload', title: 'resumeupload', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      //     //  { path: '/dashboard/caneditone', title: 'candedit1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+      //   ],
+      //   permissionName: 'home'
+      // },
+      { path: '/dashboard/dashboard1', title: 'Dashboard', icon: 'ft-home', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'candidate' },
       { path: '/candidate/list', title: 'Candidate', icon: 'fas fa-user', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'candidate' },
       { path: '/dashboard/resumeview', title: 'resumeview', icon: 'fas fa-file-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'email' },
       { path: '/jobs/list', title: 'Job', icon: 'fas fa-briefcase', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [], permissionName: 'job' },

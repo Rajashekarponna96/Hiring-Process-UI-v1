@@ -1,132 +1,100 @@
-/* styles.css */
-
 /* Container and card styling */
 .container {
-    padding: 0 15px;
-  }
+  padding: 0 15px;
+  background-color: #ffffff; /* Ensures the container background is white */
+}
 
-  .card {
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  }
+.card {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  background-color: #ffffff; /* Ensures the card background is white */
+  margin-top: 1rem;
+}
 
-  .card-header {
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
-  }
+.card-header, .card-footer {
+  background-color: #ffffff; /* Sets header and footer to white */
+  border: none; /* Removes the border under header and above footer */
+  font-weight: 500;
+}
 
-  .card-body {
-    padding: 1.25rem;
-  }
+.card-body {
+  padding: 1.25rem;
+  background-color: #ffffff; /* Ensures the body area is also white */
+}
 
-  .card-footer {
-    background-color: #f8f9fa;
-    border-top: 1px solid #dee2e6;
-  }
+/* Table styling */
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  background-color: #ffffff; /* Ensures the table background is white */
+}
 
-  .table {
-    width: 100%;
-    margin-bottom: 1rem;
-    color: #212529;
-  }
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  background-color: #ffffff; /* Removes background color from table cells */
+}
 
-  .table th,
-  .table td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-  }
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #ffffff; /* Removes alternating row colors */
+}
 
-  .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f2f2f2;
-  }
+/* Pagination styling */
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff; /* Makes pagination area white */
+}
 
-  /* Pagination */
-  .pagination-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.page-link {
+  color: #007bff;
+  text-decoration: none;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+}
 
-  .pagination-info {
-    flex: 1;
-  }
+/* Search and Select Inputs */
+.input-group, .page-size-selector {
+  background-color: #ffffff; /* Ensures dropdown and input background are white */
+}
 
-  .pagination {
-    display: flex;
-    gap: 0.5rem;
-  }
+/* Modal styling */
+.modal-content {
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+}
 
-  .page-link {
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    color: #007bff;
-    text-decoration: none;
-  }
+.modal-header, .modal-footer {
+  background-color: #ffffff; /* Sets modal header and footer to white */
+}
 
-  .page-link[disabled] {
-    cursor: not-allowed;
-    color: #6c757d;
-  }
+/* No Records Message */
+.no-records-message {
+  text-align: center;
+  color: #6c757d;
+}
 
-  /* Page size selector */
-  .page-size-selector {
-    margin-left: auto;
-  }
+/* Action Buttons - Edit and Delete */
+.action-button {
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
 
-  .page-size-selector .form-select {
-    width: auto;
-  }
+.action-button.edit:hover {
+  color: #17a2b8; /* Blue for edit */
+}
 
-  /* Button container */
-  .button-container {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .no-records-message {
-    text-align: center;
-    color: #6c757d;
-  }
-
-  /* Modal styling */
-  .modal-content {
-    border-radius: 0.25rem;
-  }
-
-  .modal-header {
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
-  }
-
-  .modal-footer {
-    border-top: 1px solid #dee2e6;
-  }
-
-  .form-check {
-    margin-bottom: 0.5rem;
-  }
-
-  .form-check-input {
-    margin-right: 0.5rem;
-  }
+.action-button.delete:hover {
+  color: #dc3545; /* Red for delete */
+}
 
 
-  .input-group {
-    width: fit-content;
-  }
-
-  .input-group .form-select {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .input-group .input-group-text {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
 
 
