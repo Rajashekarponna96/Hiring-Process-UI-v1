@@ -1,0 +1,58 @@
+/* Basic Button Styling for Download */
+.download-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 4px; /* Rounded corners */
+    text-decoration: none; /* Remove default underline from links */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    border: 2px solid transparent; /* Border for button */
+  }
+
+  /* Styling for the Icon */
+  .download-button i {
+    margin-right: 8px; /* Space between the icon and text */
+  }
+
+  /* Hover Effects */
+  .download-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #0056b3; /* Border color on hover */
+    cursor: pointer; /* Change cursor to indicate it's clickable */
+  }
+
+  /* Focus Effects (when the button is focused, e.g., keyboard navigation) */
+  .download-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.8); /* Focus outline */
+  }
+
+  /* Tooltip */
+  .download-button[ngbTooltip] {
+    position: relative;
+  }
+
+  .download-button[ngbTooltip]:hover::after {
+    content: attr(ngbTooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  /* Accessibility Enhancements (aria-label) */
+  .download-button[aria-label] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }

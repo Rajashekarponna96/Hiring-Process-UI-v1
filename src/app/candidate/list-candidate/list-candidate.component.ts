@@ -124,7 +124,7 @@ export class ListCandidateComponent implements OnInit {
     this.submitted = false;
     this.productDialog = true;
   }
-  
+
   openNew1(candidate: Candidate) {
     this.fileName=candidate.fileName;
     this.fileUploadService.viewFile(this.fileName).subscribe(blob => {

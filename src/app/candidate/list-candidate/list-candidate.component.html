@@ -167,20 +167,20 @@
               </a>
 
               <!-- Info Icon -->
-              <a class="info p-0" (click)="openNew1(candidate)" placement="bottom" ngbTooltip="Candidate Info">
+              <!-- <a class="info p-0" (click)="openNew1(candidate)" placement="bottom" ngbTooltip="Candidate Info">
                 <i class="icon-info font-medium-3 mr-2"></i>
-              </a>
+              </a> -->
 
               <!--  -->
 
               <a class="info p-0" (click)="openNew1(candidate)" placement="bottom" ngbTooltip="Download Candidate Info">
-                <i class="icon-download font-medium-3 mr-2"></i>
+                <i class="ft-download font-medium-3 mr-2"></i>
               </a>
 
               <!-- Add Icon -->
-              <a class="info p-0" (click)="openHiringFlow(candidate)" placement="bottom" ngbTooltip="Add Candidate">
+              <!-- <a class="info p-0" (click)="openHiringFlow(candidate)" placement="bottom" ngbTooltip="Add Candidate">
                 <i class="icon-plus font-medium-3 mr-2"></i>
-              </a>
+              </a> -->
 
               <!-- new  -->
 
@@ -228,14 +228,16 @@
       </button>
     </div>
     <!-- Page Size Selector -->
-    <select class="form-select" (change)="onRecordsPerPageChange($event)">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="5" selected>5</option>
-      <option value="10">10</option>
-      <option value="15">15</option>
-      <option value="20">20</option>
-    </select>
+    <div>
+      <select class="custom-select" (change)="onRecordsPerPageChange($event)">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="5" selected>5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select>
+    </div>
   </div>
 
   <div class="modal" tabindex="-1" [ngClass]="{ show: productDialog }"

@@ -77,6 +77,9 @@ export class ViewJobComponent implements OnInit {
   sortField: string = '';
 
 
+  navigateToCreateCandidate() {
+    this.router.navigate(['/forms/archwizard']);
+  }
 
 }
 
